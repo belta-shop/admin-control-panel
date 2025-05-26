@@ -1,11 +1,10 @@
-import 'src/global.css';
 import { notFound } from 'next/navigation';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 import { routing } from '@/lib/i18n/routing';
 import { localesSettings, LocaleType } from '@/lib/config/locale';
 
-export default async function LocaleLayout({
+export default async function RootLayout({
   children,
   params,
 }: {
@@ -21,9 +20,11 @@ export default async function LocaleLayout({
   const { dir } = localesSettings[locale];
 
   return (
-    <main lang={locale} dir={dir} style={{ minHeight: '100vh' }}>
-      <NextIntlClientProvider>{children}</NextIntlClientProvider>
-    </main>
+    <html>
+      <body lang={locale} dir={dir} style={{ minHeight: '100vh' }}>
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      </body>
+    </html>
   );
 }
 
