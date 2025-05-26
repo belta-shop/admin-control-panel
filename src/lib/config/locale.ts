@@ -1,31 +1,12 @@
-export type LocaleType = 'en' | 'ar';
+import { LocaleSetting, LocaleType } from '../types/locale';
 
-interface LocaleSetting {
-  label: string;
-  value: LocaleType;
-  dir: 'ltr' | 'rtl';
-  currency: string;
-  icon: string;
-  numberFormat: {
-    code: string;
-    currency: string;
-  };
-}
-
-export const locales: LocaleType[] = ['ar', 'en'];
-export const defaultLocale: LocaleType = 'ar';
-
-export const localesSettings: { [key in LocaleType]: LocaleSetting } = {
+export const localesSettings: Record<LocaleType, LocaleSetting> = {
   ar: {
     label: 'العربية',
     value: 'ar',
     dir: 'rtl',
     currency: 'ر.ي',
     icon: 'flagpack:sa',
-    numberFormat: {
-      code: 'ar',
-      currency: 'AED',
-    },
   },
   en: {
     label: 'English',
@@ -33,11 +14,5 @@ export const localesSettings: { [key in LocaleType]: LocaleSetting } = {
     dir: 'ltr',
     currency: 'YER',
     icon: 'flagpack:gb-nir',
-    numberFormat: {
-      code: 'en-US',
-      currency: 'USD',
-    },
   },
 };
-
-export const allLocales = Object.values(localesSettings);
