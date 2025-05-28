@@ -1,9 +1,9 @@
 import { Palette, PaletteMode, PaletteColor } from '@mui/material';
 
 const primary: PaletteColor = {
-  main: '#1976d2',
-  light: '#42a5f5',
-  dark: '#1565c0',
+  light: '#5d82e7',
+  main: '#4c66af',
+  dark: '#35477b',
   contrastText: '#fff',
 };
 
@@ -14,11 +14,11 @@ const base: Partial<Palette> = {
 const light: Partial<Palette> = {
   background: {
     paper: '#fff',
-    default: '#f4f5fa',
+    default: '#eceeff33',
   },
   text: {
-    primary: 'rgba(58, 53, 65, 0.87)',
-    secondary: 'rgba(58, 53, 65, 0.68)',
+    primary: '#000',
+    secondary: '#111827',
     disabled: '#dddee3',
   },
   divider: 'rgba(58, 53, 65, 0.1)',

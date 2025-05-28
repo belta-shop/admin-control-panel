@@ -25,7 +25,7 @@ export default async function RootLayout({
 
   return (
     <html>
-      <body lang={locale} dir={dir} style={{ minHeight: '100vh' }}>
+      <body lang={locale} dir={dir} style={{ minHeight: '100svh', display: 'grid' }}>
         <NextIntlClientProvider>
           <ThemeProvider>
             <LocalizationProvider>{children}</LocalizationProvider>
