@@ -2,16 +2,17 @@
 
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import {
+  Shadows,
   createTheme,
   CssBaseline,
   ThemeProvider as MuiThemeProvider,
-  Shadows,
 } from '@mui/material';
 
 import { useSettingsStore } from '@/lib/store/settings';
 import { createPalette } from '@/lib/config/theme/palette';
 import { typography } from '@/lib/config/theme/typography';
 import { shadows as customShadows } from '@/lib/config/theme/shadow';
+
 import themeComponents from '../theme';
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {

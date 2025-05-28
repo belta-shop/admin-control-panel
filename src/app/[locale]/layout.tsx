@@ -5,8 +5,8 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { routing } from '@/lib/i18n/routing';
 import { LocaleType } from '@/lib/types/locale';
 import { localesSettings } from '@/lib/config/locale';
-import ThemeProvider from '@/components/providers/mui-theme-provider';
-import LocalizationProvider from '@/components/providers/mui-localization-provider';
+import ThemeProvider from '@/view/components/providers/mui-theme-provider';
+import LocalizationProvider from '@/view/components/providers/mui-localization-provider';
 
 export default async function RootLayout({
   children,

@@ -1,7 +1,6 @@
+import Image from 'next/image';
 import { Box } from '@mui/material';
-
 import { BoxProps } from '@mui/material';
-import Image, { ImageProps } from 'next/image';
 
 const logo = (scale: number) => ({
   icon: {

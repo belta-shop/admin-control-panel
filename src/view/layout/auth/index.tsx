@@ -1,6 +1,7 @@
-import Logo from '@/components/logo';
-import { Box, Card, CardContent, Container } from '@mui/material';
 import Image from 'next/image';
+import { Box, Card, Container, CardContent } from '@mui/material';
+
+import Logo from '@/view/components/logo';
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   const renderBgImg = (
