@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation';
-import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
+import { hasLocale, NextIntlClientProvider } from 'next-intl';
+
 import { routing } from '@/lib/i18n/routing';
-import { localesSettings } from '@/lib/config/locale';
 import { LocaleType } from '@/lib/types/locale';
+import { localesSettings } from '@/lib/config/locale';
 
 export default async function RootLayout({
   children,

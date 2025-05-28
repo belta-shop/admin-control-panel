@@ -1,4 +1,4 @@
-import { LocaleSetting, LocaleType } from '../types/locale';
+import { LocaleType, LocaleSetting } from '../types/locale';
 
 export const localesSettings: Record<LocaleType, LocaleSetting> = {
   ar: {
