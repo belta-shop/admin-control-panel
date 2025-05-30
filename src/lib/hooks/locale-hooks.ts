@@ -15,3 +15,15 @@ export async function getCurrentLocale() {
 
   return localesSettings[locale as LocaleType];
 }
+
+export function useDir() {
+  const { dir } = useCurrentLocale();
+
+  return { dir, left: dir === 'rtl' ? 'right' : 'left', right: dir === 'rtl' ? 'left' : 'right' };
+}
+
+export function useDirStyles() {
+  const { dir } = useCurrentLocale();
+
+  return { dir, left: dir === 'rtl' ? 'right' : 'left', right: dir === 'rtl' ? 'left' : 'right' };
+}
