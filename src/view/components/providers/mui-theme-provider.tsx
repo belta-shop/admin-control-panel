@@ -1,5 +1,6 @@
 'use client';
 
+import stylisRTLPlugin from 'stylis-plugin-rtl';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import {
   Shadows,
@@ -11,11 +12,14 @@ import {
 import { useSettingsStore } from '@/lib/store/settings';
 import { createPalette } from '@/lib/config/theme/palette';
 import { typography } from '@/lib/config/theme/typography';
+import { useCurrentLocale } from '@/lib/hooks/locale-hooks';
 import { shadows as customShadows } from '@/lib/config/theme/shadow';
 
 import themeComponents from '../theme';
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const { dir } = useCurrentLocale();
+
   const themeMode = useSettingsStore(({ themeMode }) => themeMode);
 
   const theme = createTheme({
@@ -29,7 +33,9 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
   ) as Shadows;
 
   return (
-    <AppRouterCacheProvider>
+    <AppRouterCacheProvider
+      options={{ key: 'css', stylisPlugins: dir === 'rtl' ? [stylisRTLPlugin] : [] }}
+    >
       <MuiThemeProvider theme={theme}>
         <CssBaseline />
         {children}
