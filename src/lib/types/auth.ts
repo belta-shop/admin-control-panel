@@ -6,7 +6,8 @@ export interface AuthState {
 
 export interface AuthReducers {
   login: (payload: LoginPayload) => Promise<void>;
-  logout: () => void;
+  logout: () => Promise<void>;
+  init: (user: User | null) => void;
 }
 
 export type AuthStore = AuthState & AuthReducers;

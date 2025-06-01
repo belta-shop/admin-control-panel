@@ -10,9 +10,11 @@ import LocalizationProvider from '@/view/components/providers/mui-localization-p
 
 export default async function RootLayout({
   children,
+  auth,
   params,
 }: {
   children: React.ReactNode;
+  auth: React.ReactNode;
   params: Promise<{ locale: LocaleType }>;
 }) {
   // Ensure that the incoming `locale` is valid
@@ -28,7 +30,10 @@ export default async function RootLayout({
       <body lang={locale} dir={dir} style={{ minHeight: '100svh', display: 'grid' }}>
         <NextIntlClientProvider>
           <ThemeProvider>
-            <LocalizationProvider>{children}</LocalizationProvider>
+            <LocalizationProvider>
+              {auth}
+              {children}
+            </LocalizationProvider>
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

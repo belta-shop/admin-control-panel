@@ -5,3 +5,5 @@ export const paths = {
     register: '/auth/register',
   },
 };
+
+export const pathAfterLogin = paths.root;
