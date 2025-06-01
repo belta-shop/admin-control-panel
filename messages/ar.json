@@ -2,5 +2,24 @@
   "Metadata": {
     "title": "حزمة البداية - MUI",
     "description": "حزمة البداية - MUI هي قالب لبدء مشروع Next.js مع Material UI"
+  },
+  "Global": {
+    "Validation": {
+      "email_required": "البريد الإلكتروني مطلوب",
+      "email_invalid": "البريد الإلكتروني غير صالح",
+      "password_required": "كلمة المرور مطلوبة",
+      "password_length": "يجب أن تتكون كلمة المرور من {length} أحرف على الأقل",
+      "password_lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل",
+      "password_uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
+      "password_number": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
+      "password_special": "يجب أن تحتوي كلمة المرور على حرف خاص واحد على الأقل"
+    },
+    "Label": {
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور"
+    },
+    "Action": {
+      "login": "تسجيل الدخول"
+    }
   }
 }

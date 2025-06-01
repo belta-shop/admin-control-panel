@@ -2,5 +2,24 @@
   "Metadata": {
     "title": "Starter Pack - MUI",
     "description": "Starter Pack - MUI is a template to start a Next.js project with Material UI"
+  },
+  "Global": {
+    "Validation": {
+      "email_required": "Email is required",
+      "email_invalid": "Email is invalid",
+      "password_required": "Password is required",
+      "password_length": "Password must be at least {length} characters long",
+      "password_lowercase": "Password must contain at least one lowercase letter",
+      "password_uppercase": "Password must contain at least one uppercase letter",
+      "password_number": "Password must contain at least one number",
+      "password_special": "Password must contain at least one special character"
+    },
+    "Label": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "Action": {
+      "login": "Login"
+    }
   }
 }
