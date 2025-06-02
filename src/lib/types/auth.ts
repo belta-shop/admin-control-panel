@@ -6,16 +6,24 @@ export interface AuthState {
 
 export interface AuthReducers {
   login: (payload: LoginPayload) => Promise<void>;
+  register: (payload: RegisterPayload) => Promise<void>;
   logout: () => Promise<void>;
   init: (user: User | null) => void;
 }
 
 export type AuthStore = AuthState & AuthReducers;
 
-export interface LoginPayload {
+export type LoginPayload = {
   email: string;
   password: string;
-}
+};
+
+export type RegisterPayload = {
+  email: string;
+  fullName: string;
+  password: string;
+  role: string;
+};
 
 export interface User {
   id: string;
@@ -24,12 +32,12 @@ export interface User {
   confirmed: boolean;
   role: UserRole;
 }
-
-export type LoginResponse = User &
-  Record<
-    'accessToken' | 'accessTokenExpireDate' | 'refreshToken' | 'refreshTokenExpireDate',
-    string
-  >;
+export type LoginResponse = User & {
+  accessToken: string;
+  accessTokenExpireDate: string;
+  refreshToken: string;
+  refreshTokenExpireDate: string;
+};
 
 export const enum UserRole {
   ADMIN = 'admin',

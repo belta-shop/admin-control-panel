@@ -19,3 +19,10 @@ export const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.request.use(cookiesInterceptor);
+
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    return Promise.reject(error.response.data.error ? new Error(error.response.data.error) : error);
+  }
+);

@@ -12,14 +12,20 @@
       "password_lowercase": "Password must contain at least one lowercase letter",
       "password_uppercase": "Password must contain at least one uppercase letter",
       "password_number": "Password must contain at least one number",
-      "password_special": "Password must contain at least one special character"
+      "password_special": "Password must contain at least one special character",
+      "fullName_required": "Full name is required",
+      "confirmPassword_required": "Please confirm your password",
+      "password_mismatch": "Passwords do not match"
     },
     "Label": {
       "email": "Email",
-      "password": "Password"
+      "password": "Password",
+      "fullName": "Full Name",
+      "confirmPassword": "Confirm Password"
     },
     "Action": {
-      "login": "Login"
+      "login": "Login",
+      "register": "Create Account"
     }
   }
 }

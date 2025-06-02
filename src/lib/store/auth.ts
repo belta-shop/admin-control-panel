@@ -3,7 +3,14 @@ import { create } from 'zustand';
 import { axiosInstance } from '../utils/axios';
 import { endpoints } from '../config/endpoints';
 import { saveSessionCookies, deleteSessionCookies } from '../actions/auth';
-import { User, AuthState, AuthStore, LoginPayload, LoginResponse } from '../types/auth';
+import {
+  User,
+  AuthState,
+  AuthStore,
+  LoginPayload,
+  LoginResponse,
+  RegisterPayload,
+} from '../types/auth';
 
 const initialState: AuthState = {
   user: null,
@@ -34,6 +41,13 @@ export const useAuthStore = create<AuthStore>()((set) => ({
       set({ isLoading: false, isAuthenticated: true, user });
     } catch (error) {
       set({ isLoading: false });
+      throw error;
+    }
+  },
+  register: async (payload: RegisterPayload) => {
+    try {
+      await axiosInstance.post(endpoints.auth.register, payload);
+    } catch (error) {
       throw error;
     }
   },
