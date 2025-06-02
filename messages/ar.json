@@ -15,17 +15,32 @@
       "password_special": "يجب أن تحتوي كلمة المرور على حرف خاص واحد على الأقل",
       "fullName_required": "الاسم الكامل مطلوب",
       "confirmPassword_required": "يرجى تأكيد كلمة المرور",
-      "password_mismatch": "كلمات المرور غير متطابقة"
+      "password_mismatch": "كلمات المرور غير متطابقة",
+      "otp_required": "رمز التحقق مطلوب",
+      "otp_length": "يجب أن يتكون رمز التحقق من 6 أحرف"
     },
     "Label": {
       "email": "البريد الإلكتروني",
       "password": "كلمة المرور",
       "fullName": "الاسم الكامل",
-      "confirmPassword": "تأكيد كلمة المرور"
+      "confirmPassword": "تأكيد كلمة المرور",
+      "otp": "أدخل رمز التحقق"
     },
     "Action": {
       "login": "تسجيل الدخول",
-      "register": "إنشاء حساب"
+      "register": "إنشاء حساب",
+      "verify": "تحقق",
+      "resend_otp": "إعادة إرسال رمز التحقق",
+      "resend_otp_countdown": "إعادة الإرسال خلال {seconds} ثانية"
+    },
+    "Message": {
+      "otp_sent": "لقد أرسلنا رمز تحقق مكون من 6 أرقام إلى بريدك الإلكتروني"
+    }
+  },
+  "Pages": {
+    "Auth": {
+      "email_already_confirmed": "لقد تم التحقق من البريد الإلكتروني بالفعل. <link>التوجه إلى الصفحة الرئيسية</link>",
+      "email_confirmed": "تم التحقق من البريد الإلكتروني بنجاح. <link>التوجه إلى الصفحة الرئيسية</link>"
     }
   }
 }

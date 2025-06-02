@@ -15,17 +15,32 @@
       "password_special": "Password must contain at least one special character",
       "fullName_required": "Full name is required",
       "confirmPassword_required": "Please confirm your password",
-      "password_mismatch": "Passwords do not match"
+      "password_mismatch": "Passwords do not match",
+      "otp_required": "OTP is required",
+      "otp_length": "OTP must be 6 characters long"
     },
     "Label": {
       "email": "Email",
       "password": "Password",
       "fullName": "Full Name",
-      "confirmPassword": "Confirm Password"
+      "confirmPassword": "Confirm Password",
+      "otp": "Enter OTP"
     },
     "Action": {
       "login": "Login",
-      "register": "Create Account"
+      "register": "Create Account",
+      "verify": "Verify",
+      "resend_otp": "Resend OTP",
+      "resend_otp_countdown": "Resend OTP in {seconds}s"
+    },
+    "Message": {
+      "otp_sent": "We have sent a 6-digit OTP to your email address"
+    }
+  },
+  "Pages": {
+    "Auth": {
+      "email_already_confirmed": "Your email has been already confirmed. <link>Go to home page</link>",
+      "email_confirmed": "Your email has been confirmed successfully. <link>Go to home page</link>"
     }
   }
 }

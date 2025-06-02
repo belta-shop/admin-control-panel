@@ -2,7 +2,9 @@
 
 import { cookies } from 'next/headers';
 
+import { axiosInstance } from '../utils/axios';
 import { COOKIES_KEYS } from '../config/global';
+import { endpoints } from '../config/endpoints';
 import { User, LoginResponse } from '../types/auth';
 
 export async function saveSessionCookies(response: LoginResponse) {
@@ -26,6 +28,24 @@ export async function saveSessionCookies(response: LoginResponse) {
     httpOnly: true,
     secure: true,
   });
+}
+
+export async function fetchUserByToken() {
+  try {
+    const { user, refreshToken } = await restoreSessionCookies();
+
+    if (!user || !refreshToken) {
+      return { error: 'User not found' };
+    }
+
+    const res = await axiosInstance.post(endpoints.auth.refresh, { token: refreshToken });
+
+    const loginResponse = res.data as LoginResponse;
+
+    return loginResponse;
+  } catch (error: any) {
+    return { error: error.message };
+  }
 }
 
 export async function restoreSessionCookies() {
