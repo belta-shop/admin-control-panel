@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
 import { useAuthStore } from '@/lib/store/auth';
 import { deleteSessionCookies } from '@/lib/actions/auth';
@@ -8,39 +8,49 @@ import { fetchUserByToken, saveSessionCookies } from '@/lib/actions/auth';
 
 export default function Page() {
   const init = useAuthStore((state) => state.init);
+  const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+
+  const refreshToken = useCallback(async () => {
+    const data = await fetchUserByToken();
+
+    if ('error' in data) {
+      init(null);
+      await deleteSessionCookies();
+      return;
+    }
+
+    const {
+      accessToken: _,
+      accessTokenExpireDate,
+      refreshToken: __,
+      refreshTokenExpireDate: ___,
+      ...user
+    } = data;
+
+    const expireDate = new Date(accessTokenExpireDate);
+    const timeUntilExpiry = expireDate.getTime() - Date.now() - 60000; // 1 minute before expiry
+
+    setTimeout(() => {
+      refreshToken();
+    }, timeUntilExpiry);
+
+    await saveSessionCookies(data);
+    init(user);
+  }, [init]);
 
   useEffect(() => {
-    const initializeAuth = async () => {
-      const data = await fetchUserByToken();
+    if (isAuthenticated) {
+      const timeoutId = setTimeout(() => {
+        refreshToken();
+      }, 10 * 60 * 1000); // 10 minutes
 
-      if ('error' in data) {
-        init(null);
-        await deleteSessionCookies();
-        return;
-      }
+      return () => clearTimeout(timeoutId);
+    }
+  }, [isAuthenticated, refreshToken]);
 
-      const {
-        accessToken: _,
-        accessTokenExpireDate,
-        refreshToken: __,
-        refreshTokenExpireDate: ___,
-        ...user
-      } = data;
-
-      await saveSessionCookies(data);
-
-      const expireDate = new Date(accessTokenExpireDate);
-      const timeUntilExpiry = expireDate.getTime() - Date.now() - 60000; // 1 minute before expiry
-
-      setTimeout(() => {
-        initializeAuth();
-      }, timeUntilExpiry);
-
-      init(user);
-    };
-
-    initializeAuth();
-  }, [init]);
+  useEffect(() => {
+    refreshToken();
+  }, [init, refreshToken]);
 
   return null;
 }
