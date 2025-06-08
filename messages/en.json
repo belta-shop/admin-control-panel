@@ -34,13 +34,11 @@
       "verify": "Verify",
       "resend_otp": "Resend OTP",
       "resend_otp_countdown": "Resend OTP in {seconds}s"
-    },
-    "Message": {
-      "otp_sent": "We have sent a 6-digit OTP to your email address"
     }
   },
   "Pages": {
     "Auth": {
+      "otp_sent": "We have sent a 4-digit OTP to your email address",
       "email_already_confirmed": "Your email has been already confirmed. <link>Go to home page</link>",
       "email_confirmed": "Your email has been confirmed successfully. <link>Go to home page</link>",
       "reset_password": "Reset Password",

@@ -108,7 +108,7 @@ export default function AuthOtp({ purpose, onSuccess, sendInitialOtp = false }: 
             {error && <Alert severity="error">{error}</Alert>}
 
             <Typography variant="body1" color="text.secondary">
-              {t('Global.Message.otp_sent')}
+              {t('Pages.Auth.otp_sent')}
             </Typography>
 
             <RHFOTP name="otp" label={t('Global.Label.otp')} />
