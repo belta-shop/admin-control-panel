@@ -15,15 +15,17 @@
       "password_special": "Password must contain at least one special character",
       "fullName_required": "Full name is required",
       "confirmPassword_required": "Please confirm your password",
-      "password_mismatch": "Passwords do not match",
+      "passwords_must_match": "Passwords must match",
       "otp_required": "OTP is required",
       "otp_length": "OTP must be 6 characters long"
     },
     "Label": {
       "email": "Email",
       "password": "Password",
-      "fullName": "Full Name",
       "confirmPassword": "Confirm Password",
+      "old_password": "Old Password",
+      "new_password": "New Password",
+      "fullName": "Full Name",
       "otp": "Enter OTP"
     },
     "Action": {
@@ -40,7 +42,10 @@
   "Pages": {
     "Auth": {
       "email_already_confirmed": "Your email has been already confirmed. <link>Go to home page</link>",
-      "email_confirmed": "Your email has been confirmed successfully. <link>Go to home page</link>"
+      "email_confirmed": "Your email has been confirmed successfully. <link>Go to home page</link>",
+      "reset_password": "Reset Password",
+      "verify_password": "Verify Password",
+      "password_reset_success": "Your password has been reset successfully"
     }
   }
 }

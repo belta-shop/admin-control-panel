@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useSnackbar } from 'notistack';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { Stack, Alert, Button } from '@mui/material';
@@ -9,33 +10,25 @@ import { useForm, FormProvider } from 'react-hook-form';
 
 import { yup } from '@/lib/utils/yup';
 import { paths } from '@/lib/config/paths';
-import { useAuthStore } from '@/lib/store/auth';
-import { EMAIL_REGEX } from '@/lib/config/global';
+import { axiosInstance } from '@/lib/utils/axios';
+import { endpoints } from '@/lib/config/endpoints';
+import { deleteSessionCookies } from '@/lib/actions/auth';
 import RHFTextField from '@/view/components/rhf-hooks/rhf-textField';
 
-export default function RegisterView() {
+interface Props {
+  onSuccess: () => void;
+}
+
+export default function NewPassword({ onSuccess }: Props) {
   const t = useTranslations();
   const router = useRouter();
-  const { register: registerUser } = useAuthStore();
-
+  const { enqueueSnackbar } = useSnackbar();
   const [error, setError] = useState('');
 
   const methods = useForm({
     resolver: yupResolver(
       yup.object().shape({
-        email: yup
-          .string()
-          .required(t('Global.Validation.email_required'))
-          .matches(EMAIL_REGEX, t('Global.Validation.email_invalid')),
-        fullName: yup.string().required(t('Global.Validation.fullName_required')),
-        password: yup
-          .string()
-          .min(8, t('Global.Validation.password_length', { length: 8 }))
-          .minLowercase(1, t('Global.Validation.password_lowercase'))
-          .minUppercase(1, t('Global.Validation.password_uppercase'))
-          .minNumbers(1, t('Global.Validation.password_number'))
-          .minSymbols(1, t('Global.Validation.password_special'))
-          .required(t('Global.Validation.password_required')),
+        password: yup.string().required(t('Global.Validation.password_required')),
         confirmPassword: yup
           .string()
           .required(t('Global.Validation.confirm_password_required'))
@@ -43,8 +36,6 @@ export default function RegisterView() {
       })
     ),
     defaultValues: {
-      email: '',
-      fullName: '',
       password: '',
       confirmPassword: '',
     },
@@ -58,13 +49,11 @@ export default function RegisterView() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setError('');
-      await registerUser({
-        email: data.email,
-        fullName: data.fullName,
-        password: data.password,
-        role: 'admin',
-      });
+      await axiosInstance.post(endpoints.auth.resetPassword, { password: data.password });
+      enqueueSnackbar(t('Pages.Auth.password_reset_success'), { variant: 'success' });
+      await deleteSessionCookies();
       router.push(paths.auth.login);
+      onSuccess();
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -79,14 +68,13 @@ export default function RegisterView() {
           <Stack spacing={2}>
             {error && <Alert severity="error">{error}</Alert>}
 
-            <RHFTextField name="email" fullWidth label={t('Global.Label.email')} />
-            <RHFTextField name="fullName" fullWidth label={t('Global.Label.fullName')} />
             <RHFTextField
               name="password"
               fullWidth
               type="password"
-              label={t('Global.Label.password')}
+              label={t('Global.Label.new_password')}
             />
+
             <RHFTextField
               name="confirmPassword"
               fullWidth
@@ -95,7 +83,7 @@ export default function RegisterView() {
             />
 
             <Button type="submit" variant="contained" size="large" loading={isSubmitting}>
-              {t('Global.Action.register')}
+              {t('Pages.Auth.reset_password')}
             </Button>
           </Stack>
         </form>

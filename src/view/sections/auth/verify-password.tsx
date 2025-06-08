@@ -8,28 +8,27 @@ import { useForm, FormProvider } from 'react-hook-form';
 
 import { yup } from '@/lib/utils/yup';
 import { useAuthStore } from '@/lib/store/auth';
-import { EMAIL_REGEX } from '@/lib/config/global';
+import { axiosInstance } from '@/lib/utils/axios';
+import { endpoints } from '@/lib/config/endpoints';
 import RHFTextField from '@/view/components/rhf-hooks/rhf-textField';
 
-export default function LoginView() {
-  const t = useTranslations();
-  const { login } = useAuthStore();
+interface Props {
+  onSuccess: () => void;
+}
 
+export default function VerifyPassword({ onSuccess }: Props) {
+  const t = useTranslations();
+  const { user } = useAuthStore();
   const [error, setError] = useState('');
 
   const methods = useForm({
     resolver: yupResolver(
       yup.object().shape({
-        email: yup
-          .string()
-          .required(t('Global.Validation.email_required'))
-          .matches(EMAIL_REGEX, t('Global.Validation.email_invalid')),
         password: yup.string().required(t('Global.Validation.password_required')),
       })
     ),
     defaultValues: {
-      email: 'imbeltagy@gmail.com',
-      password: 'Beltagy#1',
+      password: '',
     },
   });
 
@@ -41,7 +40,17 @@ export default function LoginView() {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setError('');
-      await login(data);
+
+      if (!user) {
+        throw new Error(t('Global.Error.user_not_found'));
+      }
+
+      await axiosInstance.post(endpoints.auth.login, {
+        email: user.email,
+        password: data.password,
+      });
+
+      onSuccess();
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);
@@ -56,16 +65,15 @@ export default function LoginView() {
           <Stack spacing={2}>
             {error && <Alert severity="error">{error}</Alert>}
 
-            <RHFTextField name="email" fullWidth label={t('Global.Label.email')} />
             <RHFTextField
               name="password"
               fullWidth
               type="password"
-              label={t('Global.Label.password')}
+              label={t('Global.Label.old_password')}
             />
 
             <Button type="submit" variant="contained" size="large" loading={isSubmitting}>
-              {t('Global.Action.login')}
+              {t('Pages.Auth.verify_password')}
             </Button>
           </Stack>
         </form>

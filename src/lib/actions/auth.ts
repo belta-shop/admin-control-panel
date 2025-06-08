@@ -73,3 +73,13 @@ export async function deleteSessionCookies() {
   cookiesStore.delete(COOKIES_KEYS.AccessToken);
   cookiesStore.delete(COOKIES_KEYS.RefreshToken);
 }
+
+export async function updateAccessToken(token: string) {
+  const cookiesStore = await cookies();
+
+  cookiesStore.set(COOKIES_KEYS.AccessToken, token, {
+    expires: new Date(Date.now() + 10 * 60 * 1000),
+    httpOnly: true,
+    secure: true,
+  });
+}

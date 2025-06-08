@@ -14,16 +14,18 @@
       "password_number": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
       "password_special": "يجب أن تحتوي كلمة المرور على حرف خاص واحد على الأقل",
       "fullName_required": "الاسم الكامل مطلوب",
-      "confirmPassword_required": "يرجى تأكيد كلمة المرور",
-      "password_mismatch": "كلمات المرور غير متطابقة",
+      "confirm_password_required": "يرجى تأكيد كلمة المرور",
+      "passwords_must_match": "يجب أن تتطابق كلمات المرور",
       "otp_required": "رمز التحقق مطلوب",
       "otp_length": "يجب أن يتكون رمز التحقق من 6 أحرف"
     },
     "Label": {
       "email": "البريد الإلكتروني",
       "password": "كلمة المرور",
+      "confirm_password": "تأكيد كلمة المرور",
+      "old_password": "كلمة المرور القديمة",
+      "new_password": "كلمة المرور الجديدة",
       "fullName": "الاسم الكامل",
-      "confirmPassword": "تأكيد كلمة المرور",
       "otp": "أدخل رمز التحقق"
     },
     "Action": {
@@ -40,7 +42,10 @@
   "Pages": {
     "Auth": {
       "email_already_confirmed": "لقد تم التحقق من البريد الإلكتروني بالفعل. <link>التوجه إلى الصفحة الرئيسية</link>",
-      "email_confirmed": "تم التحقق من البريد الإلكتروني بنجاح. <link>التوجه إلى الصفحة الرئيسية</link>"
+      "email_confirmed": "تم التحقق من البريد الإلكتروني بنجاح. <link>التوجه إلى الصفحة الرئيسية</link>",
+      "reset_password": "إعادة تعيين كلمة المرور",
+      "verify_password": "التحقق من كلمة المرور",
+      "password_reset_success": "تم إعادة تعيين كلمة المرور بنجاح"
     }
   }
 }

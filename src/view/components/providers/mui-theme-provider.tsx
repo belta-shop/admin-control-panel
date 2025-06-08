@@ -16,6 +16,7 @@ import { useCurrentLocale } from '@/lib/hooks/locale-hooks';
 import { shadows as customShadows } from '@/lib/config/theme/shadow';
 
 import themeComponents from '../theme';
+import CustomSnackbarProvider from './snackbar-provider';
 
 export default function ThemeProvider({ children }: { children: React.ReactNode }) {
   const { dir } = useCurrentLocale();
@@ -37,8 +38,10 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
       options={{ key: 'css', stylisPlugins: dir === 'rtl' ? [stylisRTLPlugin] : [] }}
     >
       <MuiThemeProvider theme={theme}>
-        <CssBaseline />
-        {children}
+        <CustomSnackbarProvider>
+          <CssBaseline />
+          {children}
+        </CustomSnackbarProvider>
       </MuiThemeProvider>
     </AppRouterCacheProvider>
   );

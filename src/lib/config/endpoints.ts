@@ -5,5 +5,6 @@ export const endpoints = {
     refresh: '/auth/refresh-token',
     resendOtp: '/auth/resend-otp',
     verifyOtp: '/auth/verify-otp',
+    resetPassword: '/auth/reset-password',
   },
 };

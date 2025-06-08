@@ -10,11 +10,13 @@ import { yup } from '@/lib/utils/yup';
 import { OTPPurpose } from '@/lib/types/auth';
 import { axiosInstance } from '@/lib/utils/axios';
 import { endpoints } from '@/lib/config/endpoints';
+import { updateAccessToken } from '@/lib/actions/auth';
 import RHFOTP from '@/view/components/rhf-hooks/rhf-otp';
 
 interface Props {
   purpose: OTPPurpose;
   onSuccess: () => void;
+  sendInitialOtp?: boolean;
 }
 
 interface FormValues {
@@ -25,7 +27,7 @@ const schema = yup.object().shape({
   otp: yup.array().of(yup.string().required()).length(4).required(),
 });
 
-export default function AuthOtp({ purpose, onSuccess }: Props) {
+export default function AuthOtp({ purpose, onSuccess, sendInitialOtp = false }: Props) {
   const t = useTranslations();
   const [error, setError] = useState('');
   const [countdown, setCountdown] = useState(60);
@@ -39,6 +41,15 @@ export default function AuthOtp({ purpose, onSuccess }: Props) {
       setCanResend(true);
     }
   }, [countdown]);
+
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      if (sendInitialOtp) {
+        handleResendOTP();
+      }
+    }, 1500);
+    return () => clearTimeout(timeOut);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const methods = useForm<FormValues>({
     resolver: yupResolver(schema),
@@ -55,10 +66,15 @@ export default function AuthOtp({ purpose, onSuccess }: Props) {
   const onSubmit = handleSubmit(async (data) => {
     try {
       setError('');
-      await axiosInstance.post(endpoints.auth.verifyOtp, {
+      const res = await axiosInstance.post(endpoints.auth.verifyOtp, {
         purpose,
         otp: data.otp.join(''),
       });
+
+      if ('resetPasswordToken' in res.data) {
+        await updateAccessToken(res.data.resetPasswordToken);
+      }
+
       onSuccess();
     } catch (error) {
       if (error instanceof Error) {
@@ -70,9 +86,11 @@ export default function AuthOtp({ purpose, onSuccess }: Props) {
   const handleResendOTP = async () => {
     try {
       setError('');
+
       await axiosInstance.post(endpoints.auth.resendOtp, {
         purpose,
       });
+
       setCountdown(60);
       setCanResend(false);
     } catch (error) {
