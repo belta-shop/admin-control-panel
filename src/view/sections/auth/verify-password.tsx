@@ -8,8 +8,8 @@ import { useForm, FormProvider } from 'react-hook-form';
 
 import { yup } from '@/lib/utils/yup';
 import { useAuthStore } from '@/lib/store/auth';
-import { axiosInstance } from '@/lib/utils/axios';
 import { endpoints } from '@/lib/config/endpoints';
+import { axiosInstance, ResponseError } from '@/lib/utils/axios';
 import RHFTextField from '@/view/components/rhf-hooks/rhf-textField';
 
 interface Props {
@@ -52,6 +52,10 @@ export default function VerifyPassword({ onSuccess }: Props) {
 
       onSuccess();
     } catch (error) {
+      if (error instanceof ResponseError && error.status === 401) {
+        setError(t('Pages.Auth.incorrect_password'));
+        return;
+      }
       if (error instanceof Error) {
         setError(error.message);
       }

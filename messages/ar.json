@@ -45,7 +45,8 @@
       "email_confirmed": "تم التحقق من البريد الإلكتروني بنجاح. <link>التوجه إلى الصفحة الرئيسية</link>",
       "reset_password": "إعادة تعيين كلمة المرور",
       "verify_password": "التحقق من كلمة المرور",
-      "password_reset_success": "تم إعادة تعيين كلمة المرور بنجاح"
+      "password_reset_success": "تم إعادة تعيين كلمة المرور بنجاح",
+      "incorrect_password": "كلمة المرور غير صحيحة"
     }
   }
 }

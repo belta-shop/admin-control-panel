@@ -20,9 +20,20 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(cookiesInterceptor);
 
+export class ResponseError extends Error {
+  constructor(message: string, public status: number) {
+    super(message);
+  }
+}
+
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
-    return Promise.reject(error.response.data.error ? new Error(error.response.data.error) : error);
+    return Promise.reject(
+      new ResponseError(
+        error.response.data.error ?? error.response.data.message,
+        error.response.status
+      )
+    );
   }
 );

@@ -45,7 +45,8 @@
       "email_confirmed": "Your email has been confirmed successfully. <link>Go to home page</link>",
       "reset_password": "Reset Password",
       "verify_password": "Verify Password",
-      "password_reset_success": "Your password has been reset successfully"
+      "password_reset_success": "Your password has been reset successfully",
+      "incorrect_password": "Password is incorrect"
     }
   }
 }
