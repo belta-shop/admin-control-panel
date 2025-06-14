@@ -1,6 +1,7 @@
 'use server';
 
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
 import { routing } from '@/lib/i18n/routing';
 import { COOKIES_KEYS } from '@/lib/config/global';
@@ -17,4 +18,13 @@ export async function getServerHeaders() {
   if (accessToken) headers.Authorization = `Bearer ${accessToken}`;
 
   return headers;
+}
+
+export async function clientRedirect(href: string) {
+  console.log(href);
+  try {
+    redirect(href);
+  } catch (err) {
+    console.log(err);
+  }
 }

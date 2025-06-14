@@ -26,7 +26,8 @@
       "old_password": "Old Password",
       "new_password": "New Password",
       "fullName": "Full Name",
-      "otp": "Enter OTP"
+      "otp": "Enter OTP",
+      "search": "Search"
     },
     "Action": {
       "login": "Login",
