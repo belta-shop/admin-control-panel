@@ -12,7 +12,6 @@ export default function Page() {
 
   const refreshToken = useCallback(async () => {
     const data = await fetchUserByToken();
-
     if ('error' in data) {
       init(null);
       await deleteSessionCookies();
@@ -49,8 +48,12 @@ export default function Page() {
   }, [isAuthenticated, refreshToken]);
 
   useEffect(() => {
-    refreshToken();
-  }, [init, refreshToken]);
+    const timeoutId = setTimeout(() => {
+      refreshToken();
+    });
+
+    return () => clearTimeout(timeoutId);
+  }, [refreshToken]);
 
   return null;
 }
