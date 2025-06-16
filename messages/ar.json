@@ -3,6 +3,17 @@
     "title": "حزمة البداية - MUI",
     "description": "حزمة البداية - MUI هي قالب لبدء مشروع Next.js مع Material UI"
   },
+  "Navigation": {
+    "home": "الرئيسية",
+    "products_section": "المنتجات",
+    "categories": "الأقسام",
+    "sub_categories": "الأقسام الفرعية",
+    "brands": "العلامات التجارية",
+    "products": "المنتجات",
+    "offers": "العروض",
+    "tags": "التصنيفات",
+    "labels": "التسميات"
+  },
   "Global": {
     "Validation": {
       "email_required": "البريد الإلكتروني مطلوب",
@@ -34,7 +45,8 @@
       "register": "إنشاء حساب",
       "verify": "تحقق",
       "resend_otp": "إعادة إرسال رمز التحقق",
-      "resend_otp_countdown": "إعادة الإرسال خلال {seconds} ثانية"
+      "resend_otp_countdown": "إعادة الإرسال خلال {seconds} ثانية",
+      "close": "إغلاق"
     }
   },
   "Pages": {

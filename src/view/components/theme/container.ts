@@ -1,5 +1,9 @@
-import { Components, PaletteMode } from '@mui/material';
+import { Theme, Components } from '@mui/material';
 
-export function container(_mode: PaletteMode): Components['MuiContainer'] {
-  return { defaultProps: { maxWidth: 'xl' } };
+export function container(_theme: Theme): { MuiContainer: Components['MuiContainer'] } {
+  return {
+    MuiContainer: {
+      defaultProps: { maxWidth: 'xl' },
+    },
+  };
 }

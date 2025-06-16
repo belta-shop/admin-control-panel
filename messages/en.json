@@ -3,6 +3,17 @@
     "title": "Starter Pack - MUI",
     "description": "Starter Pack - MUI is a template to start a Next.js project with Material UI"
   },
+  "Navigation": {
+    "home": "Home",
+    "products_section": "Products",
+    "categories": "Categories",
+    "sub_categories": "Sub Categories",
+    "brands": "Brands",
+    "products": "Products",
+    "offers": "Offers",
+    "tags": "Tags",
+    "labels": "Labels"
+  },
   "Global": {
     "Validation": {
       "email_required": "Email is required",
@@ -34,7 +45,8 @@
       "register": "Create Account",
       "verify": "Verify",
       "resend_otp": "Resend OTP",
-      "resend_otp_countdown": "Resend OTP in {seconds}s"
+      "resend_otp_countdown": "Resend OTP in {seconds}s",
+      "close": "Close"
     }
   },
   "Pages": {

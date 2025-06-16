@@ -14,7 +14,7 @@ const base: Partial<Palette> = {
 const light: Partial<Palette> = {
   background: {
     paper: '#fff',
-    default: '#eceeff33',
+    default: '#fff',
   },
   text: {
     primary: '#000',

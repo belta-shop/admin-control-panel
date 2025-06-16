@@ -1,5 +1,6 @@
 'use client';
 
+import { merge } from 'lodash';
 import stylisRTLPlugin from 'stylis-plugin-rtl';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import {
@@ -26,8 +27,8 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
   const theme = createTheme({
     palette: createPalette(themeMode),
     typography,
-    components: themeComponents(themeMode),
   });
+  theme.components = merge(theme.components, themeComponents(theme));
 
   theme.shadows = theme.shadows.map((defaultShadow, i) =>
     customShadows[i] ? customShadows[i] : defaultShadow

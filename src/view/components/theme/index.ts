@@ -1,13 +1,15 @@
-import { Components, PaletteMode } from '@mui/material';
+import { Theme, Components } from '@mui/material';
 
 import { stack } from './stack';
 import { popover } from './popover';
+import { tooltip } from './tooltip';
 import { container } from './container';
 
-export default function themeComponents(mode: PaletteMode): Components {
+export default function themeComponents(theme: Theme): Components {
   return {
-    MuiContainer: container(mode),
-    MuiStack: stack(mode),
-    MuiPopover: popover(mode),
+    ...container(theme),
+    ...stack(theme),
+    ...popover(theme),
+    ...tooltip(theme),
   };
 }

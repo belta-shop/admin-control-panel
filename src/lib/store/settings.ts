@@ -1,10 +1,12 @@
 import { create } from 'zustand';
 
-import { SettingsState, SettingsStore } from '../types/settings';
+import { LOCAL_STORAGE_KEYS } from '../config/global';
+import { NavbarType, SettingsState, SettingsStore } from '../types/settings';
 
 const initialState: SettingsState = {
   themeMode: 'light',
-  drawer: 'full',
+  isDrawerOpen: false,
+  navbarType: NavbarType.FULL,
 };
 
 export const useSettingsStore = create<SettingsStore>()((set, get) => ({
@@ -13,6 +15,9 @@ export const useSettingsStore = create<SettingsStore>()((set, get) => ({
   setThemeMode: (themeMode) => set({ themeMode }),
   toggleThemeMode: () => set({ themeMode: get().themeMode === 'light' ? 'dark' : 'light' }),
 
-  setDrawer: (drawer) => set({ drawer }),
-  toggleDrawer: () => set({ drawer: get().drawer === 'full' ? 'mini' : 'full' }),
+  setDrawer: (isDrawerOpen) => set({ isDrawerOpen }),
+  setNavbarType: (navbarType) => {
+    localStorage.setItem(LOCAL_STORAGE_KEYS.NavbarType, navbarType);
+    set({ navbarType });
+  },
 }));

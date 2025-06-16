@@ -3,5 +3,19 @@ export const enum Icons {
   EYE_OFF = 'iconamoon:eye-off',
   SEARCH = 'iconamoon:search',
   USER_CIRCLE_FILL = 'iconamoon:user-circle-fill',
-  MENU = 'iconamoon:menu',
+  MENU = 'ic:round-menu',
+  XMARK = 'ic:round-close',
+  ARROW_RIGHT = 'ic:round-arrow-right',
+  ARROW_LEFT = 'ic:round-arrow-left',
+}
+
+export const enum NavbarIcons {
+  HOME = 'material-symbols:home',
+  CATEGORY = 'material-symbols:category',
+  SUBCATEGORY = 'material-symbols:subdirectory-arrow-right',
+  BRAND = 'material-symbols:branding-watermark',
+  INVENTORY = 'material-symbols:inventory',
+  PERCENT = 'material-symbols:percent',
+  SELL = 'material-symbols:sell',
+  LABEL = 'material-symbols:label',
 }

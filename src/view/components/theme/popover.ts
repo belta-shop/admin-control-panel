@@ -1,11 +1,13 @@
-import { Components, PaletteMode } from '@mui/material';
+import { Theme, Components } from '@mui/material';
 
-export function popover(_mode: PaletteMode): Components['MuiPopover'] {
+export function popover(_theme: Theme): { MuiPopover: Components['MuiPopover'] } {
   return {
-    defaultProps: {
-      slotProps: {
-        paper: {
-          elevation: 2,
+    MuiPopover: {
+      defaultProps: {
+        slotProps: {
+          paper: {
+            elevation: 2,
+          },
         },
       },
     },
