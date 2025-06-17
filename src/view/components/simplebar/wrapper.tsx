@@ -292,28 +292,28 @@ export default function SimplebarWrapper({
       <Fade
         id={ScrollbarElement.TopFade}
         to="bottom"
-        show={showTopFade}
+        show={showTopFade ? 'true' : 'false'}
         color={(theme) => theme.palette.background.default}
       />
 
       <Fade
         id={ScrollbarElement.BottomFade}
         to="top"
-        show={showBottomFade}
+        show={showBottomFade ? 'true' : 'false'}
         color={(theme) => theme.palette.background.default}
       />
 
       <Fade
         id={ScrollbarElement.LeftFade}
         to="right"
-        show={showLeftFade}
+        show={showLeftFade ? 'true' : 'false'}
         color={(theme) => theme.palette.background.default}
       />
 
       <Fade
         id={ScrollbarElement.RightFade}
         to="left"
-        show={showRightFade}
+        show={showRightFade ? 'true' : 'false'}
         color={(theme) => theme.palette.background.default}
       />
 
@@ -367,7 +367,7 @@ const ScrollBar = styled(Box)<BoxProps & { direction: 'horizontal' | 'vertical' 
 const Fade = styled(Box)<
   BoxProps & {
     to: 'top' | 'bottom' | 'left' | 'right';
-    show: boolean;
+    show: 'true' | 'false';
     color: string | ((theme: Theme) => string);
   }
 >(({ theme, to, show, color }) => {
@@ -386,8 +386,8 @@ const Fade = styled(Box)<
   const fadeStyle = {
     position: 'absolute',
     ...position,
-    height: isVertical ? (show ? '100px' : '0px') : undefined,
-    width: isHorizontal ? (show ? '100px' : '0px') : undefined,
+    height: isVertical ? (show === 'true' ? '100px' : '0px') : undefined,
+    width: isHorizontal ? (show === 'true' ? '100px' : '0px') : undefined,
     background: `linear-gradient(to ${to}, ${currentColor}, rgba(255, 255, 255, 0))`,
     pointerEvents: 'none',
     transition: 'height 0.2s ease-out',
