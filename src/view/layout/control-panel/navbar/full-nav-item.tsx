@@ -50,7 +50,10 @@ const StyledListItemButton = styled(ListItemButton)(({ theme }) => ({
     color: theme.palette.text.primary,
   },
   [`&.${listItemButtonClasses.selected}`]: {
-    backgroundColor: alpha(theme.palette.primary.main, 0.9),
+    background: `linear-gradient(to right, ${alpha(theme.palette.primary.light, 0.95)}, ${alpha(
+      theme.palette.primary.main,
+      0.8
+    )})`,
     color: theme.palette.primary.contrastText,
     '&:hover': {
       backgroundColor: theme.palette.primary.main,
