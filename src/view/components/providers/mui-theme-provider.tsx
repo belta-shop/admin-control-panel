@@ -1,6 +1,7 @@
 'use client';
 
 import { merge } from 'lodash';
+import { prefixer } from 'stylis';
 import stylisRTLPlugin from 'stylis-plugin-rtl';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 import {
@@ -34,16 +35,32 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
     customShadows[i] ? customShadows[i] : defaultShadow
   ) as Shadows;
 
+  const renderContent = (
+    <MuiThemeProvider theme={theme}>
+      <CustomSnackbarProvider>
+        <CssBaseline />
+        {children}
+      </CustomSnackbarProvider>
+    </MuiThemeProvider>
+  );
+
+  if (dir === 'rtl') {
+    return <RTLCacheProvider>{renderContent}</RTLCacheProvider>;
+  }
+
+  return <LTRCacheProvider>{renderContent}</LTRCacheProvider>;
+}
+
+function RTLCacheProvider({ children }: { children: React.ReactNode }) {
   return (
     <AppRouterCacheProvider
-      options={{ key: 'css', stylisPlugins: dir === 'rtl' ? [stylisRTLPlugin] : [] }}
+      options={{ key: 'css-rtl', stylisPlugins: [stylisRTLPlugin, prefixer] }}
     >
-      <MuiThemeProvider theme={theme}>
-        <CustomSnackbarProvider>
-          <CssBaseline />
-          {children}
-        </CustomSnackbarProvider>
-      </MuiThemeProvider>
+      {children}
     </AppRouterCacheProvider>
   );
+}
+
+function LTRCacheProvider({ children }: { children: React.ReactNode }) {
+  return <AppRouterCacheProvider options={{ key: 'css-ltr' }}>{children}</AppRouterCacheProvider>;
 }
