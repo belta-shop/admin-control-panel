@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useSnackbar } from 'notistack';
-import { useTranslations } from 'use-intl';
+import { useTranslations } from 'next-intl';
 import { Card, Switch } from '@mui/material';
 
 import { paths } from '@/lib/config/paths';
@@ -41,8 +41,8 @@ const customRender = {
 };
 
 export default function ListView({ items, total }: Props) {
-  const router = useRouter();
   const t = useTranslations('Global');
+  const router = useRouter();
   const [selectedDeleteId, setSelectedDeleteId] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
