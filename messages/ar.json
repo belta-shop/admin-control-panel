@@ -28,7 +28,10 @@
       "confirm_password_required": "يرجى تأكيد كلمة المرور",
       "passwords_must_match": "يجب أن تتطابق كلمات المرور",
       "otp_required": "رمز التحقق مطلوب",
-      "otp_length": "يجب أن يتكون رمز التحقق من 6 أحرف"
+      "otp_length": "يجب أن يتكون رمز التحقق من 6 أحرف",
+      "name_ar_required": "الاسم العربي مطلوب",
+      "name_en_required": "الاسم الإنجليزي مطلوب",
+      "cover_required": "صورة الغلاف مطلوبة"
     },
     "Label": {
       "email": "البريد الإلكتروني",
@@ -46,6 +49,13 @@
       "employee_read_only": "قراءة الموظف فقط",
       "category": "التصنيف الرئيسي"
     },
+    "Helper": {
+      "upload_drag_drop_file": "اسحب وأفلت الملف هنا أو انقر للتحميل",
+      "upload_drag_drop_files": "اسحب وأفلت الملفات هنا أو انقر للتحميل",
+      "upload_drop_here_file": "أفلت الملف هنا",
+      "upload_drop_here_files": "أفلت الملفات هنا",
+      "upload_file_size_error": "حجم الملف ({current}) يتجاوز الحد الأقصى المسموح به ({max})"
+    },
     "Action": {
       "login": "تسجيل الدخول",
       "register": "إنشاء حساب",
@@ -53,7 +63,15 @@
       "resend_otp": "إعادة إرسال رمز التحقق",
       "resend_otp_countdown": "إعادة الإرسال خلال {seconds} ثانية",
       "close": "إغلاق",
-      "cancel": "إلغاء"
+      "view": "عرض",
+      "edit": "تعديل",
+      "create": "إنشاء",
+      "update": "تعديل",
+      "delete": "حذف",
+      "cancel": "إلغاء",
+      "submit": "إرسال",
+      "clear_all": "مسح الكل",
+      "back": "رجوع"
     },
     "Table": {
       "rows_per_page": "عدد الصفوف في الصفحة:",
@@ -66,7 +84,9 @@
       "delete_content": "هل أنت متأكد من حذف هذا {label}؟ لا يمكن التراجع عن هذا الإجراء."
     },
     "Message": {
-      "delete_success": "تم حذف {name} بنجاح"
+      "delete_success": "تم حذف {name} بنجاح",
+      "create_success": "تم إنشاء {name} بنجاح",
+      "update_success": "تم تعديل {name} بنجاح"
     }
   },
   "Pages": {
@@ -82,9 +102,7 @@
     "Categories": {
       "title": "التصنيفات الرئيسية",
       "create": "إنشاء تصنيف رئيسي",
-      "edit": "تعديل تصنيف رئيسي",
-      "delete": "حذف تصنيف رئيسي",
-      "view": "عرض تصنيف رئيسي"
+      "edit": "تعديل التصنيف الرئيسي"
     }
   }
 }

@@ -11,6 +11,7 @@ export const enum Icons {
   ARROW_RIGHT = 'ic:round-arrow-right',
   ARROW_LEFT = 'ic:round-arrow-left',
   BROKEN_IMAGE = 'ic:round-broken-image',
+  UPLOAD = 'icon-park-outline:upload-one',
 }
 
 export const enum NavbarIcons {

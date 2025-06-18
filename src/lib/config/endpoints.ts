@@ -7,6 +7,10 @@ export const endpoints = {
     verifyOtp: '/auth/verify-otp',
     resetPassword: '/auth/reset-password',
   },
+  upload: {
+    single: '/upload/single',
+    multiple: '/upload/multiple',
+  },
   categories: {
     list: '/categories/staff',
     create: '/categories/staff',

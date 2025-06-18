@@ -28,7 +28,10 @@
       "confirmPassword_required": "Please confirm your password",
       "passwords_must_match": "Passwords must match",
       "otp_required": "OTP is required",
-      "otp_length": "OTP must be 6 characters long"
+      "otp_length": "OTP must be 6 characters long",
+      "name_ar_required": "Arabic name is required",
+      "name_en_required": "English name is required",
+      "cover_required": "Cover image is required"
     },
     "Label": {
       "email": "Email",
@@ -46,6 +49,13 @@
       "employee_read_only": "Employee Read Only",
       "category": "Category"
     },
+    "Helper": {
+      "upload_drag_drop_file": "Drag & drop or click to upload file",
+      "upload_drag_drop_files": "Drag & drop or click to upload multiple files",
+      "upload_drop_here_file": "Drop the file here",
+      "upload_drop_here_files": "Drop the files here",
+      "upload_file_size_error": "File size ({current}) exceeds the maximum allowed size ({max})"
+    },
     "Action": {
       "login": "Login",
       "register": "Create Account",
@@ -55,8 +65,13 @@
       "close": "Close",
       "view": "View",
       "edit": "Edit",
+      "create": "Create",
+      "update": "Update",
       "delete": "Delete",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "submit": "Submit",
+      "clear_all": "Clear All",
+      "back": "Back"
     },
     "Table": {
       "rows_per_page": "Rows per page:",
@@ -69,6 +84,8 @@
       "delete_content": "Are you sure you want to delete this {label}? This action cannot be undone."
     },
     "Message": {
+      "create_success": "{name} has been created successfully",
+      "update_success": "{name} has been updated successfully",
       "delete_success": "{name} has been deleted successfully"
     }
   },
@@ -85,9 +102,7 @@
     "Categories": {
       "title": "Categories",
       "create": "Create Category",
-      "edit": "Edit Category",
-      "delete": "Delete Category",
-      "view": "View Category"
+      "edit": "Edit Category"
     }
   }
 }

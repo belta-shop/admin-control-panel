@@ -41,6 +41,7 @@ export type LoginResponse = User & {
 
 export const enum UserRole {
   ADMIN = 'admin',
+  EMPLOYEE = 'employee',
 }
 
 export const enum OTPPurpose {

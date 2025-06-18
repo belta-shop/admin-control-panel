@@ -42,7 +42,6 @@ export default function CustomSnackbarProvider({ children }: { children: React.R
         default: StyledMaterialDesignContent,
       }}
       variant="success"
-      preventDuplicate
       action={(key) => (
         <IconButton onClick={() => closeSnackbar(key)} color="inherit">
           <Iconify icon={Icons.XMARK} />

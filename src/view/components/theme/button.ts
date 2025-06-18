@@ -26,6 +26,7 @@ export function button(_theme: Theme): { MuiButton: Components['MuiButton'] } {
       defaultProps: { color: 'inherit' },
       styleOverrides: {
         root: ({ ownerState }) => ({
+          display: 'flex',
           ...(ownerState.color === 'inherit'
             ? inheritStyles[ownerState.variant || 'text']
             : undefined),

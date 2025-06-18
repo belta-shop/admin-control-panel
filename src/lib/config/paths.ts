@@ -9,7 +9,7 @@ export const paths = {
   products: {
     categories: {
       list: '/categories',
-      create: '/categories/create',
+      create: '/categories/new',
       edit: (id: string) => `/categories/${id}/edit`,
       single: (id: string) => `/categories/${id}`,
     },
