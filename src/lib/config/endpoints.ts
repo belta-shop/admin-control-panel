@@ -7,4 +7,11 @@ export const endpoints = {
     verifyOtp: '/auth/verify-otp',
     resetPassword: '/auth/reset-password',
   },
+  categories: {
+    list: '/categories/staff',
+    create: '/categories/staff',
+    single: (id: string) => `/categories/staff/${id}`,
+    delete: (id: string) => `/categories/staff/${id}`,
+    patch: (id: string) => `/categories/staff/${id}`,
+  },
 };

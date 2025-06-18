@@ -76,7 +76,13 @@ export default function VerifyPassword({ onSuccess }: Props) {
               label={t('Global.Label.old_password')}
             />
 
-            <Button type="submit" variant="contained" size="large" loading={isSubmitting}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              size="large"
+              loading={isSubmitting}
+            >
               {t('Pages.Auth.verify_password')}
             </Button>
           </Stack>

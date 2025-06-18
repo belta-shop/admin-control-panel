@@ -94,7 +94,13 @@ export default function RegisterView() {
               label={t('Global.Label.confirm_password')}
             />
 
-            <Button type="submit" variant="contained" size="large" loading={isSubmitting}>
+            <Button
+              type="submit"
+              variant="contained"
+              size="large"
+              color="primary"
+              loading={isSubmitting}
+            >
               {t('Global.Action.register')}
             </Button>
           </Stack>

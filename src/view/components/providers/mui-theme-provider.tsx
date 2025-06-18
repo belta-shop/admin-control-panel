@@ -27,6 +27,7 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
 
   const theme = createTheme({
     palette: createPalette(themeMode),
+    shape: { borderRadius: 8 },
     typography,
   });
   theme.components = merge(theme.components, themeComponents(theme));

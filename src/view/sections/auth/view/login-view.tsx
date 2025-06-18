@@ -64,7 +64,13 @@ export default function LoginView() {
               label={t('Global.Label.password')}
             />
 
-            <Button type="submit" variant="contained" size="large" loading={isSubmitting}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              size="large"
+              loading={isSubmitting}
+            >
               {t('Global.Action.login')}
             </Button>
           </Stack>

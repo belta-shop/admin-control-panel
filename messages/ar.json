@@ -38,7 +38,13 @@
       "new_password": "كلمة المرور الجديدة",
       "fullName": "الاسم الكامل",
       "otp": "أدخل رمز التحقق",
-      "search": "بحث"
+      "search": "بحث",
+      "name_ar": "الاسم (عربي)",
+      "name_en": "الاسم (إنجليزي)",
+      "cover": "الغلاف",
+      "disabled": "معطل",
+      "employee_read_only": "قراءة الموظف فقط",
+      "category": "التصنيف الرئيسي"
     },
     "Action": {
       "login": "تسجيل الدخول",
@@ -46,7 +52,21 @@
       "verify": "تحقق",
       "resend_otp": "إعادة إرسال رمز التحقق",
       "resend_otp_countdown": "إعادة الإرسال خلال {seconds} ثانية",
-      "close": "إغلاق"
+      "close": "إغلاق",
+      "cancel": "إلغاء"
+    },
+    "Table": {
+      "rows_per_page": "عدد الصفوف في الصفحة:",
+      "of": "من",
+      "more_than": "أكثر من",
+      "dense": "تكديس"
+    },
+    "Dialog": {
+      "delete_title": "حذف {label}",
+      "delete_content": "هل أنت متأكد من حذف هذا {label}؟ لا يمكن التراجع عن هذا الإجراء."
+    },
+    "Message": {
+      "delete_success": "تم حذف {name} بنجاح"
     }
   },
   "Pages": {
@@ -58,6 +78,13 @@
       "verify_password": "التحقق من كلمة المرور",
       "password_reset_success": "تم إعادة تعيين كلمة المرور بنجاح",
       "incorrect_password": "كلمة المرور غير صحيحة"
+    },
+    "Categories": {
+      "title": "التصنيفات الرئيسية",
+      "create": "إنشاء تصنيف رئيسي",
+      "edit": "تعديل تصنيف رئيسي",
+      "delete": "حذف تصنيف رئيسي",
+      "view": "عرض تصنيف رئيسي"
     }
   }
 }

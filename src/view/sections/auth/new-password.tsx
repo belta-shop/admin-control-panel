@@ -82,7 +82,13 @@ export default function NewPassword({ onSuccess }: Props) {
               label={t('Global.Label.confirm_password')}
             />
 
-            <Button type="submit" variant="contained" size="large" loading={isSubmitting}>
+            <Button
+              type="submit"
+              color="primary"
+              variant="contained"
+              size="large"
+              loading={isSubmitting}
+            >
               {t('Pages.Auth.reset_password')}
             </Button>
           </Stack>

@@ -38,7 +38,13 @@
       "new_password": "New Password",
       "fullName": "Full Name",
       "otp": "Enter OTP",
-      "search": "Search"
+      "search": "Search",
+      "name_ar": "Name (Arabic)",
+      "name_en": "Name (English)",
+      "cover": "Cover",
+      "disabled": "Disabled",
+      "employee_read_only": "Employee Read Only",
+      "category": "Category"
     },
     "Action": {
       "login": "Login",
@@ -46,7 +52,24 @@
       "verify": "Verify",
       "resend_otp": "Resend OTP",
       "resend_otp_countdown": "Resend OTP in {seconds}s",
-      "close": "Close"
+      "close": "Close",
+      "view": "View",
+      "edit": "Edit",
+      "delete": "Delete",
+      "cancel": "Cancel"
+    },
+    "Table": {
+      "rows_per_page": "Rows per page:",
+      "of": "of",
+      "more_than": "more than",
+      "dense": "Dense"
+    },
+    "Dialog": {
+      "delete_title": "Delete {label}",
+      "delete_content": "Are you sure you want to delete this {label}? This action cannot be undone."
+    },
+    "Message": {
+      "delete_success": "{name} has been deleted successfully"
     }
   },
   "Pages": {
@@ -58,6 +81,13 @@
       "verify_password": "Verify Password",
       "password_reset_success": "Your password has been reset successfully",
       "incorrect_password": "Password is incorrect"
+    },
+    "Categories": {
+      "title": "Categories",
+      "create": "Create Category",
+      "edit": "Edit Category",
+      "delete": "Delete Category",
+      "view": "View Category"
     }
   }
 }

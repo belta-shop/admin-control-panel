@@ -115,6 +115,7 @@ export default function AuthOtp({ purpose, onSuccess, sendInitialOtp = false }: 
 
             <Button
               variant="text"
+              color="primary"
               onClick={handleResendOTP}
               disabled={!canResend}
               sx={{ alignSelf: 'flex-end' }}
@@ -124,7 +125,13 @@ export default function AuthOtp({ purpose, onSuccess, sendInitialOtp = false }: 
                 : t('Global.Action.resend_otp_countdown', { seconds: countdown })}
             </Button>
 
-            <Button type="submit" variant="contained" size="large" loading={isSubmitting}>
+            <Button
+              type="submit"
+              variant="contained"
+              size="large"
+              color="primary"
+              loading={isSubmitting}
+            >
               {t('Global.Action.verify')}
             </Button>
           </Stack>

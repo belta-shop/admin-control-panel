@@ -18,7 +18,7 @@ const light: Partial<Palette> = {
   },
   text: {
     primary: '#000',
-    secondary: '#111827',
+    secondary: '#637381',
     disabled: '#dddee3',
   },
   divider: 'rgba(58, 53, 65, 0.1)',

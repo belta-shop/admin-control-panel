@@ -7,7 +7,12 @@ export const paths = {
     resetPassword: '/auth/reset-password',
   },
   products: {
-    categories: '/categories',
+    categories: {
+      list: '/categories',
+      create: '/categories/create',
+      edit: (id: string) => `/categories/${id}/edit`,
+      single: (id: string) => `/categories/${id}`,
+    },
     subCategories: '/sub-categories',
     brands: '/brands',
     products: '/products',
