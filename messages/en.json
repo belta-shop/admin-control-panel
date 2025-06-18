@@ -54,7 +54,9 @@
       "upload_drag_drop_files": "Drag & drop or click to upload multiple files",
       "upload_drop_here_file": "Drop the file here",
       "upload_drop_here_files": "Drop the files here",
-      "upload_file_size_error": "File size ({current}) exceeds the maximum allowed size ({max})"
+      "upload_file_size_error": "File size ({current}) exceeds the maximum allowed size ({max})",
+      "upload_file_type_error": "File type not allowed. Accepted types: {accepted}",
+      "upload_accepted_types": "Accepted file types: {types}"
     },
     "Action": {
       "login": "Login",
@@ -86,7 +88,8 @@
     "Message": {
       "create_success": "{name} has been created successfully",
       "update_success": "{name} has been updated successfully",
-      "delete_success": "{name} has been deleted successfully"
+      "delete_success": "{name} has been deleted successfully",
+      "max_form_data_size": "Data size of the form ({current}) exceeds the maximum allowed size ({max})"
     }
   },
   "Pages": {

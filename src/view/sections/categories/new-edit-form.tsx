@@ -6,6 +6,7 @@ import { Grid, Stack, Button } from '@mui/material';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { yup } from '@/lib/utils/yup';
+import { Icons } from '@/lib/config/icons';
 import { UserRole } from '@/lib/types/auth';
 import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/lib/store/auth';
@@ -60,7 +61,12 @@ export default function CategoryNewEditForm({ category, onSubmit, backPath }: Ca
     <RHFFormProvider methods={methods} onSubmit={onSubmit}>
       <Grid container spacing={2}>
         <Grid size={{ xs: 12, sm: 6 }}>
-          <RHFUpload name="cover" label={t('Global.Label.cover')} />
+          <RHFUpload
+            name="cover"
+            label={t('Global.Label.cover')}
+            icon={Icons.UPLOAD}
+            variant="images"
+          />
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }} />
         <Grid size={{ xs: 12, sm: 6 }}>

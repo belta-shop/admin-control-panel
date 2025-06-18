@@ -3,17 +3,25 @@
 import { Box, FormLabel } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
 
+import { FileType, FileVariant } from '@/lib/types/upload';
+
 import UploadBox from '../upload/upload-box';
 
-interface Props {
+type Props = {
   name: string;
   label?: string;
   helperText?: string;
   disabled?: boolean;
   maxSize?: number; // in bytes
-}
+  icon?: string;
+} & (
+  | {
+      acceptedTypes?: FileType[]; // e.g., ['image/png', 'application/pdf']
+    }
+  | { variant?: FileVariant }
+);
 
-export default function RHFUpload({ name, label, helperText, disabled, maxSize }: Props) {
+export default function RHFUpload({ name, label, helperText, ...props }: Props) {
   const { control } = useFormContext();
 
   return (
@@ -38,11 +46,10 @@ export default function RHFUpload({ name, label, helperText, disabled, maxSize }
             file={value}
             error={!!error}
             helperText={error?.message || helperText}
-            disabled={disabled}
-            maxSize={maxSize}
             onDrop={(acceptedFiles) => {
               onChange(acceptedFiles[0]);
             }}
+            {...props}
           />
         </Box>
       )}

@@ -54,7 +54,9 @@
       "upload_drag_drop_files": "اسحب وأفلت الملفات هنا أو انقر للتحميل",
       "upload_drop_here_file": "أفلت الملف هنا",
       "upload_drop_here_files": "أفلت الملفات هنا",
-      "upload_file_size_error": "حجم الملف ({current}) يتجاوز الحد الأقصى المسموح به ({max})"
+      "upload_file_size_error": "حجم الملف ({current}) يتجاوز الحد الأقصى المسموح به ({max})",
+      "upload_file_type_error": "نوع الملف غير مسموح به. الأنواع المقبولة: {accepted}",
+      "upload_accepted_types": "أنواع الملفات المقبولة: {types}"
     },
     "Action": {
       "login": "تسجيل الدخول",
@@ -86,7 +88,8 @@
     "Message": {
       "delete_success": "تم حذف {name} بنجاح",
       "create_success": "تم إنشاء {name} بنجاح",
-      "update_success": "تم تعديل {name} بنجاح"
+      "update_success": "تم تعديل {name} بنجاح",
+      "max_form_data_size": "حجم البيانات ({current}) يتجاوز الحد الأقصى المسموح به ({max})"
     }
   },
   "Pages": {
