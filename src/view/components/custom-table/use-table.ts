@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react';
 
-import { useQuery } from '@/lib/hooks/use-query';
+import { useQueryParams } from '@/lib/hooks/use-query-params';
 
 import { TableProps } from './types';
 
@@ -14,7 +14,7 @@ export type UseTableProps = {
 
 export default function useTable(props?: UseTableProps): Partial<ReturnType> {
   const [dense, setDense] = useState(!!props?.defaultDense);
-  const { set: setQueries } = useQuery(['page', 'limit'], { replace: true });
+  const { set: setQueries } = useQueryParams(['page', 'limit'], { replace: true });
 
   const onChangeDense = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     setDense(event.target.checked);

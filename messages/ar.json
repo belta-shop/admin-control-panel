@@ -46,8 +46,11 @@
       "name_en": "الاسم (إنجليزي)",
       "cover": "الغلاف",
       "disabled": "معطل",
-      "employee_read_only": "قراءة الموظف فقط",
-      "category": "التصنيف الرئيسي"
+      "employee_read_only": "لا تعدل إلا بواسطة المشرف",
+      "category": "التصنيف الرئيسي",
+      "all": "الجميع",
+      "yes": "نعم",
+      "no": "لا"
     },
     "Helper": {
       "upload_drag_drop_file": "اسحب وأفلت الملف هنا أو انقر للتحميل",

@@ -7,7 +7,7 @@ interface Options {
   removeOld?: boolean;
 }
 
-export function useQuery<TQuery extends string>(
+export function useQueryParams<TQuery extends string>(
   queries: TQuery[],
   initialOptions: Omit<Options, 'removeOld'> = { replace: false, scroll: true }
 ) {

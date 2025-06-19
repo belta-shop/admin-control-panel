@@ -46,8 +46,11 @@
       "name_en": "Name (English)",
       "cover": "Cover",
       "disabled": "Disabled",
-      "employee_read_only": "Employee Read Only",
-      "category": "Category"
+      "employee_read_only": "Only Admin Can Edit",
+      "category": "Category",
+      "all": "All",
+      "yes": "Yes",
+      "no": "No"
     },
     "Helper": {
       "upload_drag_drop_file": "Drag & drop or click to upload file",

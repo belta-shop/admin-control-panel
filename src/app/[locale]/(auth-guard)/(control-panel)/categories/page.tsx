@@ -8,15 +8,17 @@ import { endpoints } from '@/lib/config/endpoints';
 import { DEFAULT_LIMIT } from '@/lib/config/global';
 import { Category } from '@/lib/types/api/categories';
 import PageWrapper from '@/view/components/page-wrapper';
-import ListView from '@/view/sections/categories/view/list-view';
+import CategoryListView from '@/view/sections/categories/view/list-view';
 
 export default async function Page({
   searchParams,
 }: {
-  searchParams: Promise<Record<'page' | 'limit', string | undefined>>;
+  searchParams: Promise<
+    Record<'page' | 'limit' | 'category' | 'disabled' | 'employeeReadOnly', string | undefined>
+  >;
 }) {
   const t = await getTranslations('Pages.Categories');
-  const { page, limit } = await searchParams;
+  const { page, limit, category, disabled, employeeReadOnly } = await searchParams;
 
   const { data } = await axiosInstance.get<{ items: Category[]; total: number }>(
     endpoints.categories.list,
@@ -24,6 +26,9 @@ export default async function Page({
       params: {
         page: page || '1',
         limit: limit || DEFAULT_LIMIT,
+        search: category || undefined,
+        disabled: disabled || undefined,
+        employeeReadOnly: employeeReadOnly || undefined,
       },
     }
   );
@@ -42,7 +47,7 @@ export default async function Page({
         </Button>
       }
     >
-      <ListView items={data.items} total={data.total} />
+      <CategoryListView items={data.items} total={data.total} />
     </PageWrapper>
   );
 }
