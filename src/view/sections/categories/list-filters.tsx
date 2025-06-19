@@ -13,10 +13,20 @@ export default function CategoryListFilters() {
         <DebounceSearchField name="category" clearOtherParams={['page']} fullWidth />
       </Grid>
       <Grid size={{ xs: 12, sm: 3 }}>
-        <BooleanFilter name="disabled" label={t('Global.Label.disabled')} />
+        <BooleanFilter
+          name="disabled"
+          label={t('Global.Label.disabled')}
+          clearOtherParams={['page']}
+          fullWidth
+        />
       </Grid>
       <Grid size={{ xs: 12, sm: 3 }}>
-        <BooleanFilter name="employeeReadOnly" label={t('Global.Label.employee_read_only')} />
+        <BooleanFilter
+          name="employeeReadOnly"
+          label={t('Global.Label.employee_read_only')}
+          clearOtherParams={['page']}
+          fullWidth
+        />
       </Grid>
     </Grid>
   );

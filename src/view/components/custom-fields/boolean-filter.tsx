@@ -12,7 +12,17 @@ export interface BooleanOption {
   value: string | null;
 }
 
-export default function BooleanFilter({ name, label }: { name: string; label?: string }) {
+export default function BooleanFilter({
+  name,
+  label,
+  clearOtherParams = [],
+  fullWidth = false,
+}: {
+  name: string;
+  label?: string;
+  clearOtherParams?: string[];
+  fullWidth?: boolean;
+}) {
   const t = useTranslations();
   const {
     values: { [name]: paramValue },
@@ -28,8 +38,13 @@ export default function BooleanFilter({ name, label }: { name: string; label?: s
   const currentOption = options.find((option) => option.value === paramValue) || options[0];
 
   const handleChange = (_: any, newValue: BooleanOption | null) => {
-    const value = newValue?.value || null;
-    setQuery({ [name]: value });
+    const queryBody = { [name]: newValue?.value || null };
+    // Clear other params
+    clearOtherParams.forEach((param) => {
+      queryBody[param] = null;
+    });
+
+    setQuery(queryBody);
   };
 
   return (
@@ -39,7 +54,7 @@ export default function BooleanFilter({ name, label }: { name: string; label?: s
       onChange={handleChange}
       getOptionLabel={(option) => option.label}
       isOptionEqualToValue={(option, value) => option.value === value.value}
-      renderInput={(params) => <TextField {...params} label={label} fullWidth />}
+      renderInput={(params) => <TextField {...params} label={label} fullWidth={fullWidth} />}
       clearIcon={<Iconify icon={Icons.XMARK} fontSize={18} />}
     />
   );
