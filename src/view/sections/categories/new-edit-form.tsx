@@ -58,7 +58,7 @@ export default function CategoryNewEditForm({ category, onSubmit, backPath }: Ca
   } = methods;
 
   return (
-    <RHFFormProvider methods={methods} onSubmit={onSubmit}>
+    <RHFFormProvider methods={methods} onSubmit={onSubmit} resetOnSuccess={!category}>
       <Grid container spacing={2}>
         <Grid size={{ xs: 12, sm: 6 }}>
           <RHFUpload

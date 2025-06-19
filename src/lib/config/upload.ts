@@ -1,6 +1,6 @@
 import { FileTypesList } from '../types/upload';
 
-export const MAX_FILE_SIZE = 50 * 1024; // 50KB
+export const MAX_FILE_SIZE = 500 * 1024; // 50KB
 export const MAX_FORM_DATA_SIZE = 1024 * 1024; // 1MB
 
 export const fileTypes: FileTypesList = {

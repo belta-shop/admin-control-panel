@@ -11,9 +11,15 @@ interface Props {
   children: React.ReactNode;
   methods: UseFormReturn<any>;
   onSubmit: OnSubmitFunction;
+  resetOnSuccess?: boolean;
 }
 
-export default function RHFFormProvider({ children, methods, onSubmit }: Props) {
+export default function RHFFormProvider({
+  children,
+  methods,
+  onSubmit,
+  resetOnSuccess = true,
+}: Props) {
   const { handleSubmit, reset } = methods;
   const { enqueueSnackbar } = useSnackbar();
   const t = useTranslations('Global.Message');
@@ -28,7 +34,7 @@ export default function RHFFormProvider({ children, methods, onSubmit }: Props) 
       }
 
       await onSubmit(data);
-      reset();
+      if (resetOnSuccess) reset();
     } catch (error: any) {
       enqueueSnackbar(error.message, { variant: 'error' });
     }

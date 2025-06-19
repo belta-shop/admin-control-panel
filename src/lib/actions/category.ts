@@ -15,3 +15,13 @@ export async function createCategory(data: CategoryFormData) {
 
   await axiosInstance.post(endpoints.categories.create, data);
 }
+
+export async function updateCategory(id: string, data: CategoryFormData) {
+  if (typeof data.cover !== 'string') {
+    const cover = await uploadSingle(data.cover);
+
+    data.cover = cover;
+  }
+
+  await axiosInstance.patch(endpoints.categories.patch(id), data);
+}

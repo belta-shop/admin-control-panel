@@ -141,7 +141,7 @@ export default function UploadBox({
 
       {renderHelperText && (
         <FormHelperText
-          error={hasError}
+          error={!!hasError}
           sx={{
             mt: 1,
           }}
