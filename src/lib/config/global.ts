@@ -9,7 +9,7 @@ export const enum LOCAL_STORAGE_KEYS {
   NavbarType = 'navbarType',
 }
 
-export const DEFAULT_LIMIT = 10;
+export const DEFAULT_LIMIT = 5;
 export const tableRowsPerPageOptions = [5, 10, 30];
 
 export const EMAIL_REGEX =

@@ -23,9 +23,9 @@ interface Props {
 }
 
 const tableHead = [
+  { id: 'cover', label: 'cover' },
   { id: 'nameAr', label: 'name_ar' },
   { id: 'nameEn', label: 'name_en' },
-  { id: 'cover', label: 'cover' },
   { id: 'disabled', label: 'disabled' },
   { id: 'employeeReadOnly', label: 'employee_read_only' },
 ];
