@@ -30,12 +30,11 @@ export default function BooleanFilter({
   } = useQueryParams([name], { replace: true });
 
   const options: BooleanOption[] = [
-    { label: t('Global.Label.all'), value: null },
     { label: t('Global.Label.yes'), value: 'true' },
     { label: t('Global.Label.no'), value: 'false' },
   ];
 
-  const currentOption = options.find((option) => option.value === paramValue) || options[0];
+  const currentOption = options.find((option) => option.value === paramValue) || undefined;
 
   const handleChange = (_: any, newValue: BooleanOption | null) => {
     const queryBody = { [name]: newValue?.value || null };
