@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { getTranslations } from 'next-intl/server';
 
 import { paths } from '@/lib/config/paths';

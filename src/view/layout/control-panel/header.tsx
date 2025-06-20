@@ -1,6 +1,6 @@
 'use client';
 
-import { useMediaQuery } from '@mui/material';
+import { alpha, useMediaQuery } from '@mui/material';
 import { Box, AppBar, Toolbar } from '@mui/material';
 
 import { useSettingsStore } from '@/lib/store/settings';
@@ -18,9 +18,9 @@ export default function ControlPanelHeader() {
       <AppBar
         position="fixed"
         sx={{
-          bgcolor: 'background.default',
-          backdropFilter: 'blur(50px)',
-          height: HEADER_HEIGHT,
+          bgcolor: (theme) => alpha(theme.palette.background.default, 0.7),
+          backdropFilter: 'blur(10px)',
+          height: `${HEADER_HEIGHT}px`,
           overflow: 'hidden',
           display: 'grid',
           alignItems: 'center',

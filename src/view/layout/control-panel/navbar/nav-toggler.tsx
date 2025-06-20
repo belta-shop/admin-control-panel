@@ -17,9 +17,9 @@ export default function NavToggler() {
   return (
     <IconButton
       sx={{
-        position: 'absolute',
-        top: 60,
-        left: NAVBAR_WIDTH[navbarType],
+        position: 'fixed',
+        top: '60px',
+        left: `${NAVBAR_WIDTH[navbarType]}px`,
         translate: dir === 'ltr' ? '-50% -50%' : '50% -50%',
         border: '1px solid',
         borderColor: 'text.disabled',

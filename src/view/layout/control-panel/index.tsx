@@ -12,17 +12,16 @@ export default function ControlPanelLayout({ children }: { children: React.React
   const { navbarType } = useSettingsStore();
 
   return (
-    <Box>
+    <Box sx={{ overflowX: 'hidden' }}>
       <ControlPanelHeader />
 
       <Navbar />
 
       <Box
         sx={{
-          left: { md: NAVBAR_WIDTH[navbarType] },
-          width: { md: `calc(100% - ${NAVBAR_WIDTH[navbarType]}px)` },
-          top: HEADER_HEIGHT,
-          position: 'relative',
+          ml: { xs: 0, md: `${NAVBAR_WIDTH[navbarType]}px` },
+          width: { xs: '100%', md: `calc(100% - ${NAVBAR_WIDTH[navbarType]}px)` },
+          mt: `${HEADER_HEIGHT}px`,
           minHeight: `calc(100svh - ${HEADER_HEIGHT}px)`,
         }}
       >

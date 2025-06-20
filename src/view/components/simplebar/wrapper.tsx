@@ -130,14 +130,14 @@ export default function SimplebarWrapper({
      * Handles mouse wheel events for scrolling
      */
     const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
-
-      // If shift key is pressed, scroll horizontally
-      if (e.shiftKey) {
+      // If shift key is pressed, scroll horizontally if the content is wider than the container
+      if (e.shiftKey && direction !== 'vertical' && clientWidth < scrollWidth) {
+        e.preventDefault();
         const newScrollLeft = scrollLeft + e.deltaY * 0.5;
         updateScrollPosition(scrollTop, newScrollLeft);
-      } else {
-        // Otherwise scroll vertically
+      } else if (direction !== 'horizontal' && clientHeight < scrollHeight) {
+        // Otherwise scroll vertically if the content is taller than the container
+        e.preventDefault();
         const newScrollTop = scrollTop + e.deltaY * 0.5;
         updateScrollPosition(newScrollTop, scrollLeft);
       }
