@@ -390,7 +390,7 @@ const Fade = styled(Box)<
     width: isHorizontal ? (show === 'true' ? '100px' : '0px') : undefined,
     background: `linear-gradient(to ${to}, ${currentColor}, rgba(255, 255, 255, 0))`,
     pointerEvents: 'none',
-    transition: 'height 0.2s ease-out',
+    transition: 'height 0.2s ease-out, width 0.2s ease-out',
     overflow: 'hidden',
     zIndex: 2500,
   };
