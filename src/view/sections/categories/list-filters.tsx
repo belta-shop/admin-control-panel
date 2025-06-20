@@ -8,9 +8,14 @@ export default function CategoryListFilters() {
   const t = useTranslations();
 
   return (
-    <Grid container spacing={1}>
+    <Grid container columnSpacing={1} rowSpacing={2}>
       <Grid size={{ xs: 12, sm: 6 }}>
-        <DebounceSearchField name="category" clearOtherParams={['page']} fullWidth />
+        <DebounceSearchField
+          name="category"
+          placeholder={`${t('Global.Label.name_ar')} / ${t('Global.Label.name_en')}`}
+          clearOtherParams={['page']}
+          fullWidth
+        />
       </Grid>
       <Grid size={{ xs: 12, sm: 3 }}>
         <BooleanFilter
