@@ -19,7 +19,7 @@ export default function ResetPasswordView() {
     <AuthOtp
       purpose={OTPPurpose.ResetPassword}
       onSuccess={() => setCurrentStep(2)}
-      sendInitialOtp={true}
+      sendInitialOtp
     />,
     <NewPassword onSuccess={() => {}} />,
   ];

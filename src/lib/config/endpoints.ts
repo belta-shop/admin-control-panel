@@ -5,6 +5,8 @@ export const endpoints = {
     refresh: '/auth/refresh-token',
     resendOtp: '/auth/resend-otp',
     verifyOtp: '/auth/verify-otp',
+    sendGuestOtp: '/auth/send-guest-otp',
+    verifyGuestOtp: '/auth/verify-guest-otp',
     resetPassword: '/auth/reset-password',
   },
   upload: {

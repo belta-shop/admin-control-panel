@@ -5,6 +5,7 @@ export const paths = {
     register: '/auth/register',
     emailConfirmation: '/auth/email-confirmation',
     resetPassword: '/auth/reset-password',
+    forgotPassword: '/auth/forgot-password',
   },
   products: {
     categories: {

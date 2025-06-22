@@ -77,7 +77,8 @@
       "submit": "Submit",
       "clear_all": "Clear All",
       "back": "Back",
-      "logout": "Logout"
+      "logout": "Logout",
+      "send_otp": "Send OTP"
     },
     "Table": {
       "rows_per_page": "Rows per page:",
@@ -102,6 +103,8 @@
       "welcome_subtitle": "Sign in to your account to continue",
       "no_account": "Don't have an account?",
       "forgot_password": "Forgot your password?",
+      "forgot_password_title": "Forgot Password 🔐",
+      "forgot_password_subtitle": "Enter your email to receive verification code",
       "register_title": "Create Account 🚀",
       "register_subtitle": "Join us and start your journey",
       "have_account": "Already have an account?",
@@ -117,7 +120,8 @@
       "reset_password": "Reset Password",
       "verify_password": "Verify Password",
       "password_reset_success": "Your password has been reset successfully",
-      "incorrect_password": "Password is incorrect"
+      "incorrect_password": "Password is incorrect",
+      "login_instead": "Do you want to login instead?"
     },
     "Categories": {
       "title": "Categories",

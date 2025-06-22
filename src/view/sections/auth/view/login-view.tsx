@@ -90,7 +90,7 @@ export default function LoginView() {
                 </Link>
               </Typography>
               <Typography variant="body2" textAlign="center">
-                <Link href={paths.auth.resetPassword} underline="hover">
+                <Link href={paths.auth.forgotPassword} underline="hover">
                   {t('Pages.Auth.forgot_password')}
                 </Link>
               </Typography>
