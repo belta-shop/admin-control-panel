@@ -1,6 +1,8 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
+import { Stack, Typography } from '@mui/material';
 
 import { OTPPurpose } from '@/lib/types/auth';
 
@@ -9,6 +11,7 @@ import NewPassword from '../new-password';
 import VerifyPassword from '../verify-password';
 
 export default function ResetPasswordView() {
+  const t = useTranslations();
   const [currentStep, setCurrentStep] = useState(0);
 
   const steps = [
@@ -21,5 +24,16 @@ export default function ResetPasswordView() {
     <NewPassword onSuccess={() => {}} />,
   ];
 
-  return steps[currentStep];
+  return (
+    <Stack>
+      <Typography variant="h3" component="h1">
+        {t('Pages.Auth.reset_password_title')}
+      </Typography>
+      <Typography variant="body1" color="text.secondary" mb={5}>
+        {t('Pages.Auth.reset_password_subtitle')}
+      </Typography>
+
+      {steps[currentStep]}
+    </Stack>
+  );
 }

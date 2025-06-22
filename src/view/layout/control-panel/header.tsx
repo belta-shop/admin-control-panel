@@ -1,17 +1,22 @@
 'use client';
 
-import { alpha, useMediaQuery } from '@mui/material';
+import { useTranslations } from 'next-intl';
 import { Box, AppBar, Toolbar } from '@mui/material';
+import { alpha, Button, useMediaQuery } from '@mui/material';
 
+import { useAuthStore } from '@/lib/store/auth';
 import { useSettingsStore } from '@/lib/store/settings';
 import LanguagePopover from '@/view/components/locale-popover';
 import { NAVBAR_WIDTH, HEADER_HEIGHT } from '@/lib/config/theme/layout';
 
 import DrawerToggler from './navbar/drawer-toggler';
 export default function ControlPanelHeader() {
+  const t = useTranslations();
   const { navbarType } = useSettingsStore();
 
   const notMd = useMediaQuery((theme) => theme.breakpoints.down('md'));
+
+  const { logout } = useAuthStore();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -36,6 +41,9 @@ export default function ControlPanelHeader() {
           <Box sx={{ flexGrow: 1 }} />
 
           <LanguagePopover />
+          <Button variant="outlined" color="error" size="small" sx={{ ml: 0.5 }} onClick={logout}>
+            {t('Global.Action.logout')}
+          </Button>
         </Toolbar>
       </AppBar>
     </Box>

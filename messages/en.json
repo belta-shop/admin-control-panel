@@ -25,7 +25,7 @@
       "password_number": "Password must contain at least one number",
       "password_special": "Password must contain at least one special character",
       "fullName_required": "Full name is required",
-      "confirmPassword_required": "Please confirm your password",
+      "confirm_password_required": "Please confirm your password",
       "passwords_must_match": "Passwords must match",
       "otp_required": "OTP is required",
       "otp_length": "OTP must be 6 characters long",
@@ -36,7 +36,7 @@
     "Label": {
       "email": "Email",
       "password": "Password",
-      "confirmPassword": "Confirm Password",
+      "confirm_password": "Confirm Password",
       "old_password": "Old Password",
       "new_password": "New Password",
       "fullName": "Full Name",
@@ -76,7 +76,8 @@
       "cancel": "Cancel",
       "submit": "Submit",
       "clear_all": "Clear All",
-      "back": "Back"
+      "back": "Back",
+      "logout": "Logout"
     },
     "Table": {
       "rows_per_page": "Rows per page:",
@@ -97,6 +98,19 @@
   },
   "Pages": {
     "Auth": {
+      "welcome_title": "Welcome Back 👋",
+      "welcome_subtitle": "Sign in to your account to continue",
+      "no_account": "Don't have an account?",
+      "forgot_password": "Forgot your password?",
+      "register_title": "Create Account 🚀",
+      "register_subtitle": "Join us and start your journey",
+      "have_account": "Already have an account?",
+      "reset_password_title": "Reset Password 🔐",
+      "reset_password_subtitle": "Enter your email to receive reset instructions",
+      "email_confirmation_title": "Email Confirmation ✉️",
+      "email_confirmation_subtitle": "Please enter the verification code sent to your email",
+      "email_confirmation_success_title": "Email Confirmed ✅",
+      "email_confirmation_success_subtitle": "Your email has been successfully verified",
       "otp_sent": "We have sent a 4-digit OTP to your email address",
       "email_already_confirmed": "Your email has been already confirmed. <link>Go to home page</link>",
       "email_confirmed": "Your email has been confirmed successfully. <link>Go to home page</link>",

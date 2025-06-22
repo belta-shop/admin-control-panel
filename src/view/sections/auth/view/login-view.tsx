@@ -2,11 +2,12 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Stack, Alert, Button } from '@mui/material';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, FormProvider } from 'react-hook-form';
+import { Link, Stack, Alert, Button, Typography } from '@mui/material';
 
 import { yup } from '@/lib/utils/yup';
+import { paths } from '@/lib/config/paths';
 import { useAuthStore } from '@/lib/store/auth';
 import { EMAIL_REGEX } from '@/lib/config/global';
 import RHFTextField from '@/view/components/rhf-hooks/rhf-textField';
@@ -28,8 +29,8 @@ export default function LoginView() {
       })
     ),
     defaultValues: {
-      email: 'imbeltagy@gmail.com',
-      password: 'Beltagy#1',
+      email: 'employee@beltashop.com',
+      password: 'Employee#1',
     },
   });
 
@@ -51,6 +52,13 @@ export default function LoginView() {
 
   return (
     <Stack>
+      <Typography variant="h3" component="h1">
+        {t('Pages.Auth.welcome_title')}
+      </Typography>
+      <Typography variant="body1" color="text.secondary" mb={5}>
+        {t('Pages.Auth.welcome_subtitle')}
+      </Typography>
+
       <FormProvider {...methods}>
         <form onSubmit={onSubmit}>
           <Stack spacing={2}>
@@ -73,6 +81,20 @@ export default function LoginView() {
             >
               {t('Global.Action.login')}
             </Button>
+
+            <Stack spacing={1} sx={{ mt: 2 }}>
+              <Typography variant="body2" textAlign="center">
+                {t('Pages.Auth.no_account')}{' '}
+                <Link href={paths.auth.register} underline="hover">
+                  {t('Global.Action.register')}
+                </Link>
+              </Typography>
+              <Typography variant="body2" textAlign="center">
+                <Link href={paths.auth.resetPassword} underline="hover">
+                  {t('Pages.Auth.forgot_password')}
+                </Link>
+              </Typography>
+            </Stack>
           </Stack>
         </form>
       </FormProvider>
