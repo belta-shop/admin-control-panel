@@ -34,7 +34,7 @@ export default function BooleanFilter({
     { label: t('Global.Label.no'), value: 'false' },
   ];
 
-  const currentOption = options.find((option) => option.value === paramValue) || undefined;
+  const currentOption = options.find((option) => option.value === paramValue) || null;
 
   const handleChange = (_: any, newValue: BooleanOption | null) => {
     const queryBody = { [name]: newValue?.value || null };
