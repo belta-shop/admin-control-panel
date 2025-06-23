@@ -1,7 +1,20 @@
 {
   "Metadata": {
-    "title": "حزمة البداية - MUI",
-    "description": "حزمة البداية - MUI هي قالب لبدء مشروع Next.js مع Material UI"
+    "title": "Beltahop",
+    "description": "A full stack ecommerce platform with MCP server",
+    "Home": {
+      "title": "الرئيسية | Beltahop"
+    },
+    "Categories": {
+      "title": "التصنيفات الرئيسية | Beltahop"
+    },
+    "Auth": {
+      "login_title": "تسجيل الدخول | Beltahop",
+      "register_title": "إنشاء حساب | Beltahop",
+      "forgot_password_title": "نسيت كلمة المرور | Beltahop",
+      "reset_password_title": "إعادة تعيين كلمة المرور | Beltahop",
+      "email_confirmation_title": "تأكيد البريد الإلكتروني | Beltahop"
+    }
   },
   "Navigation": {
     "home": "الرئيسية",

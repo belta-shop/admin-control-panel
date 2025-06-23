@@ -1,7 +1,20 @@
 {
   "Metadata": {
-    "title": "Starter Pack - MUI",
-    "description": "Starter Pack - MUI is a template to start a Next.js project with Material UI"
+    "title": "Beltahop",
+    "description": "A full stack ecommerce platform with MCP server",
+    "Home": {
+      "title": "Home | Beltahop"
+    },
+    "Categories": {
+      "title": "Categories | Beltahop"
+    },
+    "Auth": {
+      "login_title": "Login | Beltahop",
+      "register_title": "Register | Beltahop",
+      "forgot_password_title": "Forgot Password | Beltahop",
+      "reset_password_title": "Reset Password | Beltahop",
+      "email_confirmation_title": "Email Confirmation | Beltahop"
+    }
   },
   "Navigation": {
     "home": "Home",

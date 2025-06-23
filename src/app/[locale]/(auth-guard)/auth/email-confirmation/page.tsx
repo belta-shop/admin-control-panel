@@ -4,6 +4,7 @@ import { Alert } from '@mui/material';
 import { redirect } from 'next/navigation';
 import { getTranslations } from 'next-intl/server';
 
+import { LocaleType } from '@/lib/types/locale';
 import { fetchUserByToken } from '@/lib/actions/auth';
 import RouterLink from '@/view/components/router-link';
 import { paths, pathAfterLogin } from '@/lib/config/paths';
@@ -46,4 +47,13 @@ export default async function EmailConfirmationPage() {
     );
 
   return <EmailConfirmationView />;
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: LocaleType }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'Metadata.Auth' });
+
+  return {
+    title: t('email_confirmation_title'),
+  };
 }
