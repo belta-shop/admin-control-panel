@@ -23,4 +23,4 @@ export const paths = {
   },
 };
 
-export const pathAfterLogin = paths.root;
+export const pathAfterLogin = paths.products.categories.list;
