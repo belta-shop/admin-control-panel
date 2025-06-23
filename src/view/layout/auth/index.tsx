@@ -3,7 +3,7 @@ import { Box, Card, Stack, Container, CardContent } from '@mui/material';
 
 import Logo from '@/view/components/logo';
 import { useDir } from '@/lib/hooks/locale-hooks';
-import LocalePopover from '@/view/components/locale-popover';
+import LocalePopover from '@/view/components/popover/locale-popover';
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   const { left, right } = useDir();

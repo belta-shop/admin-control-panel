@@ -4,8 +4,8 @@ import { Box, AppBar, Toolbar } from '@mui/material';
 import { alpha, useMediaQuery } from '@mui/material';
 
 import { useSettingsStore } from '@/lib/store/settings';
-import LocalePopover from '@/view/components/locale-popover';
-import AccountPopover from '@/view/components/account-popover';
+import LocalePopover from '@/view/components/popover/locale-popover';
+import AccountPopover from '@/view/components/popover/account-popover';
 import { NAVBAR_WIDTH, HEADER_HEIGHT } from '@/lib/config/theme/layout';
 
 import DrawerToggler from './navbar/drawer-toggler';

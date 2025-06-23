@@ -1,22 +1,18 @@
 'use client';
 
-import { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { Divider, IconButton, ListItemButton } from '@mui/material';
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { Popover, Divider, IconButton, ListItemButton } from '@mui/material';
 
 import { Icons } from '@/lib/config/icons';
 import { paths } from '@/lib/config/paths';
 import { useAuthStore } from '@/lib/store/auth';
 
 import { Iconify } from '../iconify';
-
+import CustomPopover from './custom-popover';
+import { usePopover } from './custom-popover/hooks';
 export default function AccountPopover() {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-
-  const isOpen = Boolean(anchorEl);
-  const handleOpen = (e: React.MouseEvent<HTMLElement>) => setAnchorEl(e.currentTarget);
-  const handleClose = () => setAnchorEl(null);
+  const { isOpen, handleOpen, popoverProps } = usePopover();
 
   return (
     <>
@@ -32,23 +28,9 @@ export default function AccountPopover() {
         <Iconify icon={Icons.PROFILE} fontSize={28} />
       </IconButton>
 
-      <Popover
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-        id="account-menu"
-        keepMounted
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        open={isOpen}
-        onClose={handleClose}
-      >
+      <CustomPopover id="account-menu" {...popoverProps}>
         <PopoverContent />
-      </Popover>
+      </CustomPopover>
     </>
   );
 }

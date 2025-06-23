@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Popover, IconButton, ListItemButton } from '@mui/material';
+import { IconButton, ListItemButton } from '@mui/material';
 import { Button, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 
 import { LocaleType } from '@/lib/types/locale';
@@ -11,17 +11,15 @@ import { useCurrentLocale } from '@/lib/hooks/locale-hooks';
 import { redirect, usePathname } from '@/lib/i18n/navigation';
 
 import { Iconify } from '../iconify';
+import CustomPopover from './custom-popover';
+import { usePopover } from './custom-popover/hooks';
 
 export default function LocalePopover({ large = false }: { large?: boolean }) {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const { isOpen, handleOpen, handleClose, popoverProps } = usePopover();
 
   const currentLocale = useCurrentLocale();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-
-  const isOpen = Boolean(anchorEl);
-  const handleOpen = (e: React.MouseEvent<HTMLElement>) => setAnchorEl(e.currentTarget);
-  const handleClose = () => setAnchorEl(null);
 
   const handleChangeLang = useCallback(
     (newLocale: LocaleType) => {
@@ -30,9 +28,9 @@ export default function LocalePopover({ large = false }: { large?: boolean }) {
 
         redirect({ href: path, locale: newLocale });
       }
-      setAnchorEl(null);
+      handleClose();
     },
-    [currentLocale.value, pathname, searchParams]
+    [currentLocale.value, handleClose, pathname, searchParams]
   );
 
   return (
@@ -64,21 +62,7 @@ export default function LocalePopover({ large = false }: { large?: boolean }) {
         </IconButton>
       )}
 
-      <Popover
-        anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-        id="language-menu"
-        keepMounted
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        open={isOpen}
-        onClose={handleClose}
-      >
+      <CustomPopover {...popoverProps} id="language-menu">
         {Object.values(localesSettings).map((option) => (
           <ListItem key={option.value} disablePadding>
             <ListItemButton
@@ -93,7 +77,7 @@ export default function LocalePopover({ large = false }: { large?: boolean }) {
             </ListItemButton>
           </ListItem>
         ))}
-      </Popover>
+      </CustomPopover>
     </>
   );
 }
