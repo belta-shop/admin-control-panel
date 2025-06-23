@@ -62,7 +62,7 @@ export default function LocalePopover({ large = false }: { large?: boolean }) {
         </IconButton>
       )}
 
-      <CustomPopover {...popoverProps} id="language-menu">
+      <CustomPopover anchorOrigin="bottom-center" transformOrigin="top-center" {...popoverProps}>
         {Object.values(localesSettings).map((option) => (
           <ListItem key={option.value} disablePadding>
             <ListItemButton

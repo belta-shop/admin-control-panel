@@ -1,25 +1,20 @@
 import { Popover, PopoverProps } from '@mui/material';
 
+import { PopoverDirection, getPopoverPosition } from './styles';
+
 export default function CustomPopover({
-  anchorOrigin,
-  transformOrigin,
+  anchorOrigin = 'top-center',
+  transformOrigin = 'top-center',
   ...props
-}: Omit<PopoverProps, 'keepMounted'>) {
+}: Omit<PopoverProps, 'keepMounted' | 'anchorOrigin' | 'transformOrigin'> & {
+  anchorOrigin?: PopoverDirection;
+  transformOrigin?: PopoverDirection;
+}) {
   return (
     <Popover
-      anchorOrigin={
-        anchorOrigin ?? {
-          vertical: 'bottom',
-          horizontal: 'right',
-        }
-      }
+      anchorOrigin={getPopoverPosition(anchorOrigin)}
+      transformOrigin={getPopoverPosition(transformOrigin)}
       keepMounted
-      transformOrigin={
-        transformOrigin ?? {
-          vertical: 'top',
-          horizontal: 'right',
-        }
-      }
       {...props}
     />
   );

@@ -28,7 +28,7 @@ export default function AccountPopover() {
         <Iconify icon={Icons.PROFILE} fontSize={28} />
       </IconButton>
 
-      <CustomPopover id="account-menu" {...popoverProps}>
+      <CustomPopover anchorOrigin="bottom-right" transformOrigin="top-right" {...popoverProps}>
         <PopoverContent />
       </CustomPopover>
     </>
