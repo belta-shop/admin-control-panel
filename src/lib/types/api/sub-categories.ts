@@ -1,9 +1,12 @@
-export interface Category {
+import { Category } from './categories';
+
+export interface SubCategory {
   _id: string;
   nameAr: string;
   nameEn: string;
   cover: string;
   disabled: boolean;
   employeeReadOnly: boolean;
-  subcategories: string[];
+  products: any[];
+  category: Category;
 }

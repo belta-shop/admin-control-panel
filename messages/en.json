@@ -8,6 +8,9 @@
     "Categories": {
       "title": "Categories | Beltahop"
     },
+    "SubCategories": {
+      "title": "Sub Categories | Beltahop"
+    },
     "Auth": {
       "login_title": "Login | Beltahop",
       "register_title": "Register | Beltahop",
@@ -142,6 +145,11 @@
       "title": "Categories",
       "create": "Create Category",
       "edit": "Edit Category"
+    },
+    "SubCategories": {
+      "title": "Sub Categories",
+      "create": "Create Sub Category",
+      "edit": "Edit Sub Category"
     }
   }
 }

@@ -21,7 +21,7 @@ export const configNavigation: NavSection[] = [
         icon: NavbarIcons.CATEGORY,
       },
       {
-        path: paths.products.subCategories,
+        path: paths.products.subCategories.list,
         label: 'sub_categories',
         icon: NavbarIcons.SUBCATEGORY,
       },

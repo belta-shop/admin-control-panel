@@ -8,6 +8,9 @@
     "Categories": {
       "title": "التصنيفات الرئيسية | Beltahop"
     },
+    "SubCategories": {
+      "title": "التصنيفات الفرعية | Beltahop"
+    },
     "Auth": {
       "login_title": "تسجيل الدخول | Beltahop",
       "register_title": "إنشاء حساب | Beltahop",
@@ -142,6 +145,11 @@
       "title": "التصنيفات الرئيسية",
       "create": "إنشاء تصنيف رئيسي",
       "edit": "تعديل التصنيف الرئيسي"
+    },
+    "SubCategories": {
+      "title": "التصنيفات الفرعية",
+      "create": "إنشاء تصنيف فرعي",
+      "edit": "تعديل التصنيف الفرعي"
     }
   }
 }

@@ -20,4 +20,11 @@ export const endpoints = {
     delete: (id: string) => `/categories/staff/${id}`,
     patch: (id: string) => `/categories/staff/${id}`,
   },
+  subCategories: {
+    list: '/subcategories/staff',
+    create: '/subcategories/staff',
+    single: (id: string) => `/subcategories/staff/${id}`,
+    delete: (id: string) => `/subcategories/staff/${id}`,
+    patch: (id: string) => `/subcategories/staff/${id}`,
+  },
 };
