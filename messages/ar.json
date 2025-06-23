@@ -115,6 +115,7 @@
       "email_confirmation_subtitle": "يرجى إدخال رمز التحقق المرسل إلى بريدك الإلكتروني",
       "email_confirmation_success_title": "تم تأكيد البريد الإلكتروني ✅",
       "email_confirmation_success_subtitle": "تم التحقق من بريدك الإلكتروني بنجاح",
+      "new_password_subtitle": "أدخل كلمة المرور الجديدة",
       "otp_sent": "لقد أرسلنا رمز تحقق مكون من 4 أرقام إلى بريدك الإلكتروني",
       "email_already_confirmed": "لقد تم التحقق من البريد الإلكتروني بالفعل. <link>التوجه إلى الصفحة الرئيسية</link>",
       "email_confirmed": "تم التحقق من البريد الإلكتروني بنجاح. <link>التوجه إلى الصفحة الرئيسية</link>",

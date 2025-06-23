@@ -2,9 +2,9 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Stack, Alert, Button } from '@mui/material';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, FormProvider } from 'react-hook-form';
+import { Stack, Alert, Button, Typography } from '@mui/material';
 
 import { yup } from '@/lib/utils/yup';
 import { OTPPurpose } from '@/lib/types/auth';
@@ -60,7 +60,8 @@ export default function ForgotPasswordEmail({ onSuccess }: Props) {
   });
 
   return (
-    <Stack>
+    <Stack spacing={5}>
+      <Typography color="text.secondary">{t('Pages.Auth.forgot_password_subtitle')}</Typography>
       <FormProvider {...methods}>
         <form onSubmit={onSubmit}>
           <Stack spacing={2}>

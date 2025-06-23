@@ -29,9 +29,6 @@ export default function ResetPasswordView() {
       <Typography variant="h3" component="h1">
         {t('Pages.Auth.reset_password_title')}
       </Typography>
-      <Typography variant="body1" color="text.secondary" mb={5}>
-        {t('Pages.Auth.reset_password_subtitle')}
-      </Typography>
 
       {steps[currentStep]}
     </Stack>

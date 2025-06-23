@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { Box, Card, Stack, Container, CardContent } from '@mui/material';
 
 import Logo from '@/view/components/logo';
+import { paths } from '@/lib/config/paths';
 import { useDir } from '@/lib/hooks/locale-hooks';
 import LocalePopover from '@/view/components/popover/locale-popover';
 
@@ -84,7 +85,11 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
               spacing={1}
               mb={1}
             >
-              <Logo full sx={{ width: 'fit-content', maxWidth: 'min(100%, 200px)', mb: -1.5 }} />
+              <Logo
+                full
+                sx={{ width: 'fit-content', maxWidth: 'min(100%, 200px)', mb: -1.5 }}
+                href={paths.root}
+              />
               <LocalePopover large />
             </Stack>
             {children}

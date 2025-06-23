@@ -17,6 +17,7 @@ interface Props {
   purpose: OTPPurpose;
   onSuccess: () => void;
   sendInitialOtp?: boolean;
+  email?: string;
 }
 
 interface FormValues {
@@ -27,7 +28,7 @@ const schema = yup.object().shape({
   otp: yup.array().of(yup.string().required()).length(4).required(),
 });
 
-export default function AuthOtp({ purpose, onSuccess, sendInitialOtp = false }: Props) {
+export default function AuthOtp({ purpose, onSuccess, sendInitialOtp = false, email }: Props) {
   const t = useTranslations();
   const [error, setError] = useState('');
   const [countdown, setCountdown] = useState(60);
@@ -66,10 +67,14 @@ export default function AuthOtp({ purpose, onSuccess, sendInitialOtp = false }: 
   const onSubmit = handleSubmit(async (data) => {
     try {
       setError('');
-      const res = await axiosInstance.post(endpoints.auth.verifyOtp, {
-        purpose,
-        otp: data.otp.join(''),
-      });
+
+      // Use guest OTP verification endpoint if email is provided
+      const endpoint = email ? endpoints.auth.verifyGuestOtp : endpoints.auth.verifyOtp;
+      const payload = email
+        ? { purpose, otp: data.otp.join(''), email }
+        : { purpose, otp: data.otp.join('') };
+
+      const res = await axiosInstance.post(endpoint, payload);
 
       if ('resetPasswordToken' in res.data) {
         await updateAccessToken(res.data.resetPasswordToken);
@@ -87,9 +92,11 @@ export default function AuthOtp({ purpose, onSuccess, sendInitialOtp = false }: 
     try {
       setError('');
 
-      await axiosInstance.post(endpoints.auth.sendOtp, {
-        purpose,
-      });
+      // Use guest OTP resend endpoint if email is provided
+      const endpoint = email ? endpoints.auth.sendGuestOtp : endpoints.auth.sendOtp;
+      const payload = email ? { email } : { purpose };
+
+      await axiosInstance.post(endpoint, payload);
 
       setCountdown(60);
       setCanResend(false);
@@ -101,7 +108,8 @@ export default function AuthOtp({ purpose, onSuccess, sendInitialOtp = false }: 
   };
 
   return (
-    <Stack>
+    <Stack spacing={5}>
+      <Typography color="text.secondary">{t('Pages.Auth.otp_sent')}</Typography>
       <FormProvider {...methods}>
         <form onSubmit={onSubmit}>
           <Stack spacing={3}>

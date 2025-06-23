@@ -7,8 +7,8 @@ import { Link, Stack, Typography } from '@mui/material';
 import { paths } from '@/lib/config/paths';
 import { OTPPurpose } from '@/lib/types/auth';
 
+import AuthOtp from '../auth-otp';
 import NewPassword from '../new-password';
-import GuestAuthOtp from '../guest-auth-otp';
 import ForgotPasswordEmail from '../forgot-password-email';
 
 export default function ForgotPasswordView() {
@@ -23,7 +23,7 @@ export default function ForgotPasswordView() {
         setCurrentStep(1);
       }}
     />,
-    <GuestAuthOtp
+    <AuthOtp
       purpose={OTPPurpose.ResetPassword}
       onSuccess={() => setCurrentStep(2)}
       email={email}
@@ -35,9 +35,6 @@ export default function ForgotPasswordView() {
     <Stack>
       <Typography variant="h3" component="h1">
         {t('Pages.Auth.forgot_password_title')}
-      </Typography>
-      <Typography variant="body1" color="text.secondary" mb={5}>
-        {t('Pages.Auth.forgot_password_subtitle')}
       </Typography>
 
       {steps[currentStep]}

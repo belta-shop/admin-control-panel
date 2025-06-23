@@ -6,7 +6,6 @@ import { Box, List, Stack, SxProps, Divider, Typography } from '@mui/material';
 
 import Logo from '@/view/components/logo';
 import { paths } from '@/lib/config/paths';
-import { Link } from '@/lib/i18n/navigation';
 import Simplebar from '@/view/components/simplebar';
 import { NAVBAR_WIDTH } from '@/lib/config/theme/layout';
 
@@ -60,8 +59,7 @@ export default function FullNavbar({ sx }: { sx?: SxProps }) {
       <Logo
         full
         sx={{ pr: 2, pl: 1.5, mt: 1, width: '100%', display: 'block' }}
-        component={Link}
-        {...{ href: paths.root }}
+        href={paths.root}
       />
 
       <Simplebar direction="vertical">{renderList}</Simplebar>

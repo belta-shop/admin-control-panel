@@ -115,6 +115,7 @@
       "email_confirmation_subtitle": "Please enter the verification code sent to your email",
       "email_confirmation_success_title": "Email Confirmed ✅",
       "email_confirmation_success_subtitle": "Your email has been successfully verified",
+      "new_password_subtitle": "Enter your new password",
       "otp_sent": "We have sent a 4-digit OTP to your email address",
       "email_already_confirmed": "Your email has been already confirmed. <link>Go to home page</link>",
       "email_confirmed": "Your email has been confirmed successfully. <link>Go to home page</link>",

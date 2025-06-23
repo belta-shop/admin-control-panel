@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { useSnackbar } from 'notistack';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { Stack, Alert, Button } from '@mui/material';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, FormProvider } from 'react-hook-form';
+import { Stack, Alert, Button, Typography } from '@mui/material';
 
 import { yup } from '@/lib/utils/yup';
 import { paths } from '@/lib/config/paths';
@@ -62,7 +62,8 @@ export default function NewPassword({ onSuccess }: Props) {
   });
 
   return (
-    <Stack>
+    <Stack spacing={5}>
+      <Typography color="text.secondary">{t('Pages.Auth.new_password_subtitle')}</Typography>
       <FormProvider {...methods}>
         <form onSubmit={onSubmit}>
           <Stack spacing={2}>

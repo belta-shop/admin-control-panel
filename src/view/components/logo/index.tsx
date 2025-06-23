@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import { Box } from '@mui/material';
 import { BoxProps } from '@mui/material';
@@ -18,13 +19,19 @@ const logo = (scale: number) => ({
 interface Props {
   full?: boolean;
   scale?: number;
+  href?: string;
 }
 
-export default function Logo({ full = false, scale = 1, ...props }: Props & BoxProps) {
+export default function Logo({
+  full = false,
+  scale = 1,
+  href,
+  ...props
+}: Props & Omit<BoxProps, 'component'>) {
   const img = full ? logo(scale).full : logo(scale).icon;
 
   return (
-    <Box {...props}>
+    <Box {...(href ? { component: Link, href } : {})} {...props}>
       <Image alt="logo" {...img} style={{ maxWidth: '100%' }} />
     </Box>
   );
