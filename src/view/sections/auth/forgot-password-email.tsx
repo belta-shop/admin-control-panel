@@ -7,11 +7,11 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, FormProvider } from 'react-hook-form';
 
 import { yup } from '@/lib/utils/yup';
-import { EMAIL_REGEX } from '@/lib/config/global';
-import { endpoints } from '@/lib/config/endpoints';
-import { axiosInstance } from '@/lib/utils/axios';
-import RHFTextField from '@/view/components/rhf-hooks/rhf-textField';
 import { OTPPurpose } from '@/lib/types/auth';
+import { EMAIL_REGEX } from '@/lib/config/global';
+import { axiosInstance } from '@/lib/utils/axios';
+import { endpoints } from '@/lib/config/endpoints';
+import RHFTextField from '@/view/components/rhf-hooks/rhf-textField';
 
 interface Props {
   onSuccess: (email: string) => void;

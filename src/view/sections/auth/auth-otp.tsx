@@ -87,7 +87,7 @@ export default function AuthOtp({ purpose, onSuccess, sendInitialOtp = false }: 
     try {
       setError('');
 
-      await axiosInstance.post(endpoints.auth.resendOtp, {
+      await axiosInstance.post(endpoints.auth.sendOtp, {
         purpose,
       });
 

@@ -93,7 +93,7 @@ export default function GuestAuthOtp({ purpose, onSuccess, sendInitialOtp = fals
       setError('');
 
       // Use guest OTP resend endpoint if email is provided
-      const endpoint = email ? endpoints.auth.sendGuestOtp : endpoints.auth.resendOtp;
+      const endpoint = email ? endpoints.auth.sendGuestOtp : endpoints.auth.sendOtp;
       const payload = email ? { email } : { purpose };
 
       await axiosInstance.post(endpoint, payload);
