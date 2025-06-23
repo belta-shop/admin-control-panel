@@ -67,6 +67,7 @@
       "verify": "تحقق",
       "resend_otp": "إعادة إرسال رمز التحقق",
       "resend_otp_countdown": "إعادة الإرسال خلال {seconds} ثانية",
+      "reset_password": "إعادة تعيين كلمة المرور",
       "close": "إغلاق",
       "view": "عرض",
       "edit": "تعديل",

@@ -12,7 +12,7 @@ import { redirect, usePathname } from '@/lib/i18n/navigation';
 
 import { Iconify } from '../iconify';
 
-export default function LanguagePopover({ large = false }: { large?: boolean }) {
+export default function LocalePopover({ large = false }: { large?: boolean }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const currentLocale = useCurrentLocale();

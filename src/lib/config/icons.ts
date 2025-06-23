@@ -12,6 +12,9 @@ export const enum Icons {
   ARROW_LEFT = 'ic:round-arrow-left',
   BROKEN_IMAGE = 'ic:round-broken-image',
   UPLOAD = 'icon-park-outline:upload-one',
+  PROFILE = 'solar:user-circle-bold',
+  LOGOUT = 'humbleicons:logout',
+  LOCK = 'mdi:password-outline',
 }
 
 export const enum NavbarIcons {

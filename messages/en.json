@@ -67,6 +67,7 @@
       "verify": "Verify",
       "resend_otp": "Resend OTP",
       "resend_otp_countdown": "Resend OTP in {seconds}s",
+      "reset_password": "Reset Your Password",
       "close": "Close",
       "view": "View",
       "edit": "Edit",

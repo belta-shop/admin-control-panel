@@ -3,7 +3,7 @@ import { Box, Card, Stack, Container, CardContent } from '@mui/material';
 
 import Logo from '@/view/components/logo';
 import { useDir } from '@/lib/hooks/locale-hooks';
-import LanguagePopover from '@/view/components/locale-popover';
+import LocalePopover from '@/view/components/locale-popover';
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   const { left, right } = useDir();
@@ -85,7 +85,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
               mb={1}
             >
               <Logo full sx={{ width: 'fit-content', maxWidth: 'min(100%, 200px)', mb: -1.5 }} />
-              <LanguagePopover large />
+              <LocalePopover large />
             </Stack>
             {children}
           </CardContent>
