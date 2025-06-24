@@ -3,11 +3,8 @@ import { useTranslations } from 'next-intl';
 import { useState, useCallback } from 'react';
 import { Box, Dialog, Button, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 
-import { paths } from '@/lib/config/paths';
-import { axiosInstance } from '@/lib/utils/axios';
-import { endpoints } from '@/lib/config/endpoints';
 import { Category } from '@/lib/types/api/categories';
-import { invalidatePath } from '@/lib/actions/server-utils';
+import { linkSubCategoryToCategory } from '@/lib/actions/sub-category';
 
 import SearchCategoryInput from './search-category-input';
 
@@ -34,12 +31,11 @@ export default function SubCategoryLinkCategoryDialog({ open, onClose, subCatego
     try {
       if (selectedCategory && subCategoryId) {
         setConfirmLoading(true);
-        await axiosInstance.post(endpoints.subCategories.linkToCategory, {
-          subcategoryId: subCategoryId,
+        await linkSubCategoryToCategory({
+          subCategoryId,
           categoryId: selectedCategory._id,
         });
         enqueueSnackbar(t('Global.Message.link_success', { name: t('Global.Label.sub_category') }));
-        await invalidatePath(paths.products.subCategories.list);
         handleClose();
       }
     } catch (error: any) {

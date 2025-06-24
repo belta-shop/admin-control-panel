@@ -14,7 +14,7 @@ export default function SubCategoryNewView() {
 
   const onSubmit = async (data: any) => {
     await createSubCategory(data);
-    enqueueSnackbar(t('Global.Message.create_success', { name: t('Global.Label.category') }));
+    enqueueSnackbar(t('Global.Message.create_success', { name: t('Global.Label.sub_category') }));
   };
 
   return (

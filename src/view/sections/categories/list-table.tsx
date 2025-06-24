@@ -8,11 +8,9 @@ import { paths } from '@/lib/config/paths';
 import { UserRole } from '@/lib/types/auth';
 import { useAuthStore } from '@/lib/store/auth';
 import { useRouter } from '@/lib/i18n/navigation';
-import { axiosInstance } from '@/lib/utils/axios';
-import { endpoints } from '@/lib/config/endpoints';
 import { Iconify } from '@/view/components/iconify';
 import { Category } from '@/lib/types/api/categories';
-import { invalidatePath } from '@/lib/actions/server-utils';
+import { deleteCategory } from '@/lib/actions/category';
 import CustomImage from '@/view/components/image/custom-image';
 import DeleteDialog from '@/view/components/dialog/delete-dialog';
 import CustomTable from '@/view/components/custom-table/custom-table';
@@ -42,8 +40,7 @@ export default function CategoryListTable({ items, total }: Props) {
     try {
       setIsDeleting(true);
 
-      await axiosInstance.delete(endpoints.categories.delete(selectedDeleteId));
-      await invalidatePath(paths.products.categories.list);
+      await deleteCategory(selectedDeleteId);
       enqueueSnackbar(t('Message.delete_success', { name: t('Label.category') }));
 
       handleCloseDeleteDialog();

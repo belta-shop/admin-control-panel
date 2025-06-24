@@ -10,10 +10,8 @@ import { Icons } from '@/lib/config/icons';
 import { paths } from '@/lib/config/paths';
 import { UserRole } from '@/lib/types/auth';
 import { useAuthStore } from '@/lib/store/auth';
-import { axiosInstance } from '@/lib/utils/axios';
-import { endpoints } from '@/lib/config/endpoints';
 import { Iconify } from '@/view/components/iconify';
-import { invalidatePath } from '@/lib/actions/server-utils';
+import { deleteCategory } from '@/lib/actions/category';
 import CustomImage from '@/view/components/image/custom-image';
 import DeleteDialog from '@/view/components/dialog/delete-dialog';
 import { Category, CategoryDetails } from '@/lib/types/api/categories';
@@ -34,8 +32,7 @@ export default function CategorySingleDetails({
     try {
       setIsDeleting(true);
 
-      await axiosInstance.delete(endpoints.categories.delete(category._id));
-      await invalidatePath(paths.products.categories.list);
+      await deleteCategory(category._id);
       enqueueSnackbar(t('Message.delete_success', { name: t('Label.category') }));
       router.push(paths.products.categories.list);
 

@@ -15,7 +15,7 @@ export default function SubCategoryEditView({ subCategory }: { subCategory: SubC
 
   const onSubmit = async (data: any) => {
     await updateSubCategory(subCategory._id, data);
-    enqueueSnackbar(t('Global.Message.update_success', { name: t('Global.Label.category') }));
+    enqueueSnackbar(t('Global.Message.update_success', { name: t('Global.Label.sub_category') }));
   };
 
   return (

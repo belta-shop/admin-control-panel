@@ -8,10 +8,9 @@ import { useState, useEffect } from 'react';
 import { Box, AutocompleteProps } from '@mui/material';
 import { TextField, Autocomplete } from '@mui/material';
 
-import { axiosInstance } from '@/lib/utils/axios';
-import { endpoints } from '@/lib/config/endpoints';
 import { useCurrentLocale } from '@/lib/hooks/locale-hooks';
 import { SubCategory } from '@/lib/types/api/sub-categories';
+import { getSubCategoryList } from '@/lib/actions/sub-category';
 
 type Props = {
   onChange: (subCategory: SubCategory | null) => void;
@@ -46,14 +45,9 @@ export default function SearchSubCategoryInput({ onChange, defaultValue }: Props
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axiosInstance.get<{ items: SubCategory[]; total: number }>(
-          endpoints.subCategories.list,
-          {
-            params: {
-              search: debouncedSearch,
-            },
-          }
-        );
+        const data = await getSubCategoryList({
+          search: debouncedSearch,
+        });
 
         setSubCategories(data.items);
       } catch (error: any) {

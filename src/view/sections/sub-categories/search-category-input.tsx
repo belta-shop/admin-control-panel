@@ -6,9 +6,8 @@ import { useState, useEffect } from 'react';
 import { Box, AutocompleteProps } from '@mui/material';
 import { TextField, Autocomplete } from '@mui/material';
 
-import { axiosInstance } from '@/lib/utils/axios';
-import { endpoints } from '@/lib/config/endpoints';
 import { Category } from '@/lib/types/api/categories';
+import { getCategoryList } from '@/lib/actions/category';
 import { useCurrentLocale } from '@/lib/hooks/locale-hooks';
 
 type Props = {
@@ -44,14 +43,9 @@ export default function SearchCategoryInput({ onChange, defaultValue }: Props) {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const { data } = await axiosInstance.get<{ items: Category[]; total: number }>(
-          endpoints.categories.list,
-          {
-            params: {
-              search: debouncedSearch,
-            },
-          }
-        );
+        const data = await getCategoryList({
+          search: debouncedSearch,
+        });
 
         setCategories(data.items);
       } catch (error: any) {

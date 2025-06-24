@@ -9,24 +9,4 @@ export const endpoints = {
     verifyGuestOtp: '/auth/verify-guest-otp',
     resetPassword: '/auth/reset-password',
   },
-  upload: {
-    single: '/upload/single',
-    multiple: '/upload/multiple',
-  },
-  categories: {
-    list: '/categories/staff',
-    create: '/categories/staff',
-    single: (id: string) => `/categories/staff/${id}`,
-    delete: (id: string) => `/categories/staff/${id}`,
-    patch: (id: string) => `/categories/staff/${id}`,
-  },
-  subCategories: {
-    list: '/subcategories/staff',
-    create: '/subcategories/staff',
-    single: (id: string) => `/subcategories/staff/${id}`,
-    delete: (id: string) => `/subcategories/staff/${id}`,
-    patch: (id: string) => `/subcategories/staff/${id}`,
-    linkToCategory: '/subcategories/staff/link',
-    unlinkFromCategory: '/subcategories/staff/unlink',
-  },
 };

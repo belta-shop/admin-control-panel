@@ -11,7 +11,7 @@ export default function CategoryListFilters() {
     <Grid container columnSpacing={1} rowSpacing={2}>
       <Grid size={{ xs: 12, sm: 6 }}>
         <DebounceSearchField
-          name="category"
+          name="categoryName"
           placeholder={`${t('Global.Label.name_ar')} / ${t('Global.Label.name_en')}`}
           clearOtherParams={['page']}
           fullWidth

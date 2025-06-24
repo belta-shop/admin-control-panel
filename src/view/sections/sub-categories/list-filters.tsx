@@ -18,7 +18,7 @@ export default function SubCategoryListFilters() {
     <Grid container columnSpacing={1} rowSpacing={2}>
       <Grid size={{ xs: 12, sm: 3 }}>
         <DebounceSearchField
-          name="subCategory"
+          name="subCategoryName"
           placeholder={`${t('Global.Label.name_ar')} / ${t('Global.Label.name_en')}`}
           clearOtherParams={['page']}
           fullWidth

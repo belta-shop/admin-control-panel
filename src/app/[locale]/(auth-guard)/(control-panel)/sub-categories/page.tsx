@@ -3,11 +3,8 @@ import { Button } from '@mui/material';
 import { getTranslations } from 'next-intl/server';
 
 import { paths } from '@/lib/config/paths';
-import { axiosInstance } from '@/lib/utils/axios';
-import { endpoints } from '@/lib/config/endpoints';
-import { DEFAULT_LIMIT } from '@/lib/config/global';
 import PageWrapper from '@/view/components/page-wrapper';
-import { SubCategory } from '@/lib/types/api/sub-categories';
+import { getSubCategoryList } from '@/lib/actions/sub-category';
 import SubCategoryListView from '@/view/sections/sub-categories/view/list-view';
 
 export default async function Page({
@@ -15,27 +12,23 @@ export default async function Page({
 }: {
   searchParams: Promise<
     Record<
-      'page' | 'limit' | 'subCategory' | 'categoryId' | 'disabled' | 'employeeReadOnly',
+      'page' | 'limit' | 'subCategoryName' | 'categoryId' | 'disabled' | 'employeeReadOnly',
       string | undefined
     >
   >;
 }) {
   const t = await getTranslations('Pages.SubCategories');
-  const { page, limit, subCategory, categoryId, disabled, employeeReadOnly } = await searchParams;
+  const { page, limit, subCategoryName, categoryId, disabled, employeeReadOnly } =
+    await searchParams;
 
-  const { data } = await axiosInstance.get<{ items: SubCategory[]; total: number }>(
-    endpoints.subCategories.list,
-    {
-      params: {
-        page: page || '1',
-        limit: limit || DEFAULT_LIMIT,
-        search: subCategory,
-        disabled: disabled,
-        employeeReadOnly: employeeReadOnly,
-        categoryId: categoryId,
-      },
-    }
-  );
+  const data = await getSubCategoryList({
+    page,
+    limit,
+    search: subCategoryName,
+    categoryId,
+    disabled,
+    employeeReadOnly,
+  });
 
   return (
     <PageWrapper

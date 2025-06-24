@@ -10,15 +10,13 @@ import { paths } from '@/lib/config/paths';
 import { UserRole } from '@/lib/types/auth';
 import { useAuthStore } from '@/lib/store/auth';
 import { useRouter } from '@/lib/i18n/navigation';
-import { axiosInstance } from '@/lib/utils/axios';
-import { endpoints } from '@/lib/config/endpoints';
 import { Iconify } from '@/view/components/iconify';
-import { invalidatePath } from '@/lib/actions/server-utils';
 import { SubCategory } from '@/lib/types/api/sub-categories';
 import CustomImage from '@/view/components/image/custom-image';
 import DeleteDialog from '@/view/components/dialog/delete-dialog';
 import ConfirmDialog from '@/view/components/dialog/confirm-dialog';
 import CustomTable from '@/view/components/custom-table/custom-table';
+import { deleteSubCategory, unlinkSubCategoryFromCategory } from '@/lib/actions/sub-category';
 
 import SubCategoryLinkCategoryDialog from './link-category-dialog';
 
@@ -57,8 +55,7 @@ export default function SubCategoryListTable({ items, total, disablePagination }
     try {
       setIsDeleting(true);
 
-      await axiosInstance.delete(endpoints.subCategories.delete(selectedDeleteId));
-      await invalidatePath(paths.products.subCategories.list);
+      await deleteSubCategory(selectedDeleteId);
 
       enqueueSnackbar(t('Message.delete_success', { name: t('Label.sub_category') }));
     } catch (error: any) {
@@ -75,10 +72,7 @@ export default function SubCategoryListTable({ items, total, disablePagination }
     try {
       setIsUnlinking(true);
 
-      await axiosInstance.post(endpoints.subCategories.unlinkFromCategory, {
-        subcategoryId: selectedUnlinkId,
-      });
-      await invalidatePath(paths.products.subCategories.list);
+      await unlinkSubCategoryFromCategory(selectedUnlinkId);
 
       enqueueSnackbar(t('Message.unlink_success', { name: t('Label.sub_category') }));
     } catch (error: any) {

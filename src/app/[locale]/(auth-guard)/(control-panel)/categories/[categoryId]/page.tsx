@@ -1,10 +1,8 @@
 import { getLocale, getTranslations } from 'next-intl/server';
 
 import { paths } from '@/lib/config/paths';
-import { axiosInstance } from '@/lib/utils/axios';
-import { endpoints } from '@/lib/config/endpoints';
+import { getCategory } from '@/lib/actions/category';
 import PageWrapper from '@/view/components/page-wrapper';
-import { CategoryDetails } from '@/lib/types/api/categories';
 import CategorySingleView from '@/view/sections/categories/view/single-view';
 
 export default async function Page({ params }: { params: Promise<{ categoryId: string }> }) {
@@ -12,9 +10,7 @@ export default async function Page({ params }: { params: Promise<{ categoryId: s
   const locale = await getLocale();
   const { categoryId } = await params;
 
-  const { data: category } = await axiosInstance.get<CategoryDetails>(
-    endpoints.categories.single(categoryId)
-  );
+  const category = await getCategory(categoryId);
 
   return (
     <PageWrapper
