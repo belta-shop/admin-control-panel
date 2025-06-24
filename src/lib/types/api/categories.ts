@@ -1,3 +1,5 @@
+import { SubCategory } from './sub-categories';
+
 export interface Category {
   _id: string;
   nameAr: string;
@@ -6,4 +8,7 @@ export interface Category {
   disabled: boolean;
   employeeReadOnly: boolean;
   subcategories: string[];
+}
+export interface CategoryDetails extends Omit<Category, 'subcategories'> {
+  subcategories: SubCategory[];
 }

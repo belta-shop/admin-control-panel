@@ -1,11 +1,11 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Dialog, Button, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 
 import { Icons } from '@/lib/config/icons';
 
 import { Iconify } from '../iconify';
+import ConfirmDialog from './confirm-dialog';
 
 interface DeleteDialogProps {
   label: string;
@@ -25,29 +25,19 @@ export default function DeleteDialog({
   const t = useTranslations('Global');
 
   return (
-    <Dialog
-      open={isOpen}
+    <ConfirmDialog
+      title={t('Dialog.delete_title', { label })}
+      content={t('Dialog.delete_content', { label: label.toLowerCase() })}
+      isOpen={isOpen}
       onClose={onClose}
-      aria-labelledby="delete-dialog-title"
-      maxWidth="xs"
-      fullWidth
-    >
-      <DialogTitle id="delete-dialog-title">{t('Dialog.delete_title', { label })}</DialogTitle>
-      <DialogContent>{t('Dialog.delete_content', { label: label.toLowerCase() })}</DialogContent>
-      <DialogActions>
-        <Button variant="outlined" onClick={onClose} disabled={loading}>
-          {t('Action.cancel')}
-        </Button>
-        <Button
-          onClick={handleDelete}
-          color="error"
-          variant="contained"
-          loading={loading}
-          startIcon={<Iconify icon={Icons.TRASH} />}
-        >
-          {t('Action.delete')}
-        </Button>
-      </DialogActions>
-    </Dialog>
+      handleConfirm={handleDelete}
+      loading={loading}
+      actionProps={{
+        color: 'error',
+        variant: 'contained',
+        startIcon: <Iconify icon={Icons.TRASH} />,
+        children: t('Action.delete'),
+      }}
+    />
   );
 }

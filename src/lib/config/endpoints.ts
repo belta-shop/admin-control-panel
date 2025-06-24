@@ -26,5 +26,7 @@ export const endpoints = {
     single: (id: string) => `/subcategories/staff/${id}`,
     delete: (id: string) => `/subcategories/staff/${id}`,
     patch: (id: string) => `/subcategories/staff/${id}`,
+    linkToCategory: '/subcategories/staff/link',
+    unlinkFromCategory: '/subcategories/staff/unlink',
   },
 };

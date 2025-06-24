@@ -66,7 +66,8 @@
       "category": "التصنيف الرئيسي",
       "all": "الجميع",
       "yes": "نعم",
-      "no": "لا"
+      "no": "لا",
+      "sub_category": "التصنيف الفرعي"
     },
     "Helper": {
       "upload_drag_drop_file": "اسحب وأفلت الملف هنا أو انقر للتحميل",
@@ -95,7 +96,10 @@
       "clear_all": "مسح الكل",
       "back": "رجوع",
       "logout": "تسجيل الخروج",
-      "send_otp": "إرسال رمز التحقق"
+      "send_otp": "إرسال رمز التحقق",
+      "confirm": "تأكيد",
+      "link": "ربط",
+      "unlink": "فصل"
     },
     "Table": {
       "rows_per_page": "عدد الصفوف في الصفحة:",
@@ -105,12 +109,16 @@
     },
     "Dialog": {
       "delete_title": "حذف {label}",
-      "delete_content": "هل أنت متأكد من حذف هذا {label}؟ لا يمكن التراجع عن هذا الإجراء."
+      "delete_content": "هل أنت متأكد من حذف هذا {label}؟ لا يمكن التراجع عن هذا الإجراء.",
+      "unlink_title": "فصل {label}",
+      "unlink_content": "هل أنت متأكد من فصل هذا {label} عن تصنيفه؟ يمكن التراجع عن هذا الإجراء."
     },
     "Message": {
       "delete_success": "تم حذف {name} بنجاح",
       "create_success": "تم إنشاء {name} بنجاح",
       "update_success": "تم تعديل {name} بنجاح",
+      "link_success": "تم ربط {name} بنجاح",
+      "unlink_success": "تم فصل {name} بنجاح",
       "max_form_data_size": "حجم البيانات ({current}) يتجاوز الحد الأقصى المسموح به ({max})"
     }
   },
@@ -144,12 +152,15 @@
     "Categories": {
       "title": "التصنيفات الرئيسية",
       "create": "إنشاء تصنيف رئيسي",
-      "edit": "تعديل التصنيف الرئيسي"
+      "edit": "تعديل التصنيف الرئيسي",
+      "link_sub_category": "ربط تصنيف فرعي"
     },
     "SubCategories": {
       "title": "التصنيفات الفرعية",
       "create": "إنشاء تصنيف فرعي",
-      "edit": "تعديل التصنيف الفرعي"
+      "edit": "تعديل التصنيف الفرعي",
+      "link_to_category": "ربط بالتصنيف الرئيسي",
+      "unlink_from_category": "فصل عن التصنيف الرئيسي"
     }
   }
 }

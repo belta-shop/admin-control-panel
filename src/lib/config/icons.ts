@@ -15,6 +15,9 @@ export const enum Icons {
   PROFILE = 'solar:user-circle-bold',
   LOGOUT = 'humbleicons:logout',
   LOCK = 'mdi:password-outline',
+  LINK = 'ant-design:link-outlined',
+  UNLINK = 'mynaui:unlink',
+  CHECK = 'ic:round-check',
 }
 
 export const enum NavbarIcons {

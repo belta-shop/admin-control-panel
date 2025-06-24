@@ -8,5 +8,5 @@ export interface SubCategory {
   disabled: boolean;
   employeeReadOnly: boolean;
   products: any[];
-  category: Category;
+  category?: Category | null;
 }

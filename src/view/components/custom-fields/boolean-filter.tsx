@@ -1,3 +1,5 @@
+'use client';
+
 import { TextField } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import { Autocomplete } from '@mui/material';

@@ -66,7 +66,8 @@
       "category": "Category",
       "all": "All",
       "yes": "Yes",
-      "no": "No"
+      "no": "No",
+      "sub_category": "Sub Category"
     },
     "Helper": {
       "upload_drag_drop_file": "Drag & drop or click to upload file",
@@ -95,7 +96,10 @@
       "clear_all": "Clear All",
       "back": "Back",
       "logout": "Logout",
-      "send_otp": "Send OTP"
+      "send_otp": "Send OTP",
+      "confirm": "Confirm",
+      "link": "Link",
+      "unlink": "Unlink"
     },
     "Table": {
       "rows_per_page": "Rows per page:",
@@ -105,12 +109,16 @@
     },
     "Dialog": {
       "delete_title": "Delete {label}",
-      "delete_content": "Are you sure you want to delete this {label}? This action cannot be undone."
+      "delete_content": "Are you sure you want to delete this {label}? This action cannot be undone.",
+      "unlink_title": "Unlink {label}",
+      "unlink_content": "Are you sure you want to unlink this {label} from its category? This action can be undone."
     },
     "Message": {
       "create_success": "{name} has been created successfully",
       "update_success": "{name} has been updated successfully",
       "delete_success": "{name} has been deleted successfully",
+      "link_success": "{name} has been linked successfully",
+      "unlink_success": "{name} has been unlinked successfully",
       "max_form_data_size": "Data size of the form ({current}) exceeds the maximum allowed size ({max})"
     }
   },
@@ -144,12 +152,15 @@
     "Categories": {
       "title": "Categories",
       "create": "Create Category",
-      "edit": "Edit Category"
+      "edit": "Edit Category",
+      "link_sub_category": "Link Sub Category"
     },
     "SubCategories": {
       "title": "Sub Categories",
       "create": "Create Sub Category",
-      "edit": "Edit Sub Category"
+      "edit": "Edit Sub Category",
+      "link_to_category": "Link to Category",
+      "unlink_from_category": "Unlink from Category"
     }
   }
 }

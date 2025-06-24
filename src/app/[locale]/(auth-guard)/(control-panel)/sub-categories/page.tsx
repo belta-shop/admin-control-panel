@@ -14,11 +14,14 @@ export default async function Page({
   searchParams,
 }: {
   searchParams: Promise<
-    Record<'page' | 'limit' | 'subCategory' | 'disabled' | 'employeeReadOnly', string | undefined>
+    Record<
+      'page' | 'limit' | 'subCategory' | 'categoryId' | 'disabled' | 'employeeReadOnly',
+      string | undefined
+    >
   >;
 }) {
   const t = await getTranslations('Pages.SubCategories');
-  const { page, limit, subCategory, disabled, employeeReadOnly } = await searchParams;
+  const { page, limit, subCategory, categoryId, disabled, employeeReadOnly } = await searchParams;
 
   const { data } = await axiosInstance.get<{ items: SubCategory[]; total: number }>(
     endpoints.subCategories.list,
@@ -26,9 +29,10 @@ export default async function Page({
       params: {
         page: page || '1',
         limit: limit || DEFAULT_LIMIT,
-        search: subCategory || undefined,
-        disabled: disabled || undefined,
-        employeeReadOnly: employeeReadOnly || undefined,
+        search: subCategory,
+        disabled: disabled,
+        employeeReadOnly: employeeReadOnly,
+        categoryId: categoryId,
       },
     }
   );

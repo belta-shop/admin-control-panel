@@ -5,6 +5,8 @@ import { useTranslations } from 'next-intl';
 
 import { Icons } from '@/lib/config/icons';
 import { paths } from '@/lib/config/paths';
+import { UserRole } from '@/lib/types/auth';
+import { useAuthStore } from '@/lib/store/auth';
 import { useRouter } from '@/lib/i18n/navigation';
 import { axiosInstance } from '@/lib/utils/axios';
 import { endpoints } from '@/lib/config/endpoints';
@@ -22,6 +24,7 @@ interface Props {
 
 export default function CategoryListTable({ items, total }: Props) {
   const t = useTranslations('Global');
+  const user = useAuthStore((state) => state.user);
   const router = useRouter();
   const [selectedDeleteId, setSelectedDeleteId] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -41,13 +44,13 @@ export default function CategoryListTable({ items, total }: Props) {
 
       await axiosInstance.delete(endpoints.categories.delete(selectedDeleteId));
       await invalidatePath(paths.products.categories.list);
-
       enqueueSnackbar(t('Message.delete_success', { name: t('Label.category') }));
+
+      handleCloseDeleteDialog();
     } catch (error: any) {
       enqueueSnackbar(error.message, { variant: 'error' });
     } finally {
       setIsDeleting(false);
-      handleCloseDeleteDialog();
     }
   };
 
@@ -68,12 +71,14 @@ export default function CategoryListTable({ items, total }: Props) {
             label: 'Global.Action.edit',
             icon: <Iconify icon={Icons.PENCIL} />,
             onClick: (item) => router.push(paths.products.categories.edit(item.id)),
+            hide: (item) => item.employeeReadOnly && user?.role === UserRole.EMPLOYEE,
           },
           {
             label: 'Global.Action.delete',
             icon: <Iconify icon={Icons.TRASH} />,
             onClick: (item) => setSelectedDeleteId(item.id),
             sx: { color: 'error.main' },
+            hide: (item) => item.employeeReadOnly && user?.role === UserRole.EMPLOYEE,
           },
         ]}
       />
