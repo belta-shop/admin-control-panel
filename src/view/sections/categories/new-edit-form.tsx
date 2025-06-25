@@ -10,7 +10,7 @@ import { Icons } from '@/lib/config/icons';
 import { UserRole } from '@/lib/types/auth';
 import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/lib/store/auth';
-import { Category } from '@/lib/types/api/categories';
+import { CategoryDetails } from '@/lib/types/api/categories';
 import RHFSwitch from '@/view/components/rhf-hooks/rhf-switch';
 import RHFUpload from '@/view/components/rhf-hooks/rhf-upload';
 import RHFTextField from '@/view/components/rhf-hooks/rhf-textField';
@@ -25,7 +25,7 @@ export interface CategoryFormData {
 }
 
 interface CategoryFormProps {
-  category?: Category;
+  category?: CategoryDetails;
   onSubmit: OnSubmitFunction;
   backPath?: string;
 }
