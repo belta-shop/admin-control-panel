@@ -6,7 +6,7 @@ import { RevalidateTags } from '../config/api';
 import { Product } from '../types/api/products';
 import { DEFAULT_LIMIT } from '../config/global';
 import { ListResponse } from '../types/api/metadata';
-import { getData, deleteData } from '../utils/crud-fetch-api';
+import { getData, postData, deleteData } from '../utils/crud-fetch-api';
 
 export type ProductListQueries = Partial<
   Record<
@@ -49,4 +49,29 @@ export async function deleteProduct(id: string) {
   if ('error' in res) throw new Error(res.error);
 
   revalidateTag(RevalidateTags.ProductList);
+}
+
+export async function linkProductToBrand({
+  brandId,
+  productId,
+}: {
+  brandId: string;
+  productId: string;
+}) {
+  const res = await postData('/products/staff/link-brand', { brandId, productId });
+
+  if ('error' in res) throw new Error(res.error);
+
+  revalidateTag(RevalidateTags.ProductList);
+  revalidateTag(`${RevalidateTags.ProductSingle}-${productId}`);
+  revalidateTag(`${RevalidateTags.BrandSingle}-${brandId}`);
+}
+
+export async function unlinkProductFromBrand(productId: string) {
+  const res = await postData('/products/staff/unlink-brand', { productId });
+
+  if ('error' in res) throw new Error(res.error);
+
+  revalidateTag(RevalidateTags.ProductList);
+  revalidateTag(`${RevalidateTags.ProductSingle}-${productId}`);
 }

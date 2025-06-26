@@ -11,6 +11,9 @@
     "SubCategories": {
       "title": "Sub Categories | Beltahop"
     },
+    "Brands": {
+      "title": "Brands | Beltahop"
+    },
     "Products": {
       "title": "Products | Beltahop"
     },
@@ -168,6 +171,12 @@
       "edit": "Edit Sub Category",
       "link_to_category": "Link to Category",
       "unlink_from_category": "Unlink from Category"
+    },
+    "Brands": {
+      "title": "Brands",
+      "create": "Create Brand",
+      "edit": "Edit Brand",
+      "link_to_product": "Link to Product"
     },
     "Products": {
       "title": "Products",

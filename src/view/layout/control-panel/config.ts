@@ -26,7 +26,7 @@ export const configNavigation: NavSection[] = [
         icon: NavbarIcons.SUBCATEGORY,
       },
       {
-        path: paths.products.brands,
+        path: paths.products.brands.list,
         label: 'brands',
         icon: NavbarIcons.BRAND,
       },
@@ -36,17 +36,17 @@ export const configNavigation: NavSection[] = [
         icon: NavbarIcons.INVENTORY,
       },
       {
-        path: paths.products.offers,
+        path: paths.products.offers.list,
         label: 'offers',
         icon: NavbarIcons.PERCENT,
       },
       {
-        path: paths.products.tags,
+        path: paths.products.tags.list,
         label: 'tags',
         icon: NavbarIcons.SELL,
       },
       {
-        path: paths.products.labels,
+        path: paths.products.labels.list,
         label: 'labels',
         icon: NavbarIcons.LABEL,
       },

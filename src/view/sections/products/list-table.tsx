@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { isObject } from 'lodash';
 import { Switch } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { useTranslations } from 'next-intl';
@@ -10,28 +11,47 @@ import { useAuthStore } from '@/lib/store/auth';
 import { useRouter } from '@/lib/i18n/navigation';
 import { Product } from '@/lib/types/api/products';
 import { Iconify } from '@/view/components/iconify';
-import { deleteProduct } from '@/lib/actions/product';
+import { BrandProduct } from '@/lib/types/api/brands';
 import DeleteDialog from '@/view/components/dialog/delete-dialog';
+import ConfirmDialog from '@/view/components/dialog/confirm-dialog';
 import CustomTable from '@/view/components/custom-table/custom-table';
 import ApiListItem from '@/view/components/api-related/api-list-item';
+import { deleteProduct, unlinkProductFromBrand } from '@/lib/actions/product';
+
+import ProductLinkBrandDialog from './link-product-dialog';
 
 interface Props {
-  items: Product[];
+  items: Product[] | BrandProduct[];
   total: number;
+  disablePagination?: boolean;
+  showBrand?: boolean;
 }
 
-export default function ProductListTable({ items, total }: Props) {
+export default function ProductListTable({
+  items,
+  total,
+  disablePagination,
+  showBrand = true,
+}: Props) {
   const t = useTranslations('Global');
   const user = useAuthStore((state) => state.user);
   const router = useRouter();
+
+  const [selectedLinkId, setSelectedLinkId] = useState<string | null>(null);
+  const [selectedUnlinkId, setSelectedUnlinkId] = useState<string | null>(null);
   const [selectedDeleteId, setSelectedDeleteId] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
-
+  const [isUnlinking, setIsUnlinking] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
 
   const handleCloseDeleteDialog = () => {
     setSelectedDeleteId(null);
     setIsDeleting(false);
+  };
+
+  const handleCloseUnlinkDialog = () => {
+    setSelectedUnlinkId(null);
+    setIsUnlinking(false);
   };
 
   const handleConfirmDelete = async () => {
@@ -51,12 +71,30 @@ export default function ProductListTable({ items, total }: Props) {
     }
   };
 
+  const handleConfirmUnlink = async () => {
+    if (!selectedUnlinkId) return;
+
+    try {
+      setIsUnlinking(true);
+
+      await unlinkProductFromBrand(selectedUnlinkId);
+
+      enqueueSnackbar(t('Message.unlink_success', { name: t('Label.product') }));
+    } catch (error: any) {
+      enqueueSnackbar(error.message, { variant: 'error' });
+    } finally {
+      setIsUnlinking(false);
+      handleCloseUnlinkDialog();
+    }
+  };
+
   return (
     <>
       <CustomTable
-        tableHead={tableHead}
+        tableHead={getTableHead(showBrand)}
         data={items.map((item) => ({ ...item, id: item._id }))}
         count={total}
+        disablePagination={disablePagination}
         customRender={customRender}
         actions={[
           {
@@ -77,6 +115,22 @@ export default function ProductListTable({ items, total }: Props) {
             sx: { color: 'error.main' },
             hide: (item) => item.employeeReadOnly && user?.role === UserRole.EMPLOYEE,
           },
+          {
+            label: 'Pages.Products.link_to_brand',
+            icon: <Iconify icon={Icons.LINK} />,
+            onClick: (item) => setSelectedLinkId(item.id),
+            sx: { color: 'info.main' },
+            hide: (item) =>
+              !!item.brand || (item.employeeReadOnly && user?.role === UserRole.EMPLOYEE),
+          },
+          {
+            label: 'Pages.Products.unlink_from_brand',
+            icon: <Iconify icon={Icons.UNLINK} />,
+            onClick: (item) => setSelectedUnlinkId(item.id),
+            sx: { color: 'warning.main' },
+            hide: (item) =>
+              !item.brand || (item.employeeReadOnly && user?.role === UserRole.EMPLOYEE),
+          },
         ]}
       />
 
@@ -87,23 +141,46 @@ export default function ProductListTable({ items, total }: Props) {
         handleDelete={handleConfirmDelete}
         loading={isDeleting}
       />
+
+      <ProductLinkBrandDialog
+        open={!!selectedLinkId}
+        onClose={() => setSelectedLinkId(null)}
+        productId={selectedLinkId || undefined}
+      />
+
+      <ConfirmDialog
+        title={t('Dialog.unlink_title', { label: t('Label.product') })}
+        content={t('Dialog.unlink_content', { label: t('Label.product').toLowerCase() })}
+        isOpen={!!selectedUnlinkId}
+        onClose={handleCloseUnlinkDialog}
+        handleConfirm={handleConfirmUnlink}
+        loading={isUnlinking}
+        actionProps={{
+          color: 'warning',
+          variant: 'contained',
+          startIcon: <Iconify icon={Icons.UNLINK} />,
+          children: t('Action.unlink'),
+        }}
+      />
     </>
   );
 }
 
-const tableHead = [
-  { id: 'product', label: 'product' },
-  { id: 'subcategory', label: 'sub_category' },
-  { id: 'brand', label: 'brand' },
-  { id: 'disabled', label: 'disabled' },
-  { id: 'employeeReadOnly', label: 'employee_read_only' },
-];
+const getTableHead = (showBrand: boolean) => {
+  return [
+    { id: 'product', label: 'product' },
+    { id: 'subcategory', label: 'sub_category' },
+    ...(showBrand ? [{ id: 'brand', label: 'brand' }] : []),
+    { id: 'disabled', label: 'disabled' },
+    { id: 'employeeReadOnly', label: 'employee_read_only' },
+  ];
+};
 
 const customRender = {
-  product: (row: Product) => (
+  product: (row: Product | BrandProduct) => (
     <ApiListItem cover={row.coverList[0]} nameAr={row.nameAr} nameEn={row.nameEn} />
   ),
-  subcategory: ({ subcategory }: Product) =>
+  subcategory: ({ subcategory }: Product | BrandProduct) =>
     subcategory ? (
       <ApiListItem
         cover={subcategory.cover}
@@ -112,12 +189,19 @@ const customRender = {
         href={paths.products.subCategories.single(subcategory._id)}
       />
     ) : null,
-  brand: ({ brand }: Product) =>
-    brand ? <ApiListItem cover={brand.cover} nameAr={brand.nameAr} nameEn={brand.nameEn} /> : null,
-  disabled: (row: Product) => (
+  brand: (row: Product | BrandProduct) =>
+    isObject(row.brand) ? (
+      <ApiListItem
+        cover={row.brand.cover}
+        nameAr={row.brand.nameAr}
+        nameEn={row.brand.nameEn}
+        href={paths.products.brands.single(row.brand._id)}
+      />
+    ) : null,
+  disabled: (row: Product | BrandProduct) => (
     <Switch checked={row.disabled} sx={{ '& input': { cursor: 'default !important' } }} />
   ),
-  employeeReadOnly: (row: Product) => (
+  employeeReadOnly: (row: Product | BrandProduct) => (
     <Switch checked={row.employeeReadOnly} sx={{ '& input': { cursor: 'default !important' } }} />
   ),
 };

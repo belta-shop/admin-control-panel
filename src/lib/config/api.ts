@@ -7,6 +7,10 @@ export const enum RevalidateTags {
   SubCategoryList = 'subcategory-list',
   SubCategorySingle = 'subcategory-single',
 
+  // Brands
+  BrandList = 'brand-list',
+  BrandSingle = 'brand-single',
+
   // Products
   ProductList = 'product-list',
   ProductSingle = 'product-single',

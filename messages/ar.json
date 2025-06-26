@@ -11,6 +11,9 @@
     "SubCategories": {
       "title": "التصنيفات الفرعية | Beltahop"
     },
+    "Brands": {
+      "title": "العلامات التجارية | Beltahop"
+    },
     "Products": {
       "title": "المنتجات | Beltahop"
     },
@@ -168,6 +171,12 @@
       "edit": "تعديل التصنيف الفرعي",
       "link_to_category": "ربط بالتصنيف الرئيسي",
       "unlink_from_category": "فصل عن التصنيف الرئيسي"
+    },
+    "Brands": {
+      "title": "العلامات التجارية",
+      "create": "إنشاء علامة تجارية",
+      "edit": "تعديل العلامة التجارية",
+      "link_to_product": "ربط بالمنتج"
     },
     "Products": {
       "title": "المنتجات",

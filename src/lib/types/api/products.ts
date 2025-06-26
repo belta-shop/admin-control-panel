@@ -1,3 +1,4 @@
+import { Brand } from './brands';
 import { SubCategory } from './sub-categories';
 
 export interface Product {
@@ -19,19 +20,6 @@ export interface Product {
   finalPrice: number;
   offer: Offer;
   employeeReadOnly: boolean;
-}
-
-export interface Brand {
-  _id: string;
-  nameAr: string;
-  nameEn: string;
-  cover: string;
-  disabled: boolean;
-  products: any[];
-  employeeReadOnly: boolean;
-  __v: number;
-  updatedAt?: Date;
-  category?: null;
 }
 
 export interface Offer {
