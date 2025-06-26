@@ -31,7 +31,7 @@ export const configNavigation: NavSection[] = [
         icon: NavbarIcons.BRAND,
       },
       {
-        path: paths.products.products,
+        path: paths.products.products.list,
         label: 'products',
         icon: NavbarIcons.INVENTORY,
       },

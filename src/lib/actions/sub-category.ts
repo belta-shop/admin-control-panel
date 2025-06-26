@@ -87,7 +87,7 @@ export async function updateSubCategory(id: string, data: SubCategoryFormData) {
 }
 
 export async function deleteSubCategory(id: string) {
-  const res = await deleteData<SubCategory>('/subcategories/staff/:id', {
+  const res = await deleteData('/subcategories/staff/:id', {
     params: { id },
   });
 

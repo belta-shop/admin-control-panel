@@ -11,6 +11,9 @@
     "SubCategories": {
       "title": "التصنيفات الفرعية | Beltahop"
     },
+    "Products": {
+      "title": "المنتجات | Beltahop"
+    },
     "Auth": {
       "login_title": "تسجيل الدخول | Beltahop",
       "register_title": "إنشاء حساب | Beltahop",
@@ -67,7 +70,11 @@
       "all": "الجميع",
       "yes": "نعم",
       "no": "لا",
-      "sub_category": "التصنيف الفرعي"
+      "sub_category": "التصنيف الفرعي",
+      "brand": "العلامة التجارية",
+      "tag": "التصنيف",
+      "offer": "العرض",
+      "product": "المنتج"
     },
     "Helper": {
       "upload_drag_drop_file": "اسحب وأفلت الملف هنا أو انقر للتحميل",
@@ -161,6 +168,15 @@
       "edit": "تعديل التصنيف الفرعي",
       "link_to_category": "ربط بالتصنيف الرئيسي",
       "unlink_from_category": "فصل عن التصنيف الرئيسي"
+    },
+    "Products": {
+      "title": "المنتجات",
+      "create": "إنشاء منتج",
+      "edit": "تعديل المنتج",
+      "link_to_sub_category": "ربط بالتصنيف الفرعي",
+      "unlink_from_sub_category": "فصل عن التصنيف الفرعي",
+      "link_to_brand": "ربط بالعلامة التجارية",
+      "unlink_from_brand": "فصل عن العلامة التجارية"
     }
   }
 }

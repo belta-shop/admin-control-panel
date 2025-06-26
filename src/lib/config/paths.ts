@@ -21,7 +21,12 @@ export const paths = {
       single: (id: string) => `/sub-categories/${id}`,
     },
     brands: '/brands',
-    products: '/products',
+    products: {
+      list: '/products',
+      create: '/products/new',
+      edit: (id: string) => `/products/${id}/edit`,
+      single: (id: string) => `/products/${id}`,
+    },
     offers: '/offers',
     tags: '/tags',
     labels: '/labels',

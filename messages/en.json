@@ -11,6 +11,9 @@
     "SubCategories": {
       "title": "Sub Categories | Beltahop"
     },
+    "Products": {
+      "title": "Products | Beltahop"
+    },
     "Auth": {
       "login_title": "Login | Beltahop",
       "register_title": "Register | Beltahop",
@@ -67,7 +70,11 @@
       "all": "All",
       "yes": "Yes",
       "no": "No",
-      "sub_category": "Sub Category"
+      "sub_category": "Sub Category",
+      "brand": "Brand",
+      "tag": "Tag",
+      "offer": "Offer",
+      "product": "Product"
     },
     "Helper": {
       "upload_drag_drop_file": "Drag & drop or click to upload file",
@@ -161,6 +168,15 @@
       "edit": "Edit Sub Category",
       "link_to_category": "Link to Category",
       "unlink_from_category": "Unlink from Category"
+    },
+    "Products": {
+      "title": "Products",
+      "create": "Create Product",
+      "edit": "Edit Product",
+      "link_to_sub_category": "Link to Sub Category",
+      "unlink_from_sub_category": "Unlink from Sub Category",
+      "link_to_brand": "Link to Brand",
+      "unlink_from_brand": "Unlink from Brand"
     }
   }
 }
