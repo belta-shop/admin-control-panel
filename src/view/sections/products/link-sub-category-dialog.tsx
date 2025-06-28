@@ -3,12 +3,12 @@
 import { useSnackbar } from 'notistack';
 import { useTranslations } from 'next-intl';
 import { useState, useCallback } from 'react';
-import { Box, Dialog, Button, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 
+import { useBoolean } from '@/lib/hooks/use-boolean';
 import { SubCategory } from '@/lib/types/api/sub-categories';
 import { linkProductToSubCategory } from '@/lib/actions/product';
-
-import SearchSubCategoryInput from '../categories/search-sub-category-input';
+import ConfirmDialog from '@/view/components/dialog/confirm-dialog';
+import { SubCategoriesAutoComplete } from '@/view/components/api-related/auto-complete-modules';
 
 interface Props {
   open: boolean;
@@ -22,7 +22,7 @@ export default function ProductLinkSubCategoryDialog({ open, onClose, productId 
   const { enqueueSnackbar } = useSnackbar();
 
   const [selectedSubCategory, setSelectedSubCategory] = useState<SubCategory | null>(null);
-  const [confirmLoading, setConfirmLoading] = useState(false);
+  const loading = useBoolean(false);
 
   const handleClose = useCallback(() => {
     setSelectedSubCategory(null);
@@ -32,7 +32,7 @@ export default function ProductLinkSubCategoryDialog({ open, onClose, productId 
   const handleConfirm = useCallback(async () => {
     try {
       if (selectedSubCategory && productId) {
-        setConfirmLoading(true);
+        loading.onTrue();
         await linkProductToSubCategory({ subCategoryId: selectedSubCategory._id, productId });
         enqueueSnackbar(t('Global.Message.link_success', { name: t('Global.Label.product') }));
         handleClose();
@@ -40,35 +40,22 @@ export default function ProductLinkSubCategoryDialog({ open, onClose, productId 
     } catch (error: any) {
       enqueueSnackbar(error.message, { variant: 'error' });
     } finally {
-      setConfirmLoading(false);
+      loading.onFalse();
     }
-  }, [selectedSubCategory, productId, enqueueSnackbar, t, handleClose]);
+  }, [selectedSubCategory, productId, loading, enqueueSnackbar, t, handleClose]);
 
   const isConfirmDisabled = !selectedSubCategory || !productId;
 
   return (
-    <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
-      <DialogTitle>{t('Pages.Products.link_to_brand')}</DialogTitle>
-
-      <DialogContent>
-        <Box sx={{ mt: 2 }}>
-          <SearchSubCategoryInput onChange={setSelectedSubCategory} />
-        </Box>
-      </DialogContent>
-
-      <DialogActions>
-        <Button onClick={handleClose} color="inherit">
-          {t('Global.Action.cancel')}
-        </Button>
-        <Button
-          onClick={handleConfirm}
-          variant="contained"
-          disabled={isConfirmDisabled}
-          loading={confirmLoading}
-        >
-          {t('Global.Action.link')}
-        </Button>
-      </DialogActions>
-    </Dialog>
+    <ConfirmDialog
+      title={t('Pages.Products.link_to_brand')}
+      isOpen={open}
+      onClose={handleClose}
+      handleConfirm={handleConfirm}
+      loading={loading.value}
+      disabled={isConfirmDisabled}
+    >
+      <SubCategoriesAutoComplete onChange={setSelectedSubCategory} sx={{ mt: 2 }} />
+    </ConfirmDialog>
   );
 }

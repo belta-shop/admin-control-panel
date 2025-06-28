@@ -9,6 +9,7 @@ import { UserRole } from '@/lib/types/auth';
 import { useAuthStore } from '@/lib/store/auth';
 import { useRouter } from '@/lib/i18n/navigation';
 import { Iconify } from '@/view/components/iconify';
+import { useBoolean } from '@/lib/hooks/use-boolean';
 import { Category } from '@/lib/types/api/categories';
 import { deleteCategory } from '@/lib/actions/category';
 import CustomImage from '@/view/components/image/custom-image';
@@ -22,23 +23,23 @@ interface Props {
 
 export default function CategoryListTable({ items, total }: Props) {
   const t = useTranslations('Global');
+  const { enqueueSnackbar } = useSnackbar();
   const user = useAuthStore((state) => state.user);
   const router = useRouter();
-  const [selectedDeleteId, setSelectedDeleteId] = useState<string | null>(null);
-  const [isDeleting, setIsDeleting] = useState(false);
 
-  const { enqueueSnackbar } = useSnackbar();
+  const [selectedDeleteId, setSelectedDeleteId] = useState<string | null>(null);
+  const deleting = useBoolean(false);
 
   const handleCloseDeleteDialog = () => {
     setSelectedDeleteId(null);
-    setIsDeleting(false);
+    deleting.onFalse();
   };
 
   const handleConfirmDelete = async () => {
     if (!selectedDeleteId) return;
 
     try {
-      setIsDeleting(true);
+      deleting.onTrue();
 
       await deleteCategory(selectedDeleteId);
       enqueueSnackbar(t('Message.delete_success', { name: t('Label.category') }));
@@ -47,7 +48,7 @@ export default function CategoryListTable({ items, total }: Props) {
     } catch (error: any) {
       enqueueSnackbar(error.message, { variant: 'error' });
     } finally {
-      setIsDeleting(false);
+      deleting.onFalse();
     }
   };
 
@@ -85,7 +86,7 @@ export default function CategoryListTable({ items, total }: Props) {
         isOpen={!!selectedDeleteId}
         onClose={handleCloseDeleteDialog}
         handleDelete={handleConfirmDelete}
-        loading={isDeleting}
+        loading={deleting.value}
       />
     </>
   );

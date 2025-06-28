@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
 import { CardContent } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import { Card, Stack, Button } from '@mui/material';
 
+import { useBoolean } from '@/lib/hooks/use-boolean';
 import { SubCategoryDetails } from '@/lib/types/api/sub-categories';
 
 import SubCategorySingleDetails from '../single-details';
@@ -17,7 +17,7 @@ export default function SubCategorySingleView({
   subCategory: SubCategoryDetails;
 }) {
   const t = useTranslations();
-  const [isLinkDialogOpen, setIsLinkDialogOpen] = useState(false);
+  const linkDialog = useBoolean(false);
 
   return (
     <Stack spacing={3}>
@@ -26,7 +26,7 @@ export default function SubCategorySingleView({
       <Card>
         <CardContent>
           <Stack direction="row" justifyContent="flex-end">
-            <Button variant="contained" size="large" onClick={() => setIsLinkDialogOpen(true)}>
+            <Button variant="contained" size="large" onClick={linkDialog.onTrue}>
               {t('Pages.SubCategories.link_to_product')}
             </Button>
           </Stack>
@@ -38,8 +38,8 @@ export default function SubCategorySingleView({
           disablePagination
         />
         <SubCategoryLinkProductDialog
-          open={isLinkDialogOpen}
-          onClose={() => setIsLinkDialogOpen(false)}
+          open={linkDialog.value}
+          onClose={linkDialog.onFalse}
           subCategoryId={subCategory._id}
         />
       </Card>

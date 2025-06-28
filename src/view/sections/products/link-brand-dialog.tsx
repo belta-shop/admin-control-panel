@@ -3,12 +3,12 @@
 import { useSnackbar } from 'notistack';
 import { useTranslations } from 'next-intl';
 import { useState, useCallback } from 'react';
-import { Box, Dialog, Button, DialogTitle, DialogContent, DialogActions } from '@mui/material';
 
 import { Brand } from '@/lib/types/api/brands';
+import { useBoolean } from '@/lib/hooks/use-boolean';
 import { linkProductToBrand } from '@/lib/actions/product';
-
-import SearchBrandInput from './search-brand-input';
+import ConfirmDialog from '@/view/components/dialog/confirm-dialog';
+import { BrandsAutoComplete } from '@/view/components/api-related/auto-complete-modules';
 
 interface Props {
   open: boolean;
@@ -22,7 +22,7 @@ export default function ProductLinkBrandDialog({ open, onClose, productId }: Pro
   const { enqueueSnackbar } = useSnackbar();
 
   const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
-  const [confirmLoading, setConfirmLoading] = useState(false);
+  const loading = useBoolean(false);
 
   const handleClose = useCallback(() => {
     setSelectedBrand(null);
@@ -32,7 +32,7 @@ export default function ProductLinkBrandDialog({ open, onClose, productId }: Pro
   const handleConfirm = useCallback(async () => {
     try {
       if (selectedBrand && productId) {
-        setConfirmLoading(true);
+        loading.onTrue();
         await linkProductToBrand({ brandId: selectedBrand._id, productId });
         enqueueSnackbar(t('Global.Message.link_success', { name: t('Global.Label.product') }));
         handleClose();
@@ -40,35 +40,22 @@ export default function ProductLinkBrandDialog({ open, onClose, productId }: Pro
     } catch (error: any) {
       enqueueSnackbar(error.message, { variant: 'error' });
     } finally {
-      setConfirmLoading(false);
+      loading.onFalse();
     }
-  }, [selectedBrand, productId, enqueueSnackbar, t, handleClose]);
+  }, [selectedBrand, productId, loading, enqueueSnackbar, t, handleClose]);
 
   const isConfirmDisabled = !selectedBrand || !productId;
 
   return (
-    <Dialog open={open} onClose={handleClose} maxWidth="sm" fullWidth>
-      <DialogTitle>{t('Pages.Products.link_to_brand')}</DialogTitle>
-
-      <DialogContent>
-        <Box sx={{ mt: 2 }}>
-          <SearchBrandInput onChange={setSelectedBrand} />
-        </Box>
-      </DialogContent>
-
-      <DialogActions>
-        <Button onClick={handleClose} color="inherit">
-          {t('Global.Action.cancel')}
-        </Button>
-        <Button
-          onClick={handleConfirm}
-          variant="contained"
-          disabled={isConfirmDisabled}
-          loading={confirmLoading}
-        >
-          {t('Global.Action.link')}
-        </Button>
-      </DialogActions>
-    </Dialog>
+    <ConfirmDialog
+      title={t('Pages.Products.link_to_brand')}
+      isOpen={open}
+      onClose={handleClose}
+      handleConfirm={handleConfirm}
+      loading={loading.value}
+      disabled={isConfirmDisabled}
+    >
+      <BrandsAutoComplete onChange={setSelectedBrand} sx={{ mt: 2 }} />
+    </ConfirmDialog>
   );
 }

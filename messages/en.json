@@ -121,7 +121,7 @@
       "delete_title": "Delete {label}",
       "delete_content": "Are you sure you want to delete this {label}? This action cannot be undone.",
       "unlink_title": "Unlink {label}",
-      "unlink_content": "Are you sure you want to unlink this {label} from its category? This action can be undone."
+      "unlink_content": "Are you sure you want to unlink this {label} from its {parent}? This action can be undone."
     },
     "Message": {
       "create_success": "{name} has been created successfully",

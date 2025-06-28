@@ -16,21 +16,23 @@ import { Iconify } from '../iconify';
 
 interface ConfirmDialogProps {
   title: string;
-  content: string;
+  children: React.ReactNode;
   isOpen: boolean;
   onClose: () => void;
   handleConfirm: () => void;
   loading?: boolean;
-  actionProps?: Omit<ButtonProps, 'onClick' | 'loading'>;
+  disabled?: boolean;
+  actionProps?: Omit<ButtonProps, 'onClick' | 'loading' | 'disabled'>;
 }
 
 export default function ConfirmDialog({
   title,
-  content,
+  children,
   isOpen,
   onClose,
   handleConfirm,
   loading = false,
+  disabled = false,
   actionProps,
 }: ConfirmDialogProps) {
   const t = useTranslations();
@@ -44,19 +46,20 @@ export default function ConfirmDialog({
       fullWidth
     >
       <DialogTitle id="confirm-dialog-title">{title}</DialogTitle>
-      <DialogContent>{content}</DialogContent>
+      <DialogContent>{children}</DialogContent>
       <DialogActions>
-        <Button variant="outlined" onClick={onClose} disabled={loading}>
+        <Button variant="outlined" onClick={onClose} disabled={loading || disabled}>
           {t('Global.Action.cancel')}
         </Button>
         {actionProps ? (
-          <Button onClick={handleConfirm} loading={loading} {...actionProps} />
+          <Button onClick={handleConfirm} loading={loading} disabled={disabled} {...actionProps} />
         ) : (
           <Button
             onClick={handleConfirm}
             color="success"
             variant="contained"
             loading={loading}
+            disabled={disabled}
             startIcon={<Iconify icon={Icons.CHECK} />}
           >
             {t('Global.Action.confirm')}

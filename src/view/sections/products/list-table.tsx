@@ -11,6 +11,7 @@ import { useAuthStore } from '@/lib/store/auth';
 import { useRouter } from '@/lib/i18n/navigation';
 import { Product } from '@/lib/types/api/products';
 import { Iconify } from '@/view/components/iconify';
+import { useBoolean } from '@/lib/hooks/use-boolean';
 import { BrandProduct } from '@/lib/types/api/brands';
 import DeleteDialog from '@/view/components/dialog/delete-dialog';
 import ConfirmDialog from '@/view/components/dialog/confirm-dialog';
@@ -22,8 +23,8 @@ import {
   unlinkProductFromSubCategory,
 } from '@/lib/actions/product';
 
-import ProductLinkBrandDialog from './link-product-dialog';
-import ProductLinkSubCategoryDialog from './link-product-sub-dialog';
+import ProductLinkBrandDialog from './link-brand-dialog';
+import ProductLinkSubCategoryDialog from './link-sub-category-dialog';
 
 interface Props {
   items: Product[] | BrandProduct[];
@@ -41,34 +42,33 @@ export default function ProductListTable({
   showSubCategory = true,
 }: Props) {
   const t = useTranslations('Global');
+  const { enqueueSnackbar } = useSnackbar();
   const user = useAuthStore((state) => state.user);
   const router = useRouter();
 
-  const [selectedLinkId, setSelectedLinkId] = useState<string | null>(null);
+  const [selectedLinkBrandId, setSelectedLinkBrandId] = useState<string | null>(null);
+  const [selectedLinkSubCategoryId, setSelectedLinkSubCategoryId] = useState<string | null>(null);
   const [selectedUnlinkId, setSelectedUnlinkId] = useState<string | null>(null);
-  const [selectedLinkSubId, setSelectedLinkSubId] = useState<string | null>(null);
-  const [selectedUnlinkSubId, setSelectedUnlinkSubId] = useState<string | null>(null);
+  const [unlinkType, setUnlinkType] = useState<'subCategory' | 'brand' | null>(null);
   const [selectedDeleteId, setSelectedDeleteId] = useState<string | null>(null);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [isUnlinking, setIsUnlinking] = useState(false);
-  const { enqueueSnackbar } = useSnackbar();
+  const deleting = useBoolean(false);
+  const unlinking = useBoolean(false);
 
   const handleCloseDeleteDialog = () => {
     setSelectedDeleteId(null);
-    setIsDeleting(false);
+    deleting.onFalse();
   };
 
   const handleCloseUnlinkDialog = () => {
     setSelectedUnlinkId(null);
-    setSelectedUnlinkSubId(null);
-    setIsUnlinking(false);
+    unlinking.onFalse();
   };
 
   const handleConfirmDelete = async () => {
     if (!selectedDeleteId) return;
 
     try {
-      setIsDeleting(true);
+      deleting.onTrue();
 
       await deleteProduct(selectedDeleteId);
       enqueueSnackbar(t('Message.delete_success', { name: t('Label.product') }));
@@ -77,41 +77,26 @@ export default function ProductListTable({
     } catch (error: any) {
       enqueueSnackbar(error.message, { variant: 'error' });
     } finally {
-      setIsDeleting(false);
-    }
-  };
-
-  const handleConfirmUnlinkSub = async () => {
-    if (!selectedUnlinkSubId) return;
-
-    try {
-      setIsUnlinking(true);
-
-      await unlinkProductFromSubCategory(selectedUnlinkSubId);
-
-      enqueueSnackbar(t('Message.unlink_success', { name: t('Label.product') }));
-      handleCloseUnlinkDialog();
-    } catch (error: any) {
-      enqueueSnackbar(error.message, { variant: 'error' });
-    } finally {
-      setIsUnlinking(false);
+      deleting.onFalse();
     }
   };
 
   const handleConfirmUnlink = async () => {
-    if (!selectedUnlinkId) return;
+    if (!selectedUnlinkId || !unlinkType) return;
 
     try {
-      setIsUnlinking(true);
+      unlinking.onTrue();
 
-      await unlinkProductFromBrand(selectedUnlinkId);
+      await (unlinkType === 'brand'
+        ? unlinkProductFromBrand(selectedUnlinkId)
+        : unlinkProductFromSubCategory(selectedUnlinkId));
 
       enqueueSnackbar(t('Message.unlink_success', { name: t('Label.product') }));
       handleCloseUnlinkDialog();
     } catch (error: any) {
       enqueueSnackbar(error.message, { variant: 'error' });
     } finally {
-      setIsUnlinking(false);
+      unlinking.onFalse();
     }
   };
 
@@ -145,7 +130,10 @@ export default function ProductListTable({
           {
             label: 'Pages.Products.link_to_sub_category',
             icon: <Iconify icon={Icons.LINK} />,
-            onClick: (item) => setSelectedLinkSubId(item.id),
+            onClick: (item) => {
+              setSelectedLinkBrandId(item.id);
+              setUnlinkType('subCategory');
+            },
             sx: { color: 'info.main' },
             hide: (item) =>
               !!item.subcategory || (item.employeeReadOnly && user?.role === UserRole.EMPLOYEE),
@@ -153,7 +141,10 @@ export default function ProductListTable({
           {
             label: 'Pages.Products.unlink_from_sub_category',
             icon: <Iconify icon={Icons.UNLINK} />,
-            onClick: (item) => setSelectedUnlinkSubId(item.id),
+            onClick: (item) => {
+              setSelectedUnlinkId(item.id);
+              setUnlinkType('subCategory');
+            },
             sx: { color: 'warning.main' },
             hide: (item) =>
               !item.subcategory || (item.employeeReadOnly && user?.role === UserRole.EMPLOYEE),
@@ -161,7 +152,7 @@ export default function ProductListTable({
           {
             label: 'Pages.Products.link_to_brand',
             icon: <Iconify icon={Icons.LINK} />,
-            onClick: (item) => setSelectedLinkId(item.id),
+            onClick: (item) => setSelectedLinkBrandId(item.id),
             sx: { color: 'info.main' },
             hide: (item) =>
               !!item.brand || (item.employeeReadOnly && user?.role === UserRole.EMPLOYEE),
@@ -182,48 +173,38 @@ export default function ProductListTable({
         isOpen={!!selectedDeleteId}
         onClose={handleCloseDeleteDialog}
         handleDelete={handleConfirmDelete}
-        loading={isDeleting}
+        loading={deleting.value}
       />
 
       <ProductLinkBrandDialog
-        open={!!selectedLinkId}
-        onClose={() => setSelectedLinkId(null)}
-        productId={selectedLinkId || undefined}
+        open={!!selectedLinkBrandId}
+        onClose={() => setSelectedLinkBrandId(null)}
+        productId={selectedLinkBrandId || undefined}
       />
       <ProductLinkSubCategoryDialog
-        open={!!selectedLinkSubId}
-        onClose={() => setSelectedLinkSubId(null)}
-        productId={selectedLinkSubId || undefined}
+        open={!!selectedLinkSubCategoryId}
+        onClose={() => setSelectedLinkSubCategoryId(null)}
+        productId={selectedLinkSubCategoryId || undefined}
       />
 
       <ConfirmDialog
         title={t('Dialog.unlink_title', { label: t('Label.product') })}
-        content={t('Dialog.unlink_content', { label: t('Label.product').toLowerCase() })}
-        isOpen={!!selectedUnlinkSubId}
-        onClose={handleCloseUnlinkDialog}
-        handleConfirm={handleConfirmUnlinkSub}
-        loading={isUnlinking}
-        actionProps={{
-          color: 'warning',
-          variant: 'contained',
-          startIcon: <Iconify icon={Icons.UNLINK} />,
-          children: t('Action.unlink'),
-        }}
-      />
-      <ConfirmDialog
-        title={t('Dialog.unlink_title', { label: t('Label.product') })}
-        content={t('Dialog.unlink_content', { label: t('Label.product').toLowerCase() })}
         isOpen={!!selectedUnlinkId}
         onClose={handleCloseUnlinkDialog}
         handleConfirm={handleConfirmUnlink}
-        loading={isUnlinking}
+        loading={unlinking.value}
         actionProps={{
           color: 'warning',
           variant: 'contained',
           startIcon: <Iconify icon={Icons.UNLINK} />,
           children: t('Action.unlink'),
         }}
-      />
+      >
+        {t('Dialog.unlink_content', {
+          label: t('Label.product').toLowerCase(),
+          parent: t(unlinkType === 'brand' ? 'Label.brand' : 'Label.sub_category').toLowerCase(),
+        })}
+      </ConfirmDialog>
     </>
   );
 }

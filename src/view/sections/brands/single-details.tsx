@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { enqueueSnackbar } from 'notistack';
@@ -12,6 +11,7 @@ import { UserRole } from '@/lib/types/auth';
 import { useAuthStore } from '@/lib/store/auth';
 import { deleteBrand } from '@/lib/actions/brands';
 import { Iconify } from '@/view/components/iconify';
+import { useBoolean } from '@/lib/hooks/use-boolean';
 import { Brand, BrandDetails } from '@/lib/types/api/brands';
 import CustomImage from '@/view/components/image/custom-image';
 import DeleteDialog from '@/view/components/dialog/delete-dialog';
@@ -21,22 +21,22 @@ export default function BrandSingleDetails({ brand }: { brand: Brand | BrandDeta
   const user = useAuthStore((state) => state.user);
   const router = useRouter();
 
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
+  const deleteDialog = useBoolean(false);
+  const deleting = useBoolean(false);
 
   const handleConfirmDelete = async () => {
     try {
-      setIsDeleting(true);
+      deleting.onTrue();
 
       await deleteBrand(brand._id);
       enqueueSnackbar(t('Global.Message.delete_success', { name: t('Global.Label.brand') }));
       router.push(paths.products.brands.list);
 
-      setIsDeleteDialogOpen(false);
+      deleteDialog.onFalse();
     } catch (error: any) {
       enqueueSnackbar(error.message, { variant: 'error' });
     } finally {
-      setIsDeleting(false);
+      deleting.onFalse();
     }
   };
 
@@ -75,7 +75,7 @@ export default function BrandSingleDetails({ brand }: { brand: Brand | BrandDeta
     {
       label: 'Global.Action.delete',
       icon: Icons.TRASH,
-      onClick: () => setIsDeleteDialogOpen(true),
+      onClick: deleteDialog.onTrue,
       color: 'error',
     },
   ];
@@ -130,10 +130,10 @@ export default function BrandSingleDetails({ brand }: { brand: Brand | BrandDeta
       </Card>
       <DeleteDialog
         label={t('Global.Label.brand')}
-        isOpen={isDeleteDialogOpen}
-        onClose={() => setIsDeleteDialogOpen(false)}
+        isOpen={deleteDialog.value}
+        onClose={deleteDialog.onFalse}
         handleDelete={handleConfirmDelete}
-        loading={isDeleting}
+        loading={deleting.value}
       />
     </>
   );

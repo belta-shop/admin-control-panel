@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
 import { Switch } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { useTranslations } from 'next-intl';
+import { useState, useCallback } from 'react';
 
 import { Icons } from '@/lib/config/icons';
 import { paths } from '@/lib/config/paths';
@@ -11,6 +11,7 @@ import { UserRole } from '@/lib/types/auth';
 import { useAuthStore } from '@/lib/store/auth';
 import { useRouter } from '@/lib/i18n/navigation';
 import { Iconify } from '@/view/components/iconify';
+import { useBoolean } from '@/lib/hooks/use-boolean';
 import { SubCategory } from '@/lib/types/api/sub-categories';
 import CustomImage from '@/view/components/image/custom-image';
 import DeleteDialog from '@/view/components/dialog/delete-dialog';
@@ -28,32 +29,31 @@ interface Props {
 
 export default function SubCategoryListTable({ items, total, disablePagination }: Props) {
   const t = useTranslations('Global');
+  const { enqueueSnackbar } = useSnackbar();
   const user = useAuthStore((state) => state.user);
   const router = useRouter();
 
-  const [selectedDeleteId, setSelectedDeleteId] = useState<string | null>(null);
-  const [isDeleting, setIsDeleting] = useState(false);
   const [selectedLinkId, setSelectedLinkId] = useState<string | null>(null);
   const [selectedUnlinkId, setSelectedUnlinkId] = useState<string | null>(null);
-  const [isUnlinking, setIsUnlinking] = useState(false);
+  const [selectedDeleteId, setSelectedDeleteId] = useState<string | null>(null);
+  const unlinking = useBoolean(false);
+  const deleting = useBoolean(false);
 
-  const { enqueueSnackbar } = useSnackbar();
-
-  const handleCloseDeleteDialog = () => {
+  const handleCloseDeleteDialog = useCallback(() => {
     setSelectedDeleteId(null);
-    setIsDeleting(false);
-  };
+    deleting.onFalse();
+  }, [deleting, setSelectedDeleteId]);
 
-  const handleCloseUnlinkDialog = () => {
+  const handleCloseUnlinkDialog = useCallback(() => {
     setSelectedUnlinkId(null);
-    setIsUnlinking(false);
-  };
+    unlinking.onFalse();
+  }, [unlinking, setSelectedUnlinkId]);
 
   const handleConfirmDelete = async () => {
     if (!selectedDeleteId) return;
 
     try {
-      setIsDeleting(true);
+      deleting.onTrue();
 
       await deleteSubCategory(selectedDeleteId);
 
@@ -61,7 +61,7 @@ export default function SubCategoryListTable({ items, total, disablePagination }
     } catch (error: any) {
       enqueueSnackbar(error.message, { variant: 'error' });
     } finally {
-      setIsDeleting(false);
+      deleting.onFalse();
       handleCloseDeleteDialog();
     }
   };
@@ -70,7 +70,7 @@ export default function SubCategoryListTable({ items, total, disablePagination }
     if (!selectedUnlinkId) return;
 
     try {
-      setIsUnlinking(true);
+      unlinking.onTrue();
 
       await unlinkSubCategoryFromCategory(selectedUnlinkId);
 
@@ -78,7 +78,7 @@ export default function SubCategoryListTable({ items, total, disablePagination }
     } catch (error: any) {
       enqueueSnackbar(error.message, { variant: 'error' });
     } finally {
-      setIsUnlinking(false);
+      unlinking.onFalse();
       handleCloseUnlinkDialog();
     }
   };
@@ -134,7 +134,7 @@ export default function SubCategoryListTable({ items, total, disablePagination }
         isOpen={!!selectedDeleteId}
         onClose={handleCloseDeleteDialog}
         handleDelete={handleConfirmDelete}
-        loading={isDeleting}
+        loading={deleting.value}
       />
 
       <SubCategoryLinkCategoryDialog
@@ -145,18 +145,22 @@ export default function SubCategoryListTable({ items, total, disablePagination }
 
       <ConfirmDialog
         title={t('Dialog.unlink_title', { label: t('Label.sub_category') })}
-        content={t('Dialog.unlink_content', { label: t('Label.sub_category').toLowerCase() })}
         isOpen={!!selectedUnlinkId}
         onClose={handleCloseUnlinkDialog}
         handleConfirm={handleConfirmUnlink}
-        loading={isUnlinking}
+        loading={unlinking.value}
         actionProps={{
           color: 'warning',
           variant: 'contained',
           startIcon: <Iconify icon={Icons.UNLINK} />,
           children: t('Action.unlink'),
         }}
-      />
+      >
+        {t('Dialog.unlink_content', {
+          label: t('Label.sub_category').toLowerCase(),
+          parent: t('Label.category').toLowerCase(),
+        })}
+      </ConfirmDialog>
     </>
   );
 }

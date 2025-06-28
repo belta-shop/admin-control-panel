@@ -27,7 +27,6 @@ export default function DeleteDialog({
   return (
     <ConfirmDialog
       title={t('Dialog.delete_title', { label })}
-      content={t('Dialog.delete_content', { label: label.toLowerCase() })}
       isOpen={isOpen}
       onClose={onClose}
       handleConfirm={handleDelete}
@@ -38,6 +37,8 @@ export default function DeleteDialog({
         startIcon: <Iconify icon={Icons.TRASH} />,
         children: t('Action.delete'),
       }}
-    />
+    >
+      {t('Dialog.delete_content', { label: label.toLowerCase() })}
+    </ConfirmDialog>
   );
 }

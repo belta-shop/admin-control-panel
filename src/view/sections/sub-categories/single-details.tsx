@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { enqueueSnackbar } from 'notistack';
@@ -11,6 +11,7 @@ import { paths } from '@/lib/config/paths';
 import { UserRole } from '@/lib/types/auth';
 import { useAuthStore } from '@/lib/store/auth';
 import { Iconify } from '@/view/components/iconify';
+import { useBoolean } from '@/lib/hooks/use-boolean';
 import { SubCategory } from '@/lib/types/api/sub-categories';
 import CustomImage from '@/view/components/image/custom-image';
 import DeleteDialog from '@/view/components/dialog/delete-dialog';
@@ -30,42 +31,42 @@ export default function SubCategorySingleDetails({
   const user = useAuthStore((state) => state.user);
   const router = useRouter();
 
-  const [isLinkDialogOpen, setIsLinkDialogOpen] = useState(false);
-  const [isUnlinkDialogOpen, setIsUnlinkDialogOpen] = useState(false);
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [isUnlinking, setIsUnlinking] = useState(false);
+  const linkDialog = useBoolean(false);
+  const unlinkDialog = useBoolean(false);
+  const deleteDialog = useBoolean(false);
+  const unlinking = useBoolean(false);
+  const deleting = useBoolean(false);
 
-  const handleConfirmUnlink = async () => {
+  const handleConfirmUnlink = useCallback(async () => {
     try {
-      setIsUnlinking(true);
+      unlinking.onTrue();
 
       await unlinkSubCategoryFromCategory(subCategory._id);
 
       enqueueSnackbar(t('Global.Message.unlink_success', { name: t('Global.Label.sub_category') }));
-      setIsUnlinkDialogOpen(false);
+      unlinkDialog.onFalse();
     } catch (error: any) {
       enqueueSnackbar(error.message, { variant: 'error' });
     } finally {
-      setIsUnlinking(false);
+      unlinking.onFalse();
     }
-  };
+  }, [subCategory._id, t, unlinkDialog, unlinking]);
 
-  const handleConfirmDelete = async () => {
+  const handleConfirmDelete = useCallback(async () => {
     try {
-      setIsDeleting(true);
+      deleting.onTrue();
 
       await deleteSubCategory(subCategory._id);
       enqueueSnackbar(t('Global.Message.delete_success', { name: t('Global.Label.sub_category') }));
       router.push(paths.products.subCategories.list);
 
-      setIsDeleteDialogOpen(false);
+      deleteDialog.onFalse();
     } catch (error: any) {
       enqueueSnackbar(error.message, { variant: 'error' });
     } finally {
-      setIsDeleting(false);
+      deleting.onFalse();
     }
-  };
+  }, [subCategory._id, t, router, deleteDialog, deleting]);
 
   const textFields = [
     {
@@ -120,7 +121,7 @@ export default function SubCategorySingleDetails({
     {
       label: 'Global.Action.delete',
       icon: Icons.TRASH,
-      onClick: () => setIsDeleteDialogOpen(true),
+      onClick: () => deleteDialog.onTrue(),
       color: 'error',
     },
     ...(!subCategory.category
@@ -128,7 +129,7 @@ export default function SubCategorySingleDetails({
           {
             label: 'Pages.SubCategories.link_to_category',
             icon: Icons.LINK,
-            onClick: () => setIsLinkDialogOpen(true),
+            onClick: () => linkDialog.onTrue(),
             color: 'info',
           },
         ]
@@ -136,7 +137,7 @@ export default function SubCategorySingleDetails({
           {
             label: 'Pages.SubCategories.unlink_from_category',
             icon: Icons.UNLINK,
-            onClick: () => setIsUnlinkDialogOpen(true),
+            onClick: () => unlinkDialog.onTrue(),
             color: 'warning',
           },
         ]),
@@ -198,34 +199,36 @@ export default function SubCategorySingleDetails({
 
       <DeleteDialog
         label={t('Global.Label.sub_category')}
-        isOpen={isDeleteDialogOpen}
-        onClose={() => setIsDeleteDialogOpen(false)}
+        isOpen={deleteDialog.value}
+        onClose={deleteDialog.onFalse}
         handleDelete={handleConfirmDelete}
-        loading={isDeleting}
+        loading={deleting.value}
       />
 
       <SubCategoryLinkCategoryDialog
-        open={isLinkDialogOpen}
-        onClose={() => setIsLinkDialogOpen(false)}
+        open={linkDialog.value}
+        onClose={linkDialog.onFalse}
         subCategoryId={subCategory._id}
       />
 
       <ConfirmDialog
         title={t('Global.Dialog.unlink_title', { label: t('Global.Label.sub_category') })}
-        content={t('Global.Dialog.unlink_content', {
-          label: t('Global.Label.sub_category').toLowerCase(),
-        })}
-        isOpen={isUnlinkDialogOpen}
-        onClose={() => setIsUnlinkDialogOpen(false)}
+        isOpen={unlinkDialog.value}
+        onClose={unlinkDialog.onFalse}
         handleConfirm={handleConfirmUnlink}
-        loading={isUnlinking}
+        loading={unlinking.value}
         actionProps={{
           color: 'warning',
           variant: 'contained',
           startIcon: <Iconify icon={Icons.UNLINK} />,
           children: t('Global.Action.unlink'),
         }}
-      />
+      >
+        {t('Global.Dialog.unlink_content', {
+          label: t('Global.Label.sub_category').toLowerCase(),
+          parent: t('Global.Label.category').toLowerCase(),
+        })}
+      </ConfirmDialog>
     </>
   );
 }

@@ -4,8 +4,7 @@ import { useTranslations } from 'next-intl';
 import { useQueryParams } from '@/lib/hooks/use-query-params';
 import BooleanFilter from '@/view/components/custom-fields/boolean-filter';
 import DebounceSearchField from '@/view/components/custom-fields/debounce-search-field';
-
-import SearchCategoryInput from './search-category-input';
+import { CategoriesAutoComplete } from '@/view/components/api-related/auto-complete-modules';
 
 export default function SubCategoryListFilters() {
   const t = useTranslations();
@@ -25,7 +24,7 @@ export default function SubCategoryListFilters() {
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 3 }}>
-        <SearchCategoryInput
+        <CategoriesAutoComplete
           onChange={(category) => setQueryParam({ categoryId: category?._id })}
           defaultValue={categoryId}
         />
