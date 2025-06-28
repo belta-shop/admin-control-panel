@@ -10,9 +10,9 @@ import { Icons } from '@/lib/config/icons';
 import { UserRole } from '@/lib/types/auth';
 import { Link } from '@/lib/i18n/navigation';
 import { useAuthStore } from '@/lib/store/auth';
-import { SubCategory } from '@/lib/types/api/sub-categories';
 import RHFSwitch from '@/view/components/rhf-hooks/rhf-switch';
 import RHFUpload from '@/view/components/rhf-hooks/rhf-upload';
+import { SubCategoryDetails } from '@/lib/types/api/sub-categories';
 import RHFTextField from '@/view/components/rhf-hooks/rhf-textField';
 import RHFFormProvider, { OnSubmitFunction } from '@/view/components/rhf-hooks/rhf-form-provider';
 
@@ -25,7 +25,7 @@ export interface SubCategoryFormData {
 }
 
 interface SubCategoryFormProps {
-  subCategory?: SubCategory;
+  subCategory?: SubCategoryDetails;
   onSubmit: OnSubmitFunction;
   backPath?: string;
 }

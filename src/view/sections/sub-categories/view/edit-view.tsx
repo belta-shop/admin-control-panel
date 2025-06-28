@@ -4,12 +4,12 @@ import { useSnackbar } from 'notistack';
 import { useTranslations } from 'next-intl';
 
 import { paths } from '@/lib/config/paths';
-import { SubCategory } from '@/lib/types/api/sub-categories';
 import { updateSubCategory } from '@/lib/actions/sub-category';
+import { SubCategoryDetails } from '@/lib/types/api/sub-categories';
 
 import SubCategoryNewEditForm from '../new-edit-form';
 
-export default function SubCategoryEditView({ subCategory }: { subCategory: SubCategory }) {
+export default function SubCategoryEditView({ subCategory }: { subCategory: SubCategoryDetails }) {
   const t = useTranslations();
   const { enqueueSnackbar } = useSnackbar();
 
