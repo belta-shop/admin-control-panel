@@ -170,7 +170,8 @@
       "create": "إنشاء تصنيف فرعي",
       "edit": "تعديل التصنيف الفرعي",
       "link_to_category": "ربط بالتصنيف الرئيسي",
-      "unlink_from_category": "فصل عن التصنيف الرئيسي"
+      "unlink_from_category": "فصل عن التصنيف الرئيسي",
+      "link_to_product": "ربط بالمنتج"
     },
     "Brands": {
       "title": "العلامات التجارية",

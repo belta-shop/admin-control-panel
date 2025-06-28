@@ -16,15 +16,21 @@ import DeleteDialog from '@/view/components/dialog/delete-dialog';
 import ConfirmDialog from '@/view/components/dialog/confirm-dialog';
 import CustomTable from '@/view/components/custom-table/custom-table';
 import ApiListItem from '@/view/components/api-related/api-list-item';
-import { deleteProduct, unlinkProductFromBrand } from '@/lib/actions/product';
+import {
+  deleteProduct,
+  unlinkProductFromBrand,
+  unlinkProductFromSubCategory,
+} from '@/lib/actions/product';
 
 import ProductLinkBrandDialog from './link-product-dialog';
+import ProductLinkSubCategoryDialog from './link-product-sub-dialog';
 
 interface Props {
   items: Product[] | BrandProduct[];
   total: number;
   disablePagination?: boolean;
   showBrand?: boolean;
+  showSubCategory?: boolean;
 }
 
 export default function ProductListTable({
@@ -32,6 +38,7 @@ export default function ProductListTable({
   total,
   disablePagination,
   showBrand = true,
+  showSubCategory = true,
 }: Props) {
   const t = useTranslations('Global');
   const user = useAuthStore((state) => state.user);
@@ -39,6 +46,8 @@ export default function ProductListTable({
 
   const [selectedLinkId, setSelectedLinkId] = useState<string | null>(null);
   const [selectedUnlinkId, setSelectedUnlinkId] = useState<string | null>(null);
+  const [selectedLinkSubId, setSelectedLinkSubId] = useState<string | null>(null);
+  const [selectedUnlinkSubId, setSelectedUnlinkSubId] = useState<string | null>(null);
   const [selectedDeleteId, setSelectedDeleteId] = useState<string | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isUnlinking, setIsUnlinking] = useState(false);
@@ -51,6 +60,7 @@ export default function ProductListTable({
 
   const handleCloseUnlinkDialog = () => {
     setSelectedUnlinkId(null);
+    setSelectedUnlinkSubId(null);
     setIsUnlinking(false);
   };
 
@@ -71,6 +81,23 @@ export default function ProductListTable({
     }
   };
 
+  const handleConfirmUnlinkSub = async () => {
+    if (!selectedUnlinkSubId) return;
+
+    try {
+      setIsUnlinking(true);
+
+      await unlinkProductFromSubCategory(selectedUnlinkSubId);
+
+      enqueueSnackbar(t('Message.unlink_success', { name: t('Label.product') }));
+      handleCloseUnlinkDialog();
+    } catch (error: any) {
+      enqueueSnackbar(error.message, { variant: 'error' });
+    } finally {
+      setIsUnlinking(false);
+    }
+  };
+
   const handleConfirmUnlink = async () => {
     if (!selectedUnlinkId) return;
 
@@ -80,18 +107,18 @@ export default function ProductListTable({
       await unlinkProductFromBrand(selectedUnlinkId);
 
       enqueueSnackbar(t('Message.unlink_success', { name: t('Label.product') }));
+      handleCloseUnlinkDialog();
     } catch (error: any) {
       enqueueSnackbar(error.message, { variant: 'error' });
     } finally {
       setIsUnlinking(false);
-      handleCloseUnlinkDialog();
     }
   };
 
   return (
     <>
       <CustomTable
-        tableHead={getTableHead(showBrand)}
+        tableHead={getTableHead({ showBrand, showSubCategory })}
         data={items.map((item) => ({ ...item, id: item._id }))}
         count={total}
         disablePagination={disablePagination}
@@ -114,6 +141,22 @@ export default function ProductListTable({
             onClick: (item) => setSelectedDeleteId(item.id),
             sx: { color: 'error.main' },
             hide: (item) => item.employeeReadOnly && user?.role === UserRole.EMPLOYEE,
+          },
+          {
+            label: 'Pages.Products.link_to_sub_category',
+            icon: <Iconify icon={Icons.LINK} />,
+            onClick: (item) => setSelectedLinkSubId(item.id),
+            sx: { color: 'info.main' },
+            hide: (item) =>
+              !!item.subcategory || (item.employeeReadOnly && user?.role === UserRole.EMPLOYEE),
+          },
+          {
+            label: 'Pages.Products.unlink_from_sub_category',
+            icon: <Iconify icon={Icons.UNLINK} />,
+            onClick: (item) => setSelectedUnlinkSubId(item.id),
+            sx: { color: 'warning.main' },
+            hide: (item) =>
+              !item.subcategory || (item.employeeReadOnly && user?.role === UserRole.EMPLOYEE),
           },
           {
             label: 'Pages.Products.link_to_brand',
@@ -147,7 +190,26 @@ export default function ProductListTable({
         onClose={() => setSelectedLinkId(null)}
         productId={selectedLinkId || undefined}
       />
+      <ProductLinkSubCategoryDialog
+        open={!!selectedLinkSubId}
+        onClose={() => setSelectedLinkSubId(null)}
+        productId={selectedLinkSubId || undefined}
+      />
 
+      <ConfirmDialog
+        title={t('Dialog.unlink_title', { label: t('Label.product') })}
+        content={t('Dialog.unlink_content', { label: t('Label.product').toLowerCase() })}
+        isOpen={!!selectedUnlinkSubId}
+        onClose={handleCloseUnlinkDialog}
+        handleConfirm={handleConfirmUnlinkSub}
+        loading={isUnlinking}
+        actionProps={{
+          color: 'warning',
+          variant: 'contained',
+          startIcon: <Iconify icon={Icons.UNLINK} />,
+          children: t('Action.unlink'),
+        }}
+      />
       <ConfirmDialog
         title={t('Dialog.unlink_title', { label: t('Label.product') })}
         content={t('Dialog.unlink_content', { label: t('Label.product').toLowerCase() })}
@@ -166,10 +228,16 @@ export default function ProductListTable({
   );
 }
 
-const getTableHead = (showBrand: boolean) => {
+const getTableHead = ({
+  showBrand,
+  showSubCategory,
+}: {
+  showBrand: boolean;
+  showSubCategory: boolean;
+}) => {
   return [
     { id: 'product', label: 'product' },
-    { id: 'subcategory', label: 'sub_category' },
+    ...(showSubCategory ? [{ id: 'subcategory', label: 'sub_category' }] : []),
     ...(showBrand ? [{ id: 'brand', label: 'brand' }] : []),
     { id: 'disabled', label: 'disabled' },
     { id: 'employeeReadOnly', label: 'employee_read_only' },

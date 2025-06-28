@@ -7,11 +7,11 @@ import { SubCategoryFormData } from '@/view/sections/sub-categories/new-edit-for
 import { uploadSingle } from './upload';
 import { RevalidateTags } from '../config/api';
 import { DEFAULT_LIMIT } from '../config/global';
-import { SubCategory } from '../types/api/sub-categories';
+import { SubCategory, SubCategoryDetails } from '../types/api/sub-categories';
 import { getData, postData, patchData, deleteData } from '../utils/crud-fetch-api';
 
 export async function getSubCategory(id: string) {
-  const res = await getData<SubCategory>('/subcategories/staff/:id', {
+  const res = await getData<SubCategoryDetails>('/subcategories/staff/:id', {
     tags: [`${RevalidateTags.SubCategorySingle}-${id}`],
     params: { id },
   });

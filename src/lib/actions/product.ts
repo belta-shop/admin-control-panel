@@ -75,3 +75,31 @@ export async function unlinkProductFromBrand(productId: string) {
   revalidateTag(RevalidateTags.ProductList);
   revalidateTag(`${RevalidateTags.ProductSingle}-${productId}`);
 }
+
+export async function linkProductToSubCategory({
+  subCategoryId,
+  productId,
+}: {
+  subCategoryId: string;
+  productId: string;
+}) {
+  const res = await postData('/products/staff/link-subcategory', {
+    subcategoryId: subCategoryId,
+    productId,
+  });
+
+  if ('error' in res) throw new Error(res.error);
+
+  revalidateTag(RevalidateTags.ProductList);
+  revalidateTag(`${RevalidateTags.ProductSingle}-${productId}`);
+  revalidateTag(`${RevalidateTags.SubCategorySingle}-${subCategoryId}`);
+}
+
+export async function unlinkProductFromSubCategory(productId: string) {
+  const res = await postData('/products/staff/unlink-subcategory', { productId });
+
+  if ('error' in res) throw new Error(res.error);
+
+  revalidateTag(RevalidateTags.ProductList);
+  revalidateTag(`${RevalidateTags.ProductSingle}-${productId}`);
+}

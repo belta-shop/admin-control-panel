@@ -170,7 +170,8 @@
       "create": "Create Sub Category",
       "edit": "Edit Sub Category",
       "link_to_category": "Link to Category",
-      "unlink_from_category": "Unlink from Category"
+      "unlink_from_category": "Unlink from Category",
+      "link_to_product": "Link to Product"
     },
     "Brands": {
       "title": "Brands",
