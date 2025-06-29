@@ -14,7 +14,7 @@ export async function saveSessionCookies(response: LoginResponse) {
   const cookiesStore = await cookies();
 
   cookiesStore.set(COOKIES_KEYS.User, JSON.stringify(user), {
-    expires: new Date(accessTokenExpireDate),
+    expires: new Date(refreshTokenExpireDate),
     httpOnly: true,
     secure: true,
   });
