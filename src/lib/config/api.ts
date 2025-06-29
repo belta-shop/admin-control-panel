@@ -14,4 +14,12 @@ export const enum RevalidateTags {
   // Products
   ProductList = 'product-list',
   ProductSingle = 'product-single',
+
+  // Tags
+  TagList = 'tag-list',
+  TagSingle = 'tag-single',
+
+  // Labels
+  LabelList = 'label-list',
+  LabelSingle = 'label-single',
 }

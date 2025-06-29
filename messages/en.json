@@ -17,6 +17,12 @@
     "Products": {
       "title": "Products | Beltahop"
     },
+    "Tags": {
+      "title": "Tags | Beltahop"
+    },
+    "Labels": {
+      "title": "Labels | Beltahop"
+    },
     "Auth": {
       "login_title": "Login | Beltahop",
       "register_title": "Register | Beltahop",
@@ -77,7 +83,8 @@
       "brand": "Brand",
       "tag": "Tag",
       "offer": "Offer",
-      "product": "Product"
+      "product": "Product",
+      "label": "Label"
     },
     "Helper": {
       "upload_drag_drop_file": "Drag & drop or click to upload file",
@@ -186,7 +193,22 @@
       "link_to_sub_category": "Link to Sub Category",
       "unlink_from_sub_category": "Unlink from Sub Category",
       "link_to_brand": "Link to Brand",
-      "unlink_from_brand": "Unlink from Brand"
+      "unlink_from_brand": "Unlink from Brand",
+      "unlink_from_tag": "Unlink from Tag"
+    },
+    "Tags": {
+      "title": "Tags",
+      "create": "Create Tag",
+      "edit": "Edit Tag",
+      "link_to_product": "Link to Product",
+      "unlink_from_product": "Unlink from Product"
+    },
+    "Labels": {
+      "title": "Labels",
+      "create": "Create Label",
+      "edit": "Edit Label",
+      "link_to_product": "Link to Product",
+      "unlink_from_product": "Unlink from Product"
     }
   }
 }

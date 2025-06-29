@@ -13,6 +13,7 @@ import { Product } from '@/lib/types/api/products';
 import { Iconify } from '@/view/components/iconify';
 import { useBoolean } from '@/lib/hooks/use-boolean';
 import { BrandProduct } from '@/lib/types/api/brands';
+import { unlinkTagFromProduct } from '@/lib/actions/tags';
 import DeleteDialog from '@/view/components/dialog/delete-dialog';
 import ConfirmDialog from '@/view/components/dialog/confirm-dialog';
 import CustomTable from '@/view/components/custom-table/custom-table';
@@ -32,6 +33,7 @@ interface Props {
   disablePagination?: boolean;
   showBrand?: boolean;
   showSubCategory?: boolean;
+  tagId?: string;
 }
 
 export default function ProductListTable({
@@ -40,6 +42,7 @@ export default function ProductListTable({
   disablePagination,
   showBrand = true,
   showSubCategory = true,
+  tagId,
 }: Props) {
   const t = useTranslations('Global');
   const { enqueueSnackbar } = useSnackbar();
@@ -49,7 +52,7 @@ export default function ProductListTable({
   const [selectedLinkBrandId, setSelectedLinkBrandId] = useState<string | null>(null);
   const [selectedLinkSubCategoryId, setSelectedLinkSubCategoryId] = useState<string | null>(null);
   const [selectedUnlinkId, setSelectedUnlinkId] = useState<string | null>(null);
-  const [unlinkType, setUnlinkType] = useState<'subCategory' | 'brand' | null>(null);
+  const [unlinkType, setUnlinkType] = useState<'subCategory' | 'brand' | 'tag' | null>(null);
   const [selectedDeleteId, setSelectedDeleteId] = useState<string | null>(null);
   const deleting = useBoolean(false);
   const unlinking = useBoolean(false);
@@ -89,6 +92,8 @@ export default function ProductListTable({
 
       await (unlinkType === 'brand'
         ? unlinkProductFromBrand(selectedUnlinkId)
+        : unlinkType === 'tag' && tagId
+        ? unlinkTagFromProduct({ productId: selectedUnlinkId, tagId })
         : unlinkProductFromSubCategory(selectedUnlinkId));
 
       enqueueSnackbar(t('Message.unlink_success', { name: t('Label.product') }));
@@ -126,6 +131,16 @@ export default function ProductListTable({
             onClick: (item) => setSelectedDeleteId(item.id),
             sx: { color: 'error.main' },
             hide: (item) => item.employeeReadOnly && user?.role === UserRole.EMPLOYEE,
+          },
+          {
+            label: 'Pages.Products.unlink_from_tag',
+            icon: <Iconify icon={Icons.UNLINK} />,
+            onClick: (item) => {
+              setSelectedUnlinkId(item.id);
+              setUnlinkType('tag');
+            },
+            sx: { color: 'warning.main' },
+            hide: (item) => !tagId || !item.tags.includes(tagId),
           },
           {
             label: 'Pages.Products.link_to_sub_category',
@@ -202,7 +217,13 @@ export default function ProductListTable({
       >
         {t('Dialog.unlink_content', {
           label: t('Label.product').toLowerCase(),
-          parent: t(unlinkType === 'brand' ? 'Label.brand' : 'Label.sub_category').toLowerCase(),
+          parent: t(
+            unlinkType === 'brand'
+              ? 'Label.brand'
+              : unlinkType === 'subCategory'
+              ? 'Label.sub_category'
+              : 'Label.tag'
+          ).toLowerCase(),
         })}
       </ConfirmDialog>
     </>

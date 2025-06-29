@@ -17,6 +17,12 @@
     "Products": {
       "title": "المنتجات | Beltahop"
     },
+    "Tags": {
+      "title": "الوسوم | Beltahop"
+    },
+    "Labels": {
+      "title": "التسميات | Beltahop"
+    },
     "Auth": {
       "login_title": "تسجيل الدخول | Beltahop",
       "register_title": "إنشاء حساب | Beltahop",
@@ -33,7 +39,7 @@
     "brands": "العلامات التجارية",
     "products": "المنتجات",
     "offers": "العروض",
-    "tags": "التصنيفات",
+    "tags": "الوسوم",
     "labels": "التسميات"
   },
   "Global": {
@@ -75,9 +81,10 @@
       "no": "لا",
       "sub_category": "التصنيف الفرعي",
       "brand": "العلامة التجارية",
-      "tag": "التصنيف",
+      "tag": "الوسم",
       "offer": "العرض",
-      "product": "المنتج"
+      "product": "المنتج",
+      "label": "التسمية"
     },
     "Helper": {
       "upload_drag_drop_file": "اسحب وأفلت الملف هنا أو انقر للتحميل",
@@ -186,7 +193,22 @@
       "link_to_sub_category": "ربط بالتصنيف الفرعي",
       "unlink_from_sub_category": "فصل عن التصنيف الفرعي",
       "link_to_brand": "ربط بالعلامة التجارية",
-      "unlink_from_brand": "فصل عن العلامة التجارية"
+      "unlink_from_brand": "فصل عن العلامة التجارية",
+      "unlink_from_tag": "فصل عن الوسم"
+    },
+    "Tags": {
+      "title": "الوسوم",
+      "create": "إنشاء وسم",
+      "edit": "تعديل الوسم",
+      "link_to_product": "ربط بالمنتج",
+      "unlink_from_product": "فصل عن المنتج"
+    },
+    "Labels": {
+      "title": "التسميات",
+      "create": "إنشاء تسمية",
+      "edit": "تعديل التسمية",
+      "link_to_product": "ربط بالمنتج",
+      "unlink_from_product": "فصل عن المنتج"
     }
   }
 }

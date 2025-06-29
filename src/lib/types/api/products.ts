@@ -13,7 +13,7 @@ export interface Product {
   brand: Brand | null;
   subcategory: SubCategory | null;
   labels: string[];
-  tags: Brand[];
+  tags: string[];
   quantity: number;
   disabled: boolean;
   price: number;
