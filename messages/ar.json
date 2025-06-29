@@ -21,7 +21,7 @@
       "title": "الوسوم | Beltahop"
     },
     "Labels": {
-      "title": "التسميات | Beltahop"
+      "title": "العناوين | Beltahop"
     },
     "Auth": {
       "login_title": "تسجيل الدخول | Beltahop",
@@ -40,7 +40,7 @@
     "products": "المنتجات",
     "offers": "العروض",
     "tags": "الوسوم",
-    "labels": "التسميات"
+    "labels": "العناوين"
   },
   "Global": {
     "Validation": {
@@ -59,7 +59,8 @@
       "otp_length": "يجب أن يتكون رمز التحقق من 6 أحرف",
       "name_ar_required": "الاسم العربي مطلوب",
       "name_en_required": "الاسم الإنجليزي مطلوب",
-      "cover_required": "صورة الغلاف مطلوبة"
+      "cover_required": "صورة الغلاف مطلوبة",
+      "color_required": "اللون مطلوب"
     },
     "Label": {
       "email": "البريد الإلكتروني",
@@ -84,7 +85,8 @@
       "tag": "الوسم",
       "offer": "العرض",
       "product": "المنتج",
-      "label": "التسمية"
+      "label": "العنوان",
+      "color": "اللون"
     },
     "Helper": {
       "upload_drag_drop_file": "اسحب وأفلت الملف هنا أو انقر للتحميل",
@@ -194,7 +196,8 @@
       "unlink_from_sub_category": "فصل عن التصنيف الفرعي",
       "link_to_brand": "ربط بالعلامة التجارية",
       "unlink_from_brand": "فصل عن العلامة التجارية",
-      "unlink_from_tag": "فصل عن الوسم"
+      "unlink_from_tag": "فصل عن الوسم",
+      "unlink_from_label": "فصل عن العنوان"
     },
     "Tags": {
       "title": "الوسوم",
@@ -204,9 +207,9 @@
       "unlink_from_product": "فصل عن المنتج"
     },
     "Labels": {
-      "title": "التسميات",
-      "create": "إنشاء تسمية",
-      "edit": "تعديل التسمية",
+      "title": "العناوين",
+      "create": "إنشاء عنوان",
+      "edit": "تعديل العنوان",
       "link_to_product": "ربط بالمنتج",
       "unlink_from_product": "فصل عن المنتج"
     }

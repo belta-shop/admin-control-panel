@@ -59,7 +59,8 @@
       "otp_length": "OTP must be 6 characters long",
       "name_ar_required": "Arabic name is required",
       "name_en_required": "English name is required",
-      "cover_required": "Cover image is required"
+      "cover_required": "Cover image is required",
+      "color_required": "Color is required"
     },
     "Label": {
       "email": "Email",
@@ -84,7 +85,8 @@
       "tag": "Tag",
       "offer": "Offer",
       "product": "Product",
-      "label": "Label"
+      "label": "Label",
+      "color": "Color"
     },
     "Helper": {
       "upload_drag_drop_file": "Drag & drop or click to upload file",
@@ -194,7 +196,8 @@
       "unlink_from_sub_category": "Unlink from Sub Category",
       "link_to_brand": "Link to Brand",
       "unlink_from_brand": "Unlink from Brand",
-      "unlink_from_tag": "Unlink from Tag"
+      "unlink_from_tag": "Unlink from Tag",
+      "unlink_from_label": "Unlink from Label"
     },
     "Tags": {
       "title": "Tags",
