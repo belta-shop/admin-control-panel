@@ -22,6 +22,7 @@ export default function ControlPanelLayout({ children }: { children: React.React
           ml: { xs: 0, md: `${NAVBAR_WIDTH[navbarType]}px` },
           width: { xs: '100%', md: `calc(100% - ${NAVBAR_WIDTH[navbarType]}px)` },
           mt: `${HEADER_HEIGHT}px`,
+          mb: 4,
           minHeight: `calc(100svh - ${HEADER_HEIGHT}px)`,
         }}
       >

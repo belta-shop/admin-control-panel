@@ -196,7 +196,9 @@
       "unlink_from_sub_category": "فصل عن التصنيف الفرعي",
       "link_to_brand": "ربط بالعلامة التجارية",
       "unlink_from_brand": "فصل عن العلامة التجارية",
+      "link_to_tag": "ربط بالوسم",
       "unlink_from_tag": "فصل عن الوسم",
+      "link_to_label": "ربط بالعنوان",
       "unlink_from_label": "فصل عن العنوان"
     },
     "Tags": {

@@ -3,10 +3,21 @@
 import { revalidateTag } from 'next/cache';
 
 import { RevalidateTags } from '../config/api';
-import { Product } from '../types/api/products';
 import { DEFAULT_LIMIT } from '../config/global';
 import { ListResponse } from '../types/api/metadata';
+import { Product, ProductDetails } from '../types/api/products';
 import { getData, postData, deleteData } from '../utils/crud-fetch-api';
+
+export async function getProduct(id: string) {
+  const res = await getData<ProductDetails>('/products/staff/:id', {
+    tags: [`${RevalidateTags.ProductSingle}-${id}`],
+    params: { id },
+  });
+
+  if ('error' in res) throw new Error(res.error);
+
+  return res.data;
+}
 
 export type ProductListQueries = Partial<
   Record<

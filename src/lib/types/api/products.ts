@@ -1,4 +1,6 @@
+import { Tag } from './tags';
 import { Brand } from './brands';
+import { Label } from './labels';
 import { SubCategory } from './sub-categories';
 
 export interface Product {
@@ -20,6 +22,11 @@ export interface Product {
   finalPrice: number;
   offer: Offer;
   employeeReadOnly: boolean;
+}
+
+export interface ProductDetails extends Omit<Product, 'labels' | 'tags'> {
+  labels: Label[];
+  tags: Tag[];
 }
 
 export interface Offer {

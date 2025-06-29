@@ -17,7 +17,7 @@ export default function ApiListItem({
   const { current: currentNameKey, other: otherNameKey } = useLocaleNameKey();
   const content = (
     <>
-      <ListItemAvatar>
+      <ListItemAvatar sx={{ display: 'flex', alignItems: 'center' }}>
         <CustomImage src={cover} />
       </ListItemAvatar>
       <ListItemText primary={name[currentNameKey]} secondary={name[otherNameKey]} />
