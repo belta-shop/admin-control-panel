@@ -94,6 +94,7 @@ export default function ProductNewEditForm({ product, onSubmit, backPath }: Prod
             label={t('Global.Label.cover_list')}
             icon={Icons.UPLOAD}
             variant="images"
+            draggable
           />
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>

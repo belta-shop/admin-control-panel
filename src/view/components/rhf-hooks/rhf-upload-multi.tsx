@@ -14,6 +14,7 @@ type Props = {
   disabled?: boolean;
   maxSize?: number; // in bytes
   icon?: string;
+  draggable?: boolean;
 } & (
   | {
       acceptedTypes?: FileType[]; // e.g., ['image/png', 'application/pdf']
@@ -46,8 +47,11 @@ export default function RHFUploadMulti({ name, label, helperText, ...props }: Pr
             files={field.value || []}
             error={!!error}
             helperText={error?.message || helperText}
-            onDrop={(acceptedFiles: File[]) => {
+            onDrop={(acceptedFiles: (File | string)[]) => {
               const newFiles = [...(field.value || []), ...acceptedFiles];
+              field.onChange(newFiles);
+            }}
+            onReorder={(newFiles: (File | string)[]) => {
               field.onChange(newFiles);
             }}
             onRemove={(index: number) => {

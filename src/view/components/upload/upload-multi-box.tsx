@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useDropzone } from 'react-dropzone';
 import { Box, alpha, Stack, Button, Typography, IconButton, FormHelperText } from '@mui/material';
@@ -23,7 +23,9 @@ export type UploadMultiBoxProps = {
   onDrop: (acceptedFiles: File[]) => void;
   onRemove: (index: number) => void;
   onRemoveAll: () => void;
+  onReorder?: (newFiles: (File | string)[]) => void;
   icon?: string;
+  draggable?: boolean;
 } & (
   | {
       acceptedTypes?: FileType[]; // e.g., ['image/png', 'application/pdf']
@@ -40,10 +42,13 @@ export default function UploadMultiBox({
   onDrop,
   onRemove,
   onRemoveAll,
+  onReorder,
   icon,
+  draggable = false,
   ...props
 }: UploadMultiBoxProps) {
   const t = useTranslations();
+  const [draggedIndex, setDraggedIndex] = useState<number | null>(null);
 
   const acceptedTypes =
     'acceptedTypes' in props
@@ -66,6 +71,40 @@ export default function UploadMultiBox({
       : undefined,
     onDrop,
   });
+
+  const handleDragStart = (e: React.DragEvent, index: number) => {
+    if (!draggable) return;
+    setDraggedIndex(index);
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/html', index.toString());
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    if (!draggable) return;
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+  };
+
+  const handleDrop = (e: React.DragEvent, dropIndex: number) => {
+    if (!draggable || draggedIndex === null) return;
+    e.preventDefault();
+
+    if (draggedIndex === dropIndex) {
+      setDraggedIndex(null);
+      return;
+    }
+
+    const newFiles = [...files];
+    const [draggedFile] = newFiles.splice(draggedIndex, 1);
+    newFiles.splice(dropIndex, 0, draggedFile);
+
+    onReorder?.(newFiles);
+    setDraggedIndex(null);
+  };
+
+  const handleDragEnd = () => {
+    setDraggedIndex(null);
+  };
 
   const errorMessage = useMemo(() => {
     if (fileRejections.length === 0) return null;
@@ -135,9 +174,20 @@ export default function UploadMultiBox({
       </UploadBoxWrapper>
 
       {!!files.length && (
-        <Stack direction="row" spacing={1} sx={{ mt: 2 }}>
+        <Stack direction="row" spacing={1} sx={{ mt: 2, flexWrap: 'wrap', gap: 1 }}>
           {files.map((file, index) => (
-            <Preview key={index} file={file} onRemove={() => onRemove(index)} />
+            <Preview
+              key={index}
+              file={file}
+              index={index}
+              onRemove={() => onRemove(index)}
+              draggable={draggable}
+              isDragging={draggedIndex === index}
+              onDragStart={handleDragStart}
+              onDragOver={handleDragOver}
+              onDrop={handleDrop}
+              onDragEnd={handleDragEnd}
+            />
           ))}
         </Stack>
       )}
@@ -168,12 +218,37 @@ export default function UploadMultiBox({
   );
 }
 
-function Preview({ file, onRemove }: { file: File | string; onRemove: () => void }) {
+function Preview({
+  file,
+  index,
+  onRemove,
+  draggable,
+  isDragging,
+  onDragStart,
+  onDragOver,
+  onDrop,
+  onDragEnd,
+}: {
+  file: File | string;
+  index: number;
+  onRemove: () => void;
+  draggable?: boolean;
+  isDragging?: boolean;
+  onDragStart: (e: React.DragEvent, index: number) => void;
+  onDragOver: (e: React.DragEvent) => void;
+  onDrop: (e: React.DragEvent, index: number) => void;
+  onDragEnd: () => void;
+}) {
   const isString = typeof file === 'string';
   const preview = isString ? file : URL.createObjectURL(file);
 
   return (
     <Box
+      draggable={draggable}
+      onDragStart={(e) => onDragStart(e, index)}
+      onDragOver={onDragOver}
+      onDrop={(e) => onDrop(e, index)}
+      onDragEnd={onDragEnd}
       sx={{
         position: 'relative',
         width: 100,
@@ -181,6 +256,16 @@ function Preview({ file, onRemove }: { file: File | string; onRemove: () => void
         borderRadius: 1,
         overflow: 'hidden',
         border: (theme) => `1px solid ${alpha(theme.palette.grey[500], 0.24)}`,
+        cursor: draggable ? 'grab' : 'default',
+        opacity: isDragging ? 0.5 : 1,
+        transform: isDragging ? 'scale(0.95)' : 'scale(1)',
+        transition: 'all 0.2s ease',
+        '&:active': {
+          cursor: draggable ? 'grabbing' : 'default',
+        },
+        '&:hover': {
+          transform: draggable ? 'scale(1.02)' : 'scale(1)',
+        },
       }}
     >
       <Box
@@ -191,6 +276,7 @@ function Preview({ file, onRemove }: { file: File | string; onRemove: () => void
           width: '100%',
           height: '100%',
           objectFit: 'cover',
+          pointerEvents: 'none', // Prevent image drag
         }}
       />
       <IconButton
@@ -209,6 +295,26 @@ function Preview({ file, onRemove }: { file: File | string; onRemove: () => void
       >
         <Iconify icon={Icons.XMARK} />
       </IconButton>
+      {draggable && (
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 4,
+            left: 4,
+            bgcolor: (theme) => alpha(theme.palette.grey[900], 0.48),
+            color: 'common.white',
+            borderRadius: '50%',
+            width: 20,
+            height: 20,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: 12,
+          }}
+        >
+          ⋮⋮
+        </Box>
+      )}
     </Box>
   );
 }
