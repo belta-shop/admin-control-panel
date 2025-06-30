@@ -79,6 +79,10 @@ export const useDialogActions = () => {
     openDeleteDialog('delete-tag', tagId);
   };
 
+  const openDeleteOffer = (offerId: string) => {
+    openDeleteDialog('delete-offer', offerId);
+  };
+
   return {
     // Link actions
     openLinkProductToBrand,
@@ -104,5 +108,6 @@ export const useDialogActions = () => {
     openDeleteSubCategory,
     openDeleteLabel,
     openDeleteTag,
+    openDeleteOffer,
   };
 };

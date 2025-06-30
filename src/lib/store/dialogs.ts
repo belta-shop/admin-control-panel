@@ -19,7 +19,8 @@ export type DialogType =
   | 'delete-category'
   | 'delete-sub-category'
   | 'delete-label'
-  | 'delete-tag';
+  | 'delete-tag'
+  | 'delete-offer';
 
 export interface DialogState {
   // Dialog visibility

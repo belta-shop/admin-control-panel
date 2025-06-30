@@ -23,6 +23,9 @@
     "Labels": {
       "title": "Labels | Beltahop"
     },
+    "Offers": {
+      "title": "Offers | Beltahop"
+    },
     "Auth": {
       "login_title": "Login | Beltahop",
       "register_title": "Register | Beltahop",
@@ -60,7 +63,15 @@
       "name_ar_required": "Arabic name is required",
       "name_en_required": "English name is required",
       "cover_required": "Cover image is required",
-      "color_required": "Color is required"
+      "color_required": "Color is required",
+      "product_required": "Product is required",
+      "type_required": "Type is required",
+      "value_required": "Value is required",
+      "value_min": "Value must be at least 0.01",
+      "offer_quantity_min": "Offer quantity must be at least 1",
+      "offer_quantity_required": "Offer quantity is required",
+      "max_per_client_min": "Max per client must be at least 1",
+      "max_per_client_required": "Max per client is required"
     },
     "Label": {
       "email": "Email",
@@ -86,7 +97,16 @@
       "offer": "Offer",
       "product": "Product",
       "label": "Label",
-      "color": "Color"
+      "color": "Color",
+      "type": "Type",
+      "percent": "Percent",
+      "fixed": "Fixed",
+      "offer_quantity": "Offer Quantity",
+      "max_per_client": "Max Per Client",
+      "value": "Value",
+      "original_price": "Original Price",
+      "minimum_price": "Minimum Price",
+      "new_price": "New Price"
     },
     "Helper": {
       "upload_drag_drop_file": "Drag & drop or click to upload file",
@@ -95,7 +115,8 @@
       "upload_drop_here_files": "Drop the files here",
       "upload_file_size_error": "File size ({current}) exceeds the maximum allowed size ({max})",
       "upload_file_type_error": "File type not allowed. Accepted types: {accepted}",
-      "upload_accepted_types": "Accepted file types: {types}"
+      "upload_accepted_types": "Accepted file types: {types}",
+      "minimum_price_enforced": "Minimum price enforced"
     },
     "Action": {
       "login": "Login",
@@ -214,6 +235,11 @@
       "edit": "Edit Label",
       "link_to_product": "Link to Product",
       "unlink_from_product": "Unlink from Product"
+    },
+    "Offers": {
+      "title": "Offers",
+      "create": "Create Offer",
+      "edit": "Edit Offer"
     }
   }
 }

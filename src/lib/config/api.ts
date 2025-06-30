@@ -22,4 +22,7 @@ export const enum RevalidateTags {
   // Labels
   LabelList = 'label-list',
   LabelSingle = 'label-single',
+
+  // Offers
+  OfferList = 'offer-list',
 }

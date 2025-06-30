@@ -23,6 +23,9 @@
     "Labels": {
       "title": "العناوين | Beltahop"
     },
+    "Offers": {
+      "title": "العروض | Beltahop"
+    },
     "Auth": {
       "login_title": "تسجيل الدخول | Beltahop",
       "register_title": "إنشاء حساب | Beltahop",
@@ -60,7 +63,15 @@
       "name_ar_required": "الاسم العربي مطلوب",
       "name_en_required": "الاسم الإنجليزي مطلوب",
       "cover_required": "صورة الغلاف مطلوبة",
-      "color_required": "اللون مطلوب"
+      "color_required": "اللون مطلوب",
+      "product_required": "المنتج مطلوب",
+      "type_required": "نوع العرض مطلوب",
+      "value_required": "القيمة مطلوبة",
+      "value_min": "يجب ألا تقل القيمة عن 0.01",
+      "offer_quantity_min": "يجب ألا تقل كمية العروض عن 1",
+      "offer_quantity_required": "كمية العروض مطلوبة",
+      "max_per_client_min": "يجب ألا يقل الحد الأقصى لكل عميل عن 1",
+      "max_per_client_required": "الحد الأقصى لكل عميل مطلوب"
     },
     "Label": {
       "email": "البريد الإلكتروني",
@@ -86,7 +97,16 @@
       "offer": "العرض",
       "product": "المنتج",
       "label": "العنوان",
-      "color": "اللون"
+      "color": "اللون",
+      "type": "النوع",
+      "percent": "النسبة المئوية",
+      "fixed": "القيمة الثابتة",
+      "offer_quantity": "كمية العروض",
+      "max_per_client": "الحد الأقصى لكل عميل",
+      "value": "القيمة",
+      "original_price": "السعر الأصلي",
+      "minimum_price": "الحد الأدنى للسعر",
+      "new_price": "السعر بعد الخصم"
     },
     "Helper": {
       "upload_drag_drop_file": "اسحب وأفلت الملف هنا أو انقر للتحميل",
@@ -95,7 +115,8 @@
       "upload_drop_here_files": "أفلت الملفات هنا",
       "upload_file_size_error": "حجم الملف ({current}) يتجاوز الحد الأقصى المسموح به ({max})",
       "upload_file_type_error": "نوع الملف غير مسموح به. الأنواع المقبولة: {accepted}",
-      "upload_accepted_types": "أنواع الملفات المقبولة: {types}"
+      "upload_accepted_types": "أنواع الملفات المقبولة: {types}",
+      "minimum_price_enforced": "تم تطبيق الحد الأدنى للسعر"
     },
     "Action": {
       "login": "تسجيل الدخول",
@@ -214,6 +235,11 @@
       "edit": "تعديل العنوان",
       "link_to_product": "ربط بالمنتج",
       "unlink_from_product": "فصل عن المنتج"
+    },
+    "Offers": {
+      "title": "العروض",
+      "create": "إنشاء عرض",
+      "edit": "تعديل العرض"
     }
   }
 }

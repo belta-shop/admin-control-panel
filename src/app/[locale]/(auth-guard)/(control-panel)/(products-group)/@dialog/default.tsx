@@ -27,6 +27,7 @@ import {
   unlinkProductFromBrand,
   unlinkProductFromSubCategory,
 } from '@/lib/actions/product';
+import { deleteOffer } from '@/lib/actions/offers';
 
 export default function Page() {
   const t = useTranslations();
@@ -65,6 +66,10 @@ export default function Page() {
         case 'delete-tag':
           await deleteTag(sourceId);
           enqueueSnackbar(t('Global.Message.delete_success', { name: t('Global.Label.tag') }));
+          break;
+        case 'delete-offer':
+          await deleteOffer(sourceId);
+          enqueueSnackbar(t('Global.Message.delete_success', { name: t('Global.Label.offer') }));
           break;
       }
 
@@ -131,6 +136,8 @@ export default function Page() {
         return t('Global.Label.label');
       case 'delete-tag':
         return t('Global.Label.tag');
+      case 'delete-offer':
+        return t('Global.Label.offer');
       default:
         return '';
     }
