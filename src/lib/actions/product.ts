@@ -2,11 +2,14 @@
 
 import { revalidateTag } from 'next/cache';
 
+import { ProductFormData } from '@/view/sections/products/new-edit-form';
+
+import { uploadSingle } from './upload';
 import { RevalidateTags } from '../config/api';
 import { DEFAULT_LIMIT } from '../config/global';
 import { ListResponse } from '../types/api/metadata';
 import { Product, ProductDetails } from '../types/api/products';
-import { getData, postData, deleteData } from '../utils/crud-fetch-api';
+import { getData, postData, patchData, deleteData } from '../utils/crud-fetch-api';
 
 export async function getProduct(id: string) {
   const res = await getData<ProductDetails>('/products/staff/:id', {
@@ -113,4 +116,41 @@ export async function unlinkProductFromSubCategory(productId: string) {
 
   revalidateTag(RevalidateTags.ProductList);
   revalidateTag(`${RevalidateTags.ProductSingle}-${productId}`);
+}
+
+export async function createProduct(data: ProductFormData) {
+  data.coverList = await Promise.all(
+    data.coverList.map((cover) => {
+      if (cover instanceof File) {
+        return uploadSingle(cover);
+      }
+      return cover;
+    })
+  );
+
+  const res = await postData('/products/staff', data);
+
+  if ('error' in res) throw new Error(res.error);
+
+  revalidateTag(RevalidateTags.ProductList);
+}
+
+export async function updateProduct(id: string, data: ProductFormData) {
+  data.coverList = await Promise.all(
+    data.coverList.map((cover) => {
+      if (cover instanceof File) {
+        return uploadSingle(cover);
+      }
+      return cover;
+    })
+  );
+
+  const res = await patchData('/products/staff/:id', data, {
+    params: { id },
+  });
+
+  if ('error' in res) throw new Error(res.error);
+
+  revalidateTag(RevalidateTags.ProductList);
+  revalidateTag(`${RevalidateTags.ProductSingle}-${id}`);
 }

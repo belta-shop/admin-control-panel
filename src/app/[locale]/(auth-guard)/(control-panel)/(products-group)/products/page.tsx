@@ -45,7 +45,7 @@ export default async function Page({
           variant="contained"
           size="large"
           LinkComponent={Link}
-          href={paths.products.categories.create}
+          href={paths.products.products.create}
         >
           {t('create')}
         </Button>
