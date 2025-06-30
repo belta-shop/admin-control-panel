@@ -1,28 +1,32 @@
+import { useTranslations } from 'next-intl';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
-import { Theme, SxProps } from '@mui/material/styles';
+
+import { Icons } from '@/lib/config/icons';
+
+import SimplePlaceholder from '../placeholder/simple';
 
 // ----------------------------------------------------------------------
 
 type Props = {
   notFound: boolean;
-  sx?: SxProps<Theme>;
 };
 
-export default function TableNoData({ notFound, sx }: Props) {
+export default function TableNoData({ notFound }: Props) {
+  const t = useTranslations();
+
   return (
     <TableRow>
       {notFound ? (
         <TableCell colSpan={12}>
-          {/* <EmptyContent
-            filled
-            title="No Data"
+          <SimplePlaceholder
+            icon={Icons.SAD}
+            text={t('Global.Helper.no_data')}
             sx={{
-              py: 10,
-              ...sx,
+              py: 3,
+              color: 'text.secondary',
             }}
-          /> */}
-          no data
+          />
         </TableCell>
       ) : (
         <TableCell colSpan={12} sx={{ p: 0 }} />

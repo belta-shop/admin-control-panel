@@ -18,6 +18,7 @@ export const enum Icons {
   LINK = 'ant-design:link-outlined',
   UNLINK = 'mynaui:unlink',
   CHECK = 'ic:round-check',
+  SAD = 'mingcute:sad-fill',
 }
 
 export const enum NavbarIcons {

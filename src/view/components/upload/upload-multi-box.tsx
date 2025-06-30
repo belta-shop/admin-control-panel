@@ -3,7 +3,7 @@
 import { useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useDropzone } from 'react-dropzone';
-import { Box, alpha, Stack, Button, Typography, IconButton, FormHelperText } from '@mui/material';
+import { Box, alpha, Stack, Button, IconButton, FormHelperText } from '@mui/material';
 
 import { Icons } from '@/lib/config/icons';
 import { fSize } from '@/lib/utils/format';
@@ -12,6 +12,7 @@ import { FileType, FileVariant } from '@/lib/types/upload';
 
 import { Iconify } from '../iconify';
 import { UploadBoxWrapper } from './styles';
+import SimplePlaceholder from '../placeholder/simple';
 import { getVariantFileTypes, getVariantUploadIcon } from './utils';
 
 export type UploadMultiBoxProps = {
@@ -149,28 +150,17 @@ export default function UploadMultiBox({
       >
         <input {...getInputProps()} />
 
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            height: 1,
-          }}
-        >
-          <Iconify
-            icon={
-              icon ??
-              getVariantUploadIcon('variant' in props && props.variant ? props.variant : 'all')
-            }
-            fontSize={64}
-          />
-          <Typography variant="body2" sx={{ mt: 1 }}>
-            {isDragActive
+        <SimplePlaceholder
+          icon={
+            icon ??
+            getVariantUploadIcon('variant' in props && props.variant ? props.variant : 'all')
+          }
+          text={
+            isDragActive
               ? t('Global.Helper.upload_drop_here_files')
-              : t('Global.Helper.upload_drag_drop_files')}
-          </Typography>
-        </Box>
+              : t('Global.Helper.upload_drag_drop_files')
+          }
+        />
       </UploadBoxWrapper>
 
       {!!files.length && (

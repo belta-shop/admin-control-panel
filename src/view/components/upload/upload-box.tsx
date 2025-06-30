@@ -3,14 +3,14 @@
 import { useTranslations } from 'next-intl';
 import { useMemo, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Box, Typography, FormHelperText } from '@mui/material';
+import { Box, FormHelperText } from '@mui/material';
 
 import { fSize } from '@/lib/utils/format';
 import { MAX_FILE_SIZE } from '@/lib/config/upload';
 import { FileType, FileVariant } from '@/lib/types/upload';
 
-import { Iconify } from '../iconify';
 import { UploadBoxWrapper } from './styles';
+import SimplePlaceholder from '../placeholder/simple';
 import { getVariantFileTypes, getVariantUploadIcon } from './utils';
 
 type UploadBoxProps = {
@@ -116,26 +116,13 @@ export default function UploadBox({
         <Preview file={file} />
 
         {!file && (
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: 1,
-            }}
-          >
-            <Iconify
-              icon={
-                icon ??
-                getVariantUploadIcon('variant' in props && props.variant ? props.variant : 'all')
-              }
-              fontSize={64}
-            />
-            <Typography variant="body2" sx={{ mt: 1 }}>
-              {isDragActive ? t('upload_drop_here_file') : t('upload_drag_drop_file')}
-            </Typography>
-          </Box>
+          <SimplePlaceholder
+            icon={
+              icon ??
+              getVariantUploadIcon('variant' in props && props.variant ? props.variant : 'all')
+            }
+            text={isDragActive ? t('upload_drop_here_file') : t('upload_drag_drop_file')}
+          />
         )}
       </UploadBoxWrapper>
 

@@ -130,7 +130,8 @@
       "upload_file_size_error": "حجم الملف ({current}) يتجاوز الحد الأقصى المسموح به ({max})",
       "upload_file_type_error": "نوع الملف غير مسموح به. الأنواع المقبولة: {accepted}",
       "upload_accepted_types": "أنواع الملفات المقبولة: {types}",
-      "min_price_enforced": "تم تطبيق الحد الأدنى للسعر"
+      "min_price_enforced": "تم تطبيق الحد الأدنى للسعر",
+      "no_data": "لا يوجد بيانات"
     },
     "Action": {
       "login": "تسجيل الدخول",

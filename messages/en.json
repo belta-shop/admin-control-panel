@@ -130,7 +130,8 @@
       "upload_file_size_error": "File size ({current}) exceeds the maximum allowed size ({max})",
       "upload_file_type_error": "File type not allowed. Accepted types: {accepted}",
       "upload_accepted_types": "Accepted file types: {types}",
-      "min_price_enforced": "Minimum price enforced"
+      "min_price_enforced": "Minimum price enforced",
+      "no_data": "No data found"
     },
     "Action": {
       "login": "Login",
