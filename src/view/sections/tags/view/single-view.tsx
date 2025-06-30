@@ -9,7 +9,7 @@ import { useBoolean } from '@/lib/hooks/use-boolean';
 
 import TagSingleDetails from '../single-details';
 import ProductListTable from '../../products/list-table';
-import TagLinkProductDialog from '../link-product-dialog';
+import TagLinkProductDialog from '../../../components/dialog/products-group/tag-link-product-dialog';
 
 export default function TagSingleView({ tag }: { tag: TagDetails }) {
   const t = useTranslations();

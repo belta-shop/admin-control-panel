@@ -9,7 +9,7 @@ import { BrandDetails } from '@/lib/types/api/brands';
 
 import BrandSingleDetails from '../single-details';
 import ProductListTable from '../../products/list-table';
-import BrandLinkProductDialog from '../link-product-dialog';
+import BrandLinkProductDialog from '../../../components/dialog/products-group/brand-link-product-dialog';
 
 export default function BrandSingleView({ brand }: { brand: BrandDetails }) {
   const t = useTranslations();

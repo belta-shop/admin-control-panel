@@ -9,7 +9,7 @@ import { SubCategoryDetails } from '@/lib/types/api/sub-categories';
 
 import SubCategorySingleDetails from '../single-details';
 import ProductListTable from '../../products/list-table';
-import SubCategoryLinkProductDialog from '../link-product-dialog';
+import SubCategoryLinkProductDialog from '../../../components/dialog/products-group/sub-category-link-product-dialog';
 
 export default function SubCategorySingleView({
   subCategory,

@@ -9,7 +9,7 @@ import { LabelDetails } from '@/lib/types/api/labels';
 
 import LabelSingleDetails from '../single-details';
 import ProductListTable from '../../products/list-table';
-import LabelLinkProductDialog from '../link-product-dialog';
+import LabelLinkProductDialog from '../../../components/dialog/products-group/label-link-product-dialog';
 
 export default function LabelSingleView({ label }: { label: LabelDetails }) {
   const t = useTranslations();

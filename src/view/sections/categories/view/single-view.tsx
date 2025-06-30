@@ -9,7 +9,7 @@ import { CategoryDetails } from '@/lib/types/api/categories';
 
 import CategorySingleDetails from '../single-details';
 import SubCategoryListTable from '../../sub-categories/list-table';
-import CategoryLinkSubCategoryDialog from '../link-sub-category-dialog';
+import CategoryLinkSubCategoryDialog from '../../../components/dialog/products-group/category-link-sub-category-dialog';
 
 export default function CategorySingleView({ category }: { category: CategoryDetails }) {
   const t = useTranslations();

@@ -9,8 +9,8 @@ import { ProductDetails } from '@/lib/types/api/products';
 import TagListTable from '../../tags/list-table';
 import ProductSingleDetails from '../single-details';
 import LabelListTable from '../../labels/list-table';
-import ProductLinkTagDialog from '../link-tag-dialog';
-import ProductLinkLabelDialog from '../link-label-dialog';
+import ProductLinkTagDialog from '../../../components/dialog/products-group/product-link-tag-dialog';
+import ProductLinkLabelDialog from '../../../components/dialog/products-group/product-link-label-dialog';
 
 export default function ProductSingleView({ product }: { product: ProductDetails }) {
   const t = useTranslations();

@@ -33,6 +33,21 @@ export default function DetailsCard({
 }: DetailsCardProps) {
   const t = useTranslations();
 
+  const renderFields = (
+    <Stack spacing={2}>
+      {fields.map((field) => (
+        <Stack direction="row" spacing={1} key={field.label} alignItems="center" flexWrap="wrap">
+          <Typography variant="h6" component="span">
+            {t(field.label)}:
+          </Typography>
+          <Typography variant="h6" color="text.secondary" component="span">
+            {field.value}
+          </Typography>
+        </Stack>
+      ))}
+    </Stack>
+  );
+
   const renderActions = (
     <Stack
       direction={{ xs: 'row', sm: 'column' }}
@@ -60,25 +75,7 @@ export default function DetailsCard({
       <CardContent>
         <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="start" spacing={3}>
           {children}
-          <Stack spacing={2}>
-            {fields.map((field) => (
-              <Stack
-                direction="row"
-                spacing={1}
-                key={field.label}
-                alignItems="center"
-                flexWrap="wrap"
-              >
-                <Typography variant="h6" component="span">
-                  {field.label}:
-                </Typography>
-                <Typography variant="h6" color="text.secondary" component="span">
-                  {field.value}
-                </Typography>
-              </Stack>
-            ))}
-          </Stack>
-
+          {renderFields}
           {showActions && actions.length > 0 && renderActions}
         </Stack>
       </CardContent>
