@@ -1,10 +1,10 @@
 'use client';
 
 import { useCallback } from 'react';
+import { Switch } from '@mui/material';
 import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { enqueueSnackbar } from 'notistack';
-import { Card, Stack, Switch, Button, Tooltip, Typography, CardContent } from '@mui/material';
 
 import { Icons } from '@/lib/config/icons';
 import { paths } from '@/lib/config/paths';
@@ -18,6 +18,7 @@ import DeleteDialog from '@/view/components/dialog/delete-dialog';
 import { SubCategoryDetails } from '@/lib/types/api/sub-categories';
 import ConfirmDialog from '@/view/components/dialog/confirm-dialog';
 import ApiListItem from '@/view/components/api-related/api-list-item';
+import DetailsCard, { DetailsField, DetailsAction } from '@/view/components/details-card';
 import { deleteSubCategory, unlinkSubCategoryFromCategory } from '@/lib/actions/sub-category';
 
 import SubCategoryLinkCategoryDialog from './link-category-dialog';
@@ -68,7 +69,7 @@ export default function SubCategorySingleDetails({
     }
   }, [subCategory._id, t, router, deleteDialog, deleting]);
 
-  const textFields = [
+  const fields: DetailsField[] = [
     {
       label: t('Global.Label.name_ar'),
       value: subCategory.nameAr,
@@ -112,7 +113,7 @@ export default function SubCategorySingleDetails({
       : []),
   ];
 
-  const actions = [
+  const actions: DetailsAction[] = [
     {
       label: 'Global.Action.edit',
       icon: Icons.PENCIL,
@@ -130,7 +131,7 @@ export default function SubCategorySingleDetails({
             label: 'Pages.SubCategories.link_to_category',
             icon: Icons.LINK,
             onClick: () => linkDialog.onTrue(),
-            color: 'info',
+            color: 'info' as const,
           },
         ]
       : [
@@ -138,64 +139,32 @@ export default function SubCategorySingleDetails({
             label: 'Pages.SubCategories.unlink_from_category',
             icon: Icons.UNLINK,
             onClick: () => unlinkDialog.onTrue(),
-            color: 'warning',
+            color: 'warning' as const,
           },
         ]),
   ];
 
-  const renderActions = (
-    <Stack
-      direction={{ xs: 'row', sm: 'column' }}
-      spacing={2}
-      marginInlineStart={{ sm: 'auto' }}
-      flexWrap="wrap"
-    >
-      {actions.map((action) => (
-        <Tooltip key={action.label} title={t(action.label)}>
-          <Button
-            color={action.color as 'primary'}
-            variant="outlined"
-            onClick={action.onClick}
-            sx={{ p: 1, minWidth: 0, borderRadius: 1000 }}
-          >
-            <Iconify icon={action.icon} fontSize={24} />
-          </Button>
-        </Tooltip>
-      ))}
-    </Stack>
+  const imageComponent = (
+    <CustomImage
+      src={subCategory.cover}
+      sx={{
+        width: { xs: '100%', sm: '200px' },
+        flexShrink: 0,
+        height: 'auto',
+        aspectRatio: 1,
+      }}
+    />
   );
 
   return (
     <>
-      <Card>
-        <CardContent>
-          <Stack direction={{ xs: 'column', sm: 'row' }} alignItems="start" spacing={3}>
-            <CustomImage
-              src={subCategory.cover}
-              sx={{
-                width: { xs: '100%', sm: '200px' },
-                flexShrink: 0,
-                height: 'auto',
-                aspectRatio: 1,
-              }}
-            />
-            <Stack spacing={2}>
-              {textFields.map((field) => (
-                <Stack direction="row" spacing={1} key={field.label} alignItems="center">
-                  <Typography variant="h6" component="span">
-                    {field.label}:
-                  </Typography>
-                  <Typography variant="h6" color="text.secondary" component="span">
-                    {field.value}
-                  </Typography>
-                </Stack>
-              ))}
-            </Stack>
-
-            {!(user?.role === UserRole.EMPLOYEE && subCategory.employeeReadOnly) && renderActions}
-          </Stack>
-        </CardContent>
-      </Card>
+      <DetailsCard
+        fields={fields}
+        actions={actions}
+        showActions={!(user?.role === UserRole.EMPLOYEE && subCategory.employeeReadOnly)}
+      >
+        {imageComponent}
+      </DetailsCard>
 
       <DeleteDialog
         label={t('Global.Label.sub_category')}
