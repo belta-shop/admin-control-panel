@@ -56,7 +56,7 @@ export async function createOffer(data: OfferFormData) {
   return res.data;
 }
 
-export async function updateOffer(id: string, data: OfferFormData) {
+export async function updateOffer(id: string, data: Partial<OfferFormData>) {
   const res = await patchData('/offers/:id', data, {
     params: { id },
   });

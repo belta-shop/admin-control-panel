@@ -102,11 +102,12 @@
       "percent": "Percent",
       "fixed": "Fixed",
       "offer_quantity": "Offer Quantity",
+      "offer_type": "Offer Type",
       "max_per_client": "Max Per Client",
       "value": "Value",
       "original_price": "Original Price",
-      "minimum_price": "Minimum Price",
-      "new_price": "New Price"
+      "min_price": "Min Price",
+      "final_price": "Final Price"
     },
     "Helper": {
       "upload_drag_drop_file": "Drag & drop or click to upload file",
@@ -116,7 +117,7 @@
       "upload_file_size_error": "File size ({current}) exceeds the maximum allowed size ({max})",
       "upload_file_type_error": "File type not allowed. Accepted types: {accepted}",
       "upload_accepted_types": "Accepted file types: {types}",
-      "minimum_price_enforced": "Minimum price enforced"
+      "min_price_enforced": "Minimum price enforced"
     },
     "Action": {
       "login": "Login",
@@ -139,7 +140,9 @@
       "send_otp": "Send OTP",
       "confirm": "Confirm",
       "link": "Link",
-      "unlink": "Unlink"
+      "unlink": "Unlink",
+      "enable": "Enable",
+      "disable": "Disable"
     },
     "Table": {
       "rows_per_page": "Rows per page:",

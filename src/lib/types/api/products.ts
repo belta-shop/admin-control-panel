@@ -1,6 +1,7 @@
 import { Tag } from './tags';
 import { Brand } from './brands';
 import { Label } from './labels';
+import { Offer } from './offers';
 import { SubCategory } from './sub-categories';
 
 export interface Product {
@@ -18,30 +19,14 @@ export interface Product {
   tags: string[];
   quantity: number;
   disabled: boolean;
+  minPrice: number;
   price: number;
   finalPrice: number;
-  offer: Offer;
+  offer?: Omit<Offer, 'product'> & { product: string };
   employeeReadOnly: boolean;
 }
 
 export interface ProductDetails extends Omit<Product, 'labels' | 'tags'> {
   labels: Label[];
   tags: Tag[];
-}
-
-export interface Offer {
-  _id: string;
-  nameAr: string;
-  nameEn: string;
-  product: string;
-  offerQuantity: number;
-  maxPerClient: number;
-  quantityPurchased: number;
-  disabled: boolean;
-  type: string;
-  value: number;
-  employeeReadOnly: boolean;
-  createdAt: Date;
-  updatedAt: Date;
-  __v: number;
 }

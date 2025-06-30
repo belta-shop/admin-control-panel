@@ -16,6 +16,7 @@ export interface DetailsAction {
   icon: string;
   onClick: () => void;
   color?: 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning';
+  loading?: boolean;
 }
 
 interface DetailsCardProps {
@@ -23,6 +24,8 @@ interface DetailsCardProps {
   actions?: DetailsAction[];
   children?: ReactNode;
   showActions?: boolean;
+  disableTranslateFields?: boolean;
+  disableTranslateActions?: boolean;
 }
 
 export default function DetailsCard({
@@ -30,6 +33,8 @@ export default function DetailsCard({
   actions = [],
   children,
   showActions = true,
+  disableTranslateFields = false,
+  disableTranslateActions = false,
 }: DetailsCardProps) {
   const t = useTranslations();
 
@@ -38,7 +43,7 @@ export default function DetailsCard({
       {fields.map((field) => (
         <Stack direction="row" spacing={1} key={field.label} alignItems="center" flexWrap="wrap">
           <Typography variant="h6" component="span">
-            {t(field.label)}:
+            {disableTranslateFields ? field.label : t(field.label)}:
           </Typography>
           <Typography variant="h6" color="text.secondary" component="span">
             {field.value}
@@ -56,12 +61,16 @@ export default function DetailsCard({
       flexWrap="wrap"
     >
       {actions.map((action) => (
-        <Tooltip key={action.label} title={t(action.label)}>
+        <Tooltip
+          key={action.label}
+          title={disableTranslateActions ? action.label : t(action.label)}
+        >
           <Button
             color={action.color as 'primary'}
             variant="outlined"
             onClick={action.onClick}
             sx={{ p: 1, minWidth: 0, borderRadius: 1000 }}
+            loading={action.loading}
           >
             <Iconify icon={action.icon} fontSize={24} />
           </Button>

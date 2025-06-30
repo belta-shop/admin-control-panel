@@ -101,12 +101,13 @@
       "type": "النوع",
       "percent": "النسبة المئوية",
       "fixed": "القيمة الثابتة",
-      "offer_quantity": "كمية العروض",
+      "offer_quantity": "كمية العرض",
+      "offer_type": "نوع العرض",
       "max_per_client": "الحد الأقصى لكل عميل",
       "value": "القيمة",
       "original_price": "السعر الأصلي",
-      "minimum_price": "الحد الأدنى للسعر",
-      "new_price": "السعر بعد الخصم"
+      "min_price": "الحد الأدنى للسعر",
+      "final_price": "السعر بعد الخصم"
     },
     "Helper": {
       "upload_drag_drop_file": "اسحب وأفلت الملف هنا أو انقر للتحميل",
@@ -116,7 +117,7 @@
       "upload_file_size_error": "حجم الملف ({current}) يتجاوز الحد الأقصى المسموح به ({max})",
       "upload_file_type_error": "نوع الملف غير مسموح به. الأنواع المقبولة: {accepted}",
       "upload_accepted_types": "أنواع الملفات المقبولة: {types}",
-      "minimum_price_enforced": "تم تطبيق الحد الأدنى للسعر"
+      "min_price_enforced": "تم تطبيق الحد الأدنى للسعر"
     },
     "Action": {
       "login": "تسجيل الدخول",
@@ -139,7 +140,9 @@
       "send_otp": "إرسال رمز التحقق",
       "confirm": "تأكيد",
       "link": "ربط",
-      "unlink": "فصل"
+      "unlink": "فصل",
+      "enable": "تفعيل",
+      "disable": "تعطيل"
     },
     "Table": {
       "rows_per_page": "عدد الصفوف في الصفحة:",

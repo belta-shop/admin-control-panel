@@ -139,7 +139,7 @@ export default function OfferNewEditForm({ offer, onSubmit, backPath }: OfferFor
   // Calculate prices
   const { originalPrice, minPrice, displayPrice, isMinPriceEnforced } = useMemo(() => {
     const originalPrice = product?.price || 0;
-    const minPrice = product?.finalPrice || 0;
+    const minPrice = product?.minPrice || 0;
 
     // Calculate new price
     let calculatedPrice = originalPrice;
@@ -250,7 +250,7 @@ export default function OfferNewEditForm({ offer, onSubmit, backPath }: OfferFor
                       component="label"
                       htmlFor="minimum-price"
                     >
-                      {t('Global.Label.minimum_price')}:
+                      {t('Global.Label.min_price')}:
                     </Typography>
                     <Typography id="minimum-price" variant="subtitle1">
                       {minPrice}
@@ -264,7 +264,7 @@ export default function OfferNewEditForm({ offer, onSubmit, backPath }: OfferFor
                       component="label"
                       htmlFor="new-price"
                     >
-                      {t('Global.Label.new_price')}:
+                      {t('Global.Label.final_price')}:
                     </Typography>
                     <Typography id="new-price" variant="h6">
                       {displayPrice}
@@ -272,7 +272,7 @@ export default function OfferNewEditForm({ offer, onSubmit, backPath }: OfferFor
                   </Box>
                   {isMinPriceEnforced && (
                     <FormHelperText error sx={{ ml: 0.5 }}>
-                      {t('Global.Helper.minimum_price_enforced')}
+                      {t('Global.Helper.min_price_enforced')}
                     </FormHelperText>
                   )}
                 </Stack>
