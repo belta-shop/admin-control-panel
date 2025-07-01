@@ -9,6 +9,7 @@ import { useRouter } from '@/lib/i18n/navigation';
 import { Product } from '@/lib/types/api/products';
 import { Iconify } from '@/view/components/iconify';
 import { BrandProduct } from '@/lib/types/api/brands';
+import StatusChip from '@/view/components/status-chip';
 import { useDialogActions } from '@/lib/hooks/use-dialog-actions';
 import CustomTable from '@/view/components/custom-table/custom-table';
 import ApiListItem from '@/view/components/api-related/api-list-item';
@@ -168,9 +169,7 @@ const customRender = {
         href={paths.products.brands.single(row.brand._id)}
       />
     ) : null,
-  disabled: (row: Product | BrandProduct) => (
-    <Switch checked={row.disabled} sx={{ '& input': { cursor: 'default !important' } }} />
-  ),
+  disabled: (row: Product | BrandProduct) => <StatusChip value={!row.disabled} />,
   employeeReadOnly: (row: Product | BrandProduct) => (
     <Switch checked={row.employeeReadOnly} sx={{ '& input': { cursor: 'default !important' } }} />
   ),

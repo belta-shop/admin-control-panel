@@ -12,6 +12,7 @@ import { useAuthStore } from '@/lib/store/auth';
 import { TagDetails } from '@/lib/types/api/tags';
 import RHFSwitch from '@/view/components/rhf-hooks/rhf-switch';
 import RHFTextField from '@/view/components/rhf-hooks/rhf-textField';
+import RHFReversedSwitch from '@/view/components/rhf-hooks/rhf-reversed-switch';
 import RHFFormProvider, { OnSubmitFunction } from '@/view/components/rhf-hooks/rhf-form-provider';
 
 export interface TagFormData {
@@ -62,7 +63,7 @@ export default function TagNewEditForm({ tag, onSubmit, backPath }: TagFormProps
           <RHFTextField name="nameEn" label={t('Global.Label.name_en')} fullWidth />
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>
-          <RHFSwitch name="disabled" label={t('Global.Label.disabled')} />
+          <RHFReversedSwitch name="disabled" label={t('Global.Label.status')} />
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>
           <RHFSwitch

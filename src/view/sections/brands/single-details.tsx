@@ -7,6 +7,7 @@ import { Icons } from '@/lib/config/icons';
 import { paths } from '@/lib/config/paths';
 import { UserRole } from '@/lib/types/auth';
 import { useAuthStore } from '@/lib/store/auth';
+import StatusChip from '@/view/components/status-chip';
 import { Brand, BrandDetails } from '@/lib/types/api/brands';
 import CustomImage from '@/view/components/image/custom-image';
 import { useDialogActions } from '@/lib/hooks/use-dialog-actions';
@@ -28,9 +29,7 @@ export default function BrandSingleDetails({ brand }: { brand: Brand | BrandDeta
     },
     {
       label: 'Global.Label.disabled',
-      value: (
-        <Switch checked={brand.disabled} sx={{ '& input': { cursor: 'default !important' } }} />
-      ),
+      value: <StatusChip value={!brand.disabled} />,
     },
     {
       label: 'Global.Label.employee_read_only',

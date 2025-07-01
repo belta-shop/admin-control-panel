@@ -7,6 +7,7 @@ import { Brand } from '@/lib/types/api/brands';
 import { useAuthStore } from '@/lib/store/auth';
 import { useRouter } from '@/lib/i18n/navigation';
 import { Iconify } from '@/view/components/iconify';
+import StatusChip from '@/view/components/status-chip';
 import CustomImage from '@/view/components/image/custom-image';
 import { useDialogActions } from '@/lib/hooks/use-dialog-actions';
 import CustomTable from '@/view/components/custom-table/custom-table';
@@ -61,9 +62,7 @@ const tableHead = [
 
 const customRender = {
   cover: (row: Brand) => <CustomImage src={row.cover} />,
-  disabled: (row: Brand) => (
-    <Switch checked={row.disabled} sx={{ '& input': { cursor: 'default !important' } }} />
-  ),
+  disabled: (row: Brand) => <StatusChip value={!row.disabled} />,
   employeeReadOnly: (row: Brand) => (
     <Switch checked={row.employeeReadOnly} sx={{ '& input': { cursor: 'default !important' } }} />
   ),

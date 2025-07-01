@@ -8,6 +8,7 @@ import { UserRole } from '@/lib/types/auth';
 import { useAuthStore } from '@/lib/store/auth';
 import { useRouter } from '@/lib/i18n/navigation';
 import { Iconify } from '@/view/components/iconify';
+import StatusChip from '@/view/components/status-chip';
 import { SubCategory } from '@/lib/types/api/sub-categories';
 import CustomImage from '@/view/components/image/custom-image';
 import { useDialogActions } from '@/lib/hooks/use-dialog-actions';
@@ -85,9 +86,7 @@ const tableHead = [
 
 const customRender = {
   cover: (row: SubCategory) => <CustomImage src={row.cover} />,
-  disabled: (row: SubCategory) => (
-    <Switch checked={row.disabled} sx={{ '& input': { cursor: 'default !important' } }} />
-  ),
+  disabled: (row: SubCategory) => <StatusChip value={!row.disabled} />,
   employeeReadOnly: (row: SubCategory) => (
     <Switch checked={row.employeeReadOnly} sx={{ '& input': { cursor: 'default !important' } }} />
   ),

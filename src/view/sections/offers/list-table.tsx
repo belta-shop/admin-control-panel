@@ -9,6 +9,7 @@ import { Offer } from '@/lib/types/api/offers';
 import { useAuthStore } from '@/lib/store/auth';
 import { useRouter } from '@/lib/i18n/navigation';
 import { Iconify } from '@/view/components/iconify';
+import StatusChip from '@/view/components/status-chip';
 import { useDialogActions } from '@/lib/hooks/use-dialog-actions';
 import CustomTable from '@/view/components/custom-table/custom-table';
 
@@ -61,9 +62,7 @@ const tableHead = [
 const customRender = {
   type: (row: Offer) => (row.type === 'percent' ? 'Percent' : 'Fixed'),
   value: (row: Offer) => (row.type === 'percent' ? `${(row.value * 100).toFixed(1)}%` : row.value),
-  disabled: (row: Offer) => (
-    <Switch checked={row.disabled} sx={{ '& input': { cursor: 'default !important' } }} />
-  ),
+  disabled: (row: Offer) => <StatusChip value={!row.disabled} />,
   employeeReadOnly: (row: Offer) => (
     <Switch checked={row.employeeReadOnly} sx={{ '& input': { cursor: 'default !important' } }} />
   ),

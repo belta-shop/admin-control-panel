@@ -9,6 +9,7 @@ import { Tag } from '@/lib/types/api/tags';
 import { UserRole } from '@/lib/types/auth';
 import { useAuthStore } from '@/lib/store/auth';
 import { TagDetails } from '@/lib/types/api/tags';
+import StatusChip from '@/view/components/status-chip';
 import { useDialogActions } from '@/lib/hooks/use-dialog-actions';
 import DetailsCard, { DetailsField, DetailsAction } from '@/view/components/details-card';
 
@@ -28,7 +29,7 @@ export default function TagSingleDetails({ tag }: { tag: Tag | TagDetails }) {
     },
     {
       label: 'Global.Label.disabled',
-      value: <Switch checked={tag.disabled} sx={{ '& input': { cursor: 'default !important' } }} />,
+      value: <StatusChip value={!tag.disabled} />,
     },
     {
       label: 'Global.Label.employee_read_only',

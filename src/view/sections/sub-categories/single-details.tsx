@@ -7,6 +7,7 @@ import { Icons } from '@/lib/config/icons';
 import { paths } from '@/lib/config/paths';
 import { UserRole } from '@/lib/types/auth';
 import { useAuthStore } from '@/lib/store/auth';
+import StatusChip from '@/view/components/status-chip';
 import { SubCategory } from '@/lib/types/api/sub-categories';
 import CustomImage from '@/view/components/image/custom-image';
 import { useDialogActions } from '@/lib/hooks/use-dialog-actions';
@@ -38,12 +39,7 @@ export default function SubCategorySingleDetails({
     },
     {
       label: 'Global.Label.disabled',
-      value: (
-        <Switch
-          checked={subCategory.disabled}
-          sx={{ '& input': { cursor: 'default !important' } }}
-        />
-      ),
+      value: <StatusChip value={!subCategory.disabled} />,
     },
     {
       label: 'Global.Label.employee_read_only',

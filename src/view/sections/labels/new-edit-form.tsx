@@ -13,6 +13,7 @@ import { LabelDetails } from '@/lib/types/api/labels';
 import RHFSwitch from '@/view/components/rhf-hooks/rhf-switch';
 import RHFTextField from '@/view/components/rhf-hooks/rhf-textField';
 import RHFColorField from '@/view/components/rhf-hooks/rhf-color-field';
+import RHFReversedSwitch from '@/view/components/rhf-hooks/rhf-reversed-switch';
 import RHFFormProvider, { OnSubmitFunction } from '@/view/components/rhf-hooks/rhf-form-provider';
 
 export interface LabelFormData {
@@ -72,7 +73,7 @@ export default function LabelNewEditForm({ label, onSubmit, backPath }: LabelFor
         </Grid>
 
         <Grid size={{ xs: 12, sm: 6 }}>
-          <RHFSwitch name="disabled" label={t('Global.Label.disabled')} />
+          <RHFReversedSwitch name="disabled" label={t('Global.Label.status')} />
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>
           <RHFSwitch

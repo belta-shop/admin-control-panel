@@ -3,6 +3,7 @@
 import { Grid } from '@mui/material';
 import { useTranslations } from 'next-intl';
 
+import StatusFilter from '@/view/components/custom-fields/status-filter';
 import BooleanFilter from '@/view/components/custom-fields/boolean-filter';
 import DebounceSearchField from '@/view/components/custom-fields/debounce-search-field';
 
@@ -20,11 +21,12 @@ export default function OfferListFilters() {
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 3 }}>
-        <BooleanFilter
+        <StatusFilter
           name="disabled"
-          label={t('Global.Label.disabled')}
+          label={t('Global.Label.status')}
           clearOtherParams={['page']}
           fullWidth
+          reverse
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 3 }}>

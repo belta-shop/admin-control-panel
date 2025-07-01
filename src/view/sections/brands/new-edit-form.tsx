@@ -14,6 +14,7 @@ import { BrandDetails } from '@/lib/types/api/brands';
 import RHFSwitch from '@/view/components/rhf-hooks/rhf-switch';
 import RHFUpload from '@/view/components/rhf-hooks/rhf-upload';
 import RHFTextField from '@/view/components/rhf-hooks/rhf-textField';
+import RHFReversedSwitch from '@/view/components/rhf-hooks/rhf-reversed-switch';
 import RHFFormProvider, { OnSubmitFunction } from '@/view/components/rhf-hooks/rhf-form-provider';
 export interface BrandFormData {
   nameAr: string;
@@ -75,7 +76,7 @@ export default function BrandNewEditForm({ brand, onSubmit, backPath }: Props) {
           <RHFTextField name="nameEn" label={t('Global.Label.name_en')} fullWidth />
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>
-          <RHFSwitch name="disabled" label={t('Global.Label.disabled')} />
+          <RHFReversedSwitch name="disabled" label={t('Global.Label.status')} />
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>
           <RHFSwitch

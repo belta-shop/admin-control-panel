@@ -9,6 +9,7 @@ import { Label } from '@/lib/types/api/labels';
 import { useAuthStore } from '@/lib/store/auth';
 import { useRouter } from '@/lib/i18n/navigation';
 import { Iconify } from '@/view/components/iconify';
+import StatusChip from '@/view/components/status-chip';
 import { useDialogActions } from '@/lib/hooks/use-dialog-actions';
 import CustomTable from '@/view/components/custom-table/custom-table';
 
@@ -80,9 +81,7 @@ const customRender = {
       <Box sx={{ width: 32, height: 32, borderRadius: 10, backgroundColor: row.color }} />
     </Tooltip>
   ),
-  disabled: (row: Label) => (
-    <Switch checked={row.disabled} sx={{ '& input': { cursor: 'default !important' } }} />
-  ),
+  disabled: (row: Label) => <StatusChip value={!row.disabled} />,
   employeeReadOnly: (row: Label) => (
     <Switch checked={row.employeeReadOnly} sx={{ '& input': { cursor: 'default !important' } }} />
   ),

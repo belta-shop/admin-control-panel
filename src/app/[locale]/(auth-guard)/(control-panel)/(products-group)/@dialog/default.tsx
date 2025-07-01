@@ -6,6 +6,7 @@ import { enqueueSnackbar } from 'notistack';
 
 import { Icons } from '@/lib/config/icons';
 import { deleteBrand } from '@/lib/actions/brands';
+import { deleteOffer } from '@/lib/actions/offers';
 import { Iconify } from '@/view/components/iconify';
 import { deleteCategory } from '@/lib/actions/category';
 import { DialogType, useDialogStore } from '@/lib/store/dialogs';
@@ -27,7 +28,6 @@ import {
   unlinkProductFromBrand,
   unlinkProductFromSubCategory,
 } from '@/lib/actions/product';
-import { deleteOffer } from '@/lib/actions/offers';
 
 export default function Page() {
   const t = useTranslations();

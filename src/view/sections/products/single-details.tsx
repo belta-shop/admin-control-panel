@@ -8,6 +8,7 @@ import { paths } from '@/lib/config/paths';
 import { UserRole } from '@/lib/types/auth';
 import { useAuthStore } from '@/lib/store/auth';
 import { Product } from '@/lib/types/api/products';
+import StatusChip from '@/view/components/status-chip';
 import { ProductDetails } from '@/lib/types/api/products';
 import CustomImage from '@/view/components/image/custom-image';
 import { useDialogActions } from '@/lib/hooks/use-dialog-actions';
@@ -36,9 +37,7 @@ export default function ProductSingleDetails({ product }: { product: Product | P
     },
     {
       label: 'Global.Label.disabled',
-      value: (
-        <Switch checked={product.disabled} sx={{ '& input': { cursor: 'default !important' } }} />
-      ),
+      value: <StatusChip value={!product.disabled} />,
     },
     {
       label: 'Global.Label.employee_read_only',

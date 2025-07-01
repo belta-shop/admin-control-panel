@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Switch } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { useTranslations } from 'next-intl';
 
 import { Icons } from '@/lib/config/icons';
 import { updateOffer } from '@/lib/actions/offers';
+import StatusChip from '@/view/components/status-chip';
 import DetailsCard from '@/view/components/details-card';
 import { ProductDetails } from '@/lib/types/api/products';
 import { useDialogActions } from '@/lib/hooks/use-dialog-actions';
@@ -69,12 +69,7 @@ export default function ProductOfferCard({ product }: { product: ProductDetails 
           },
           {
             label: 'Global.Label.disabled',
-            value: (
-              <Switch
-                checked={offer.disabled}
-                sx={{ '& input': { cursor: 'default !important' } }}
-              />
-            ),
+            value: <StatusChip value={!offer.disabled} />,
           },
         ]
       : []),

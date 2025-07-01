@@ -2,6 +2,7 @@ import { Grid } from '@mui/material';
 import { useTranslations } from 'next-intl';
 
 import { useQueryParams } from '@/lib/hooks/use-query-params';
+import StatusFilter from '@/view/components/custom-fields/status-filter';
 import BooleanFilter from '@/view/components/custom-fields/boolean-filter';
 import DebounceSearchField from '@/view/components/custom-fields/debounce-search-field';
 import { CategoriesAutoComplete } from '@/view/components/api-related/auto-complete-modules';
@@ -30,11 +31,12 @@ export default function SubCategoryListFilters() {
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 3 }}>
-        <BooleanFilter
+        <StatusFilter
           name="disabled"
-          label={t('Global.Label.disabled')}
+          label={t('Global.Label.status')}
           clearOtherParams={['page']}
           fullWidth
+          reverse
         />
       </Grid>
       <Grid size={{ xs: 12, sm: 3 }}>

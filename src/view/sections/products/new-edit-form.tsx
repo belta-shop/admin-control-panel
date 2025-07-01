@@ -14,6 +14,7 @@ import { ProductDetails } from '@/lib/types/api/products';
 import RHFSwitch from '@/view/components/rhf-hooks/rhf-switch';
 import RHFTextField from '@/view/components/rhf-hooks/rhf-textField';
 import RHFUploadMulti from '@/view/components/rhf-hooks/rhf-upload-multi';
+import RHFReversedSwitch from '@/view/components/rhf-hooks/rhf-reversed-switch';
 import RHFFormProvider, { OnSubmitFunction } from '@/view/components/rhf-hooks/rhf-form-provider';
 
 export interface ProductFormData {
@@ -141,7 +142,7 @@ export default function ProductNewEditForm({ product, onSubmit, backPath }: Prod
           <RHFTextField name="price" label={t('Global.Label.price')} type="number" fullWidth />
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>
-          <RHFSwitch name="disabled" label={t('Global.Label.disabled')} />
+          <RHFReversedSwitch name="disabled" label={t('Global.Label.status')} />
         </Grid>
         <Grid size={{ xs: 12, sm: 6 }}>
           <RHFSwitch

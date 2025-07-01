@@ -9,6 +9,7 @@ import { UserRole } from '@/lib/types/auth';
 import { Label } from '@/lib/types/api/labels';
 import { useAuthStore } from '@/lib/store/auth';
 import { LabelDetails } from '@/lib/types/api/labels';
+import StatusChip from '@/view/components/status-chip';
 import { useDialogActions } from '@/lib/hooks/use-dialog-actions';
 import DetailsCard, { DetailsField, DetailsAction } from '@/view/components/details-card';
 
@@ -36,9 +37,7 @@ export default function LabelSingleDetails({ label }: { label: Label | LabelDeta
     },
     {
       label: 'Global.Label.disabled',
-      value: (
-        <Switch checked={label.disabled} sx={{ '& input': { cursor: 'default !important' } }} />
-      ),
+      value: <StatusChip value={!label.disabled} />,
     },
     {
       label: 'Global.Label.employee_read_only',

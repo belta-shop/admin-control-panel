@@ -7,6 +7,7 @@ import { Icons } from '@/lib/config/icons';
 import { paths } from '@/lib/config/paths';
 import { UserRole } from '@/lib/types/auth';
 import { useAuthStore } from '@/lib/store/auth';
+import StatusChip from '@/view/components/status-chip';
 import CustomImage from '@/view/components/image/custom-image';
 import { useDialogActions } from '@/lib/hooks/use-dialog-actions';
 import { Category, CategoryDetails } from '@/lib/types/api/categories';
@@ -32,9 +33,7 @@ export default function CategorySingleDetails({
     },
     {
       label: 'Global.Label.disabled',
-      value: (
-        <Switch checked={category.disabled} sx={{ '& input': { cursor: 'default !important' } }} />
-      ),
+      value: <StatusChip value={!category.disabled} />,
     },
     {
       label: 'Global.Label.employee_read_only',

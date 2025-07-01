@@ -1,6 +1,7 @@
 import { Theme, Components } from '@mui/material';
 
 import { list } from './list';
+import { chip } from './chip';
 import { stack } from './stack';
 import { table } from './table';
 import { button } from './button';
@@ -21,5 +22,6 @@ export default function themeComponents(theme: Theme): Components {
     ...switchComponent(theme),
     ...table(theme),
     ...list(theme),
+    ...chip(theme),
   };
 }

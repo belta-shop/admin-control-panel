@@ -24,6 +24,7 @@ import { OfferDetails } from '@/lib/types/api/offers';
 import RHFSwitch from '@/view/components/rhf-hooks/rhf-switch';
 import RHFTextField from '@/view/components/rhf-hooks/rhf-textField';
 import ApiListItem from '@/view/components/api-related/api-list-item';
+import RHFReversedSwitch from '@/view/components/rhf-hooks/rhf-reversed-switch';
 import { ProductsAutoComplete } from '@/view/components/api-related/auto-complete-modules';
 import RHFFormProvider, { OnSubmitFunction } from '@/view/components/rhf-hooks/rhf-form-provider';
 
@@ -187,7 +188,7 @@ export default function OfferNewEditForm({ offer, onSubmit, backPath }: OfferFor
             type="number"
             fullWidth
           />
-          <RHFSwitch name="disabled" label={t('Global.Label.disabled')} />
+          <RHFReversedSwitch name="disabled" label={t('Global.Label.status')} />
           <RHFSwitch
             name="employeeReadOnly"
             label={t('Global.Label.employee_read_only')}

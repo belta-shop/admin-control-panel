@@ -9,6 +9,7 @@ import { UserRole } from '@/lib/types/auth';
 import { useAuthStore } from '@/lib/store/auth';
 import { useRouter } from '@/lib/i18n/navigation';
 import { Iconify } from '@/view/components/iconify';
+import StatusChip from '@/view/components/status-chip';
 import { useDialogActions } from '@/lib/hooks/use-dialog-actions';
 import CustomTable from '@/view/components/custom-table/custom-table';
 
@@ -74,9 +75,7 @@ const tableHead = [
 ];
 
 const customRender = {
-  disabled: (row: Tag) => (
-    <Switch checked={row.disabled} sx={{ '& input': { cursor: 'default !important' } }} />
-  ),
+  disabled: (row: Tag) => <StatusChip value={!row.disabled} />,
   employeeReadOnly: (row: Tag) => (
     <Switch checked={row.employeeReadOnly} sx={{ '& input': { cursor: 'default !important' } }} />
   ),
