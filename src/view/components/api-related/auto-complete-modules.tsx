@@ -27,7 +27,7 @@ export function CategoriesAutoComplete(props: Props<Category>) {
   return (
     <ApiAutoComplete
       label={t('category')}
-      searchFunction={async (search) => (await getCategoryList({ search })).items}
+      searchFunction={async (search) => (await getCategoryList({ search })).data}
       {...props}
     />
   );
@@ -38,7 +38,7 @@ export function SubCategoriesAutoComplete(props: Props<SubCategory>) {
   return (
     <ApiAutoComplete
       label={t('subCategory')}
-      searchFunction={async (search) => (await getSubCategoryList({ search })).items}
+      searchFunction={async (search) => (await getSubCategoryList({ search })).data}
       {...props}
     />
   );
@@ -49,7 +49,7 @@ export function BrandsAutoComplete(props: Props<Brand>) {
   return (
     <ApiAutoComplete
       label={t('brand')}
-      searchFunction={async (search) => (await getBrandList({ search })).items}
+      searchFunction={async (search) => (await getBrandList({ search })).data}
       {...props}
     />
   );
@@ -71,7 +71,7 @@ export function TagsAutoComplete(props: Props<Tag>) {
   return (
     <ApiAutoComplete
       label={t('tag')}
-      searchFunction={async (search) => (await getTagList({ search })).items}
+      searchFunction={async (search) => (await getTagList({ search })).data}
       {...props}
     />
   );
@@ -82,7 +82,7 @@ export function LabelsAutoComplete(props: Props<Label>) {
   return (
     <ApiAutoComplete
       label={t('label')}
-      searchFunction={async (search) => (await getLabelList({ search })).items}
+      searchFunction={async (search) => (await getLabelList({ search })).data}
       {...props}
     />
   );

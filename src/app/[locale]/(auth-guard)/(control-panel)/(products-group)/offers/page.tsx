@@ -39,7 +39,7 @@ export default async function Page({
         </Button>
       }
     >
-      <OfferListView items={data.items} total={data.total} />
+      <OfferListView items={data.data} total={data.metadata.total} />
     </PageWrapper>
   );
 }

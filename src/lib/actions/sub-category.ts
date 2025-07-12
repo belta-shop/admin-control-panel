@@ -7,6 +7,7 @@ import { SubCategoryFormData } from '@/view/sections/sub-categories/new-edit-for
 import { uploadSingle } from './upload';
 import { RevalidateTags } from '../config/api';
 import { DEFAULT_LIMIT } from '../config/global';
+import { ListResponse } from '../types/api/metadata';
 import { SubCategory, SubCategoryDetails } from '../types/api/sub-categories';
 import { getData, postData, patchData, deleteData } from '../utils/crud-fetch-api';
 
@@ -36,7 +37,7 @@ export async function getSubCategoryList({
   employeeReadOnly?: string;
   categoryId?: string;
 }) {
-  const res = await getData<{ items: SubCategory[]; total: number }>('/subcategories/staff', {
+  const res = await getData<ListResponse<SubCategory>>('/subcategories/staff', {
     queries: {
       page: page || '1',
       limit: limit || DEFAULT_LIMIT,

@@ -7,6 +7,7 @@ import { CategoryFormData } from '@/view/sections/categories/new-edit-form';
 import { uploadSingle } from './upload';
 import { RevalidateTags } from '../config/api';
 import { DEFAULT_LIMIT } from '../config/global';
+import { ListResponse } from '../types/api/metadata';
 import { Category, CategoryDetails } from '../types/api/categories';
 import { getData, postData, patchData, deleteData } from '../utils/crud-fetch-api';
 
@@ -34,7 +35,7 @@ export async function getCategoryList({
   disabled?: string;
   employeeReadOnly?: string;
 }) {
-  const res = await getData<{ items: Category[]; total: number }>('/categories/staff', {
+  const res = await getData<ListResponse<Category>>('/categories/staff', {
     queries: {
       page,
       limit,

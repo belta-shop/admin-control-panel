@@ -6,6 +6,7 @@ import { OfferFormData } from '@/view/sections/offers/new-edit-form';
 
 import { RevalidateTags } from '../config/api';
 import { DEFAULT_LIMIT } from '../config/global';
+import { ListResponse } from '../types/api/metadata';
 import { Offer, OfferDetails } from '../types/api/offers';
 import { getData, postData, patchData, deleteData } from '../utils/crud-fetch-api';
 
@@ -31,7 +32,7 @@ export async function getOfferList({
   disabled?: string;
   employeeReadOnly?: string;
 }) {
-  const res = await getData<{ items: Offer[]; total: number }>('/offers', {
+  const res = await getData<ListResponse<Offer>>('/offers', {
     queries: {
       page,
       limit,

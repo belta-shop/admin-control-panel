@@ -7,6 +7,7 @@ import { BrandFormData } from '@/view/sections/brands/new-edit-form';
 import { uploadSingle } from './upload';
 import { RevalidateTags } from '../config/api';
 import { DEFAULT_LIMIT } from '../config/global';
+import { ListResponse } from '../types/api/metadata';
 import { Brand, BrandDetails } from '../types/api/brands';
 import { getData, postData, patchData, deleteData } from '../utils/crud-fetch-api';
 
@@ -34,7 +35,7 @@ export async function getBrandList({
   disabled?: string;
   employeeReadOnly?: string;
 }) {
-  const res = await getData<{ items: Brand[]; total: number }>('/brands/staff', {
+  const res = await getData<ListResponse<Brand>>('/brands/staff', {
     queries: {
       page,
       limit,

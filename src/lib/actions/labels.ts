@@ -6,6 +6,7 @@ import { LabelFormData } from '@/view/sections/labels/new-edit-form';
 
 import { RevalidateTags } from '../config/api';
 import { DEFAULT_LIMIT } from '../config/global';
+import { ListResponse } from '../types/api/metadata';
 import { Label, LabelDetails } from '../types/api/labels';
 import { getData, postData, patchData, deleteData } from '../utils/crud-fetch-api';
 
@@ -33,7 +34,7 @@ export async function getLabelList({
   disabled?: string;
   employeeReadOnly?: string;
 }) {
-  const res = await getData<{ items: Label[]; total: number }>('/labels/staff', {
+  const res = await getData<ListResponse<Label>>('/labels/staff', {
     queries: {
       page: page || '1',
       limit: limit || DEFAULT_LIMIT,

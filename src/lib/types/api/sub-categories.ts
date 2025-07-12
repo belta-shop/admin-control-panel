@@ -1,5 +1,4 @@
 import { Product } from './products';
-import { Category } from './categories';
 
 export interface SubCategory {
   _id: string;
@@ -9,7 +8,7 @@ export interface SubCategory {
   disabled: boolean;
   employeeReadOnly: boolean;
   products: string[];
-  category?: Category | null;
+  category?: { nameAr: string; nameEn: string; _id: string } | null;
 }
 
 export interface SubCategoryDetails extends Omit<SubCategory, 'products'> {

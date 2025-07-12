@@ -39,7 +39,7 @@ export default async function Page({
         </Button>
       }
     >
-      <TagListView items={data.items} total={data.total} />
+      <TagListView items={data.data} total={data.metadata.total} />
     </PageWrapper>
   );
 }

@@ -7,6 +7,7 @@ import { TagFormData } from '@/view/sections/tags/new-edit-form';
 import { RevalidateTags } from '../config/api';
 import { DEFAULT_LIMIT } from '../config/global';
 import { Tag, TagDetails } from '../types/api/tags';
+import { ListResponse } from '../types/api/metadata';
 import { getData, postData, patchData, deleteData } from '../utils/crud-fetch-api';
 
 export async function getTag(id: string) {
@@ -33,7 +34,7 @@ export async function getTagList({
   disabled?: string;
   employeeReadOnly?: string;
 }) {
-  const res = await getData<{ items: Tag[]; total: number }>('/tags/staff', {
+  const res = await getData<ListResponse<Tag>>('/tags/staff', {
     queries: {
       page: page || '1',
       limit: limit || DEFAULT_LIMIT,

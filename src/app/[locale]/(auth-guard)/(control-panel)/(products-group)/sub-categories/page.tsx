@@ -44,7 +44,7 @@ export default async function Page({
         </Button>
       }
     >
-      <SubCategoryListView items={data.items} total={data.total} />
+      <SubCategoryListView items={data.data} total={data.metadata.total} />
     </PageWrapper>
   );
 }
