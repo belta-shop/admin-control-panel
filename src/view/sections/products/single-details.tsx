@@ -36,7 +36,7 @@ export default function ProductSingleDetails({ product }: { product: Product | P
       value: product.nameEn,
     },
     {
-      label: 'Global.Label.disabled',
+      label: 'Global.Label.status',
       value: <StatusChip value={!product.disabled} />,
     },
     {

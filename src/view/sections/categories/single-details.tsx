@@ -32,7 +32,7 @@ export default function CategorySingleDetails({
       value: category.nameEn,
     },
     {
-      label: 'Global.Label.disabled',
+      label: 'Global.Label.status',
       value: <StatusChip value={!category.disabled} />,
     },
     {

@@ -36,7 +36,7 @@ export default function LabelSingleDetails({ label }: { label: Label | LabelDeta
       value: label.nameEn,
     },
     {
-      label: 'Global.Label.disabled',
+      label: 'Global.Label.status',
       value: <StatusChip value={!label.disabled} />,
     },
     {

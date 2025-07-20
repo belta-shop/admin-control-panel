@@ -28,7 +28,7 @@ export default function TagSingleDetails({ tag }: { tag: Tag | TagDetails }) {
       value: tag.nameEn,
     },
     {
-      label: 'Global.Label.disabled',
+      label: 'Global.Label.status',
       value: <StatusChip value={!tag.disabled} />,
     },
     {

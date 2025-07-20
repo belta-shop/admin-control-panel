@@ -38,7 +38,7 @@ export default function SubCategorySingleDetails({
       value: subCategory.nameEn,
     },
     {
-      label: 'Global.Label.disabled',
+      label: 'Global.Label.status',
       value: <StatusChip value={!subCategory.disabled} />,
     },
     {

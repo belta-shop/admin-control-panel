@@ -68,7 +68,7 @@ export default function ProductOfferCard({ product }: { product: ProductDetails 
             value: offer.maxPerClient,
           },
           {
-            label: 'Global.Label.disabled',
+            label: 'Global.Label.status',
             value: <StatusChip value={!offer.disabled} />,
           },
         ]

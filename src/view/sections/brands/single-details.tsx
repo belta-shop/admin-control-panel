@@ -28,7 +28,7 @@ export default function BrandSingleDetails({ brand }: { brand: Brand | BrandDeta
       value: brand.nameEn,
     },
     {
-      label: 'Global.Label.disabled',
+      label: 'Global.Label.status',
       value: <StatusChip value={!brand.disabled} />,
     },
     {
