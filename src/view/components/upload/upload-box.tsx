@@ -110,7 +110,7 @@ export default function UploadBox({
         error={hasError}
         dragActive={isDragActive}
         {...getRootProps()}
-        sx={{ width: 'fit-content' }}
+        sx={{ width: file ? 'fit-content' : undefined }}
       >
         <input {...getInputProps()} />
 
