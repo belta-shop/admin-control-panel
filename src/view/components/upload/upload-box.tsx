@@ -110,6 +110,7 @@ export default function UploadBox({
         error={hasError}
         dragActive={isDragActive}
         {...getRootProps()}
+        sx={{ width: 'fit-content' }}
       >
         <input {...getInputProps()} />
 
@@ -148,8 +149,7 @@ function Preview({ file }: { file?: File | string }) {
         alt="preview"
         src={file}
         sx={{
-          width: 1,
-          height: 1,
+          height: '100%',
           objectFit: 'cover',
           borderRadius: 1,
         }}
@@ -164,8 +164,7 @@ function Preview({ file }: { file?: File | string }) {
         alt="preview"
         src={URL.createObjectURL(file)}
         sx={{
-          width: 1,
-          height: 1,
+          height: '100%',
           objectFit: 'cover',
           borderRadius: 1,
         }}
