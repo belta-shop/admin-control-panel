@@ -29,6 +29,9 @@
     "Carts": {
       "title": "عربات التسوق | Beltahop"
     },
+    "Orders": {
+      "title": "الطلبات | Beltahop"
+    },
     "Auth": {
       "login_title": "تسجيل الدخول | Beltahop",
       "register_title": "إنشاء حساب | Beltahop",
@@ -132,7 +135,10 @@
       "enabled": "مفعل",
       "user": "المستخدم",
       "products_count": "عدد المنتجات",
-      "total_price": "السعر الكلي"
+      "total_price": "السعر الكلي",
+      "confirmed": "مؤكد",
+      "cancelled": "ملغي",
+      "completed": "مكتمل"
     },
     "Helper": {
       "upload_drag_drop_file": "اسحب وأفلت الملف هنا أو انقر للتحميل",
@@ -273,6 +279,10 @@
     "Carts": {
       "title": "عربات التسوق",
       "single_title": "تفاصيل العربة"
+    },
+    "Orders": {
+      "title": "الطلبات",
+      "single_title": "تفاصيل الطلب"
     }
   }
 }

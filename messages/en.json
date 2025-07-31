@@ -138,7 +138,10 @@
       "enabled": "Enabled",
       "user": "User",
       "products_count": "Products Count",
-      "total_price": "Total Price"
+      "total_price": "Total Price",
+      "confirmed": "Confirmed",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled"
     },
     "Helper": {
       "upload_drag_drop_file": "Drag & drop or click to upload file",
@@ -279,6 +282,10 @@
     "Carts": {
       "title": "Carts",
       "single_title": "Cart Details"
+    },
+    "Orders": {
+      "title": "Orders",
+      "single_title": "Order Details"
     }
   }
 }

@@ -62,6 +62,7 @@ export const paths = {
     },
     orders: {
       list: '/orders',
+      single: (id: string) => `/orders/${id}`,
     },
   },
 };
