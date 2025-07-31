@@ -26,6 +26,15 @@
     "Offers": {
       "title": "Offers | Beltahop"
     },
+    "Users": {
+      "title": "Users | Beltahop"
+    },
+    "Carts": {
+      "title": "Carts | Beltahop"
+    },
+    "Orders": {
+      "title": "Orders | Beltahop"
+    },
     "Auth": {
       "login_title": "Login | Beltahop",
       "register_title": "Register | Beltahop",
@@ -43,7 +52,11 @@
     "products": "Products",
     "offers": "Offers",
     "tags": "Tags",
-    "labels": "Labels"
+    "labels": "Labels",
+    "users_section": "Users",
+    "users": "Users",
+    "carts": "Shopping Carts",
+    "orders": "Orders"
   },
   "Global": {
     "Validation": {
@@ -122,7 +135,10 @@
       "quantity": "Quantity",
       "price": "Price",
       "status": "Status",
-      "enabled": "Enabled"
+      "enabled": "Enabled",
+      "user": "User",
+      "products_count": "Products Count",
+      "total_price": "Total Price"
     },
     "Helper": {
       "upload_drag_drop_file": "Drag & drop or click to upload file",
@@ -259,6 +275,10 @@
       "title": "Offers",
       "create": "Create Offer",
       "edit": "Edit Offer"
+    },
+    "Carts": {
+      "title": "Carts",
+      "single_title": "Cart Details"
     }
   }
 }

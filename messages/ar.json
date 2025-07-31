@@ -26,6 +26,9 @@
     "Offers": {
       "title": "العروض | Beltahop"
     },
+    "Carts": {
+      "title": "عربات التسوق | Beltahop"
+    },
     "Auth": {
       "login_title": "تسجيل الدخول | Beltahop",
       "register_title": "إنشاء حساب | Beltahop",
@@ -43,7 +46,11 @@
     "products": "المنتجات",
     "offers": "العروض",
     "tags": "الوسوم",
-    "labels": "العناوين"
+    "labels": "العناوين",
+    "users_section": "المستخدمين",
+    "users": "المستخدمين",
+    "carts": "عربات التسوق",
+    "orders": "الطلبات"
   },
   "Global": {
     "Validation": {
@@ -122,7 +129,10 @@
       "quantity": "الكمية",
       "price": "السعر",
       "status": "الحالة",
-      "enabled": "مفعل"
+      "enabled": "مفعل",
+      "user": "المستخدم",
+      "products_count": "عدد المنتجات",
+      "total_price": "السعر الكلي"
     },
     "Helper": {
       "upload_drag_drop_file": "اسحب وأفلت الملف هنا أو انقر للتحميل",
@@ -259,6 +269,10 @@
       "title": "العروض",
       "create": "إنشاء عرض",
       "edit": "تعديل العرض"
+    },
+    "Carts": {
+      "title": "عربات التسوق",
+      "single_title": "تفاصيل العربة"
     }
   }
 }

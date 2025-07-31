@@ -5,7 +5,7 @@ export const localesSettings: Record<LocaleType, LocaleSetting> = {
     label: 'العربية',
     value: 'ar',
     dir: 'rtl',
-    currency: 'ر.ي',
+    currency: 'ج.م',
     icon: 'flagpack:sa',
     format: {
       date: {
@@ -31,7 +31,7 @@ export const localesSettings: Record<LocaleType, LocaleSetting> = {
     label: 'English',
     value: 'en',
     dir: 'ltr',
-    currency: 'YER',
+    currency: 'EGP',
     icon: 'flagpack:gb-nir',
     format: {
       date: {

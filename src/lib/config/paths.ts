@@ -51,6 +51,19 @@ export const paths = {
       single: (id: string) => `/labels/${id}`,
     },
   },
+  users: {
+    users: {
+      list: '/users',
+      single: (id: string) => `/users/${id}`,
+    },
+    carts: {
+      list: '/carts',
+      single: (id: string) => `/carts/${id}`,
+    },
+    orders: {
+      list: '/orders',
+    },
+  },
 };
 
 export const pathAfterLogin = paths.products.categories.list;

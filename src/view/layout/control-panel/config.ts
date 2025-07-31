@@ -52,4 +52,24 @@ export const configNavigation: NavSection[] = [
       },
     ],
   },
+  {
+    heading: 'users_section',
+    items: [
+      {
+        path: paths.users.users.list,
+        label: 'users',
+        icon: NavbarIcons.USER,
+      },
+      {
+        path: paths.users.carts.list,
+        label: 'carts',
+        icon: NavbarIcons.CART,
+      },
+      {
+        path: paths.users.orders.list,
+        label: 'orders',
+        icon: NavbarIcons.ORDER,
+      },
+    ],
+  },
 ];

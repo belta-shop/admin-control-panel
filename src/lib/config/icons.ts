@@ -30,4 +30,7 @@ export const enum NavbarIcons {
   PERCENT = 'material-symbols:percent',
   SELL = 'material-symbols:sell',
   LABEL = 'material-symbols:label',
+  USER = 'material-symbols:person',
+  CART = 'material-symbols:shopping-cart',
+  ORDER = 'material-symbols:shopping-bag',
 }
